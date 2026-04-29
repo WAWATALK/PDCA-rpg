@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+
+:root{
+  --sky:#87CEEB;--sky2:#B8E4F7;--ground:#5DBB4A;--ground2:#4AA038;
+  --gold:#D4920A;--gl:#FFF3C0;--gd:#8B6010;
+  --white:#FFFEF8;--text:#3A2E1A;--muted:#7A6840;
+  --red:#E05030;--blue:#3A78C8;--green:#4AA038;
+  --border:#C8B880;--bg:#F8F4E8;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--sky);}
+body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',sans-serif;color:var(--text);}
+
+/* SCREENS */
+.scr{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .4s;z-index:1;}
+.scr.on{opacity:1;pointer-events:all;}
+
+/* ── TITLE ── */
+#s0{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 60%,var(--ground) 60%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;
+}
+/* clouds */
+.cloud{position:absolute;background:white;border-radius:50px;opacity:.9;}
+.c1{width:80px;height:28px;top:8%;left:5%;}
+.c1::before{content:'';position:absolute;width:44px;height:44px;background:white;border-radius:50%;top:-20px;left:12px;}
+.c1::after{content:'';position:absolute;width:32px;height:32px;background:white;border-radius:50%;top:-14px;left:36px;}
+.c2{width:64px;height:22px;top:14%;right:8%;}
+.c2::before{content:'';position:absolute;width:36px;height:36px;background:white;border-radius:50%;top:-16px;left:10px;}
+.c3{width:96px;height:30px;top:22%;left:25%;}
+.c3::before{content:'';position:absolute;width:48px;height:48px;background:white;border-radius:50%;top:-22px;left:16px;}
+.c3::after{content:'';position:absolute;width:36px;height:36px;background:white;border-radius:50%;top:-16px;left:48px;}
+/* ground details */
+.grass{position:absolute;bottom:0;left:0;right:0;height:40%;}
+
+.title-panel{
+  background:rgba(255,254,248,.92);border:3px solid var(--border);
+  border-radius:20px;padding:20px 24px;max-width:340px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+  position:relative;z-index:2;
+}
+.ey{font-size:10px;letter-spacing:.22em;color:var(--muted);}
+.dv{width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8px auto;}
+.mt{font-size:clamp(22px,7vw,30px);font-weight:900;color:#3A2E1A;line-height:1.4;}
+.st{font-size:11px;color:var(--muted);margin-top:4px;}
+.story{font-size:13px;color:var(--muted);line-height:2;margin:14px 0;text-align:left;border-left:3px solid var(--border);padding-left:12px;}
+.story em{color:#8B4010;font-style:normal;font-weight:700;}
+
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.btn-main{
+  padding:12px 36px;background:var(--gold);border:none;
+  color:white;font-family:inherit;font-size:14px;font-weight:700;
+  letter-spacing:.12em;cursor:pointer;border-radius:30px;
+  box-shadow:0 4px 0 var(--gd);
+  animation:bounce 2s ease-in-out infinite;
+  transition:transform .1s, box-shadow .1s;
+}
+.btn-main:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gd);}
+
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.a1{animation:fu .6s .1s both}.a2{animation:fu .6s .4s both}
+.a3{animation:fu .6s .7s both}.a4{animation:fu .6s 1s both}
+.a5{animation:fu .6s 1.3s both}
+
+/* ── CLASS ── */
+#s1{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 60%,var(--ground) 60%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;
+}
+.class-panel{
+  background:rgba(255,254,248,.95);border:3px solid var(--border);
+  border-radius:20px;padding:22px 20px;max-width:320px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+}
+.class-badge{
+  display:inline-block;background:#FFE066;border:2px solid var(--gold);
+  border-radius:20px;padding:3px 14px;font-size:10px;color:var(--gd);
+  font-weight:700;letter-spacing:.1em;margin-bottom:10px;
+}
+.class-icon{font-size:52px;display:block;margin-bottom:8px;}
+.class-name{font-size:22px;font-weight:900;color:var(--text);margin-bottom:2px;}
+.class-title{font-size:11px;color:var(--gold);letter-spacing:.12em;margin-bottom:12px;}
+.class-desc{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:12px;}
+.skills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.skill{font-size:11px;padding:4px 10px;border-radius:20px;background:#FFF3C0;border:1px solid #D4920A;color:var(--gd);font-weight:700;}
+
+/* ── STORY SCENE ── */
+#s2{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 55%,var(--ground) 55%,var(--ground2) 100%);
+  display:flex;flex-direction:column;
+}
+.scene{position:relative;flex:1;overflow:hidden;}
+.scene-clouds{position:absolute;top:0;left:0;width:100%;pointer-events:none;}
+
+/* buildings */
+.bld{position:absolute;bottom:42%;}
+
+/* player */
+#pl{position:absolute;left:50%;transform:translateX(-50%);text-align:center;z-index:10;transition:bottom .9s cubic-bezier(.25,0,.35,1);}
+.pn{font-size:9px;color:var(--text);font-weight:700;margin-bottom:2px;background:rgba(255,255,255,.8);border-radius:10px;padding:1px 6px;}
+@keyframes wk{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+#pl.walk{animation:wk .7s ease-in-out infinite;}
+
+/* NPCs */
+.npc{position:absolute;text-align:center;z-index:8;}
+.nn{font-size:9px;color:var(--text);font-weight:700;margin-bottom:2px;background:rgba(255,255,255,.8);border-radius:10px;padding:1px 6px;white-space:nowrap;}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.nfloat{animation:fl 2.5s ease-in-out infinite;}
+.npc.dim{filter:brightness(.6) saturate(.5);}
+.npc.active{filter:none;}
+
+/* HUD */
+.hud{
+  position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:8px 12px;
+  background:linear-gradient(180deg,rgba(255,254,248,.9) 0%,transparent 100%);
+}
+.hn{font-size:11px;color:var(--text);font-weight:700;}
+.hc{font-size:9px;color:var(--muted);}
+.hr{text-align:right;font-size:9px;color:var(--muted);}
+.hq{color:var(--gold);font-weight:700;margin-top:1px;}
+
+/* DIALOGUE */
+.dlg{
+  background:var(--white);border-top:3px solid var(--border);
+  padding:14px 16px 16px;flex-shrink:0;min-height:145px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.dspk{
+  font-size:11px;font-weight:700;color:var(--gold);
+  letter-spacing:.08em;padding-bottom:6px;
+  border-bottom:1.5px solid var(--border);margin-bottom:8px;
+}
+.dtxt{font-size:14px;color:var(--text);line-height:1.9;white-space:pre-line;flex:1;}
+.dnxt{
+  margin-top:10px;width:100%;padding:11px;
+  background:var(--gold);border:none;
+  color:white;font-family:inherit;font-size:13px;font-weight:700;
+  letter-spacing:.1em;cursor:pointer;border-radius:20px;
+  box-shadow:0 3px 0 var(--gd);transition:transform .1s,box-shadow .1s;
+}
+.dnxt:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gd);}
+
+/* ── ROCK SMASH ── */
+#s3{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 55%,var(--ground) 55%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;
+}
+.rock-panel{
+  background:rgba(255,254,248,.95);border:3px solid var(--border);
+  border-radius:20px;padding:20px;max-width:320px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+}
+.rock-title{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.thought{
+  min-height:36px;font-size:15px;color:#8B4010;font-weight:700;
+  margin:10px 0;line-height:1.6;
+}
+@keyframes rockShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+#rock-svg{cursor:pointer;transition:transform .1s;display:block;margin:10px auto;}
+#rock-svg:active{transform:scale(.92);}
+#rock-svg.shake{animation:rockShake .2s ease-in-out;}
+.hit-count{font-size:11px;color:var(--muted);margin-top:6px;}
+@keyframes crack{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.crack-line{animation:crack .15s ease-out both;}
+@keyframes explode{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(2)}}
+.exploding{animation:explode .4s ease-out forwards;}
+
+/* ── EXP ── */
+#s4{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 55%,var(--ground) 55%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;
+}
+@keyframes expPop{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+.exp-panel{
+  background:rgba(255,254,248,.95);border:3px solid #FFD700;
+  border-radius:20px;padding:22px 24px;max-width:300px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.15);
+  animation:expPop .5s .2s both;
+}
+.exp-icon{font-size:48px;display:block;margin-bottom:8px;}
+.exp-title{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;}
+.exp-pts{font-size:28px;font-weight:900;color:var(--gold);}
+.exp-sub{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7;}
+
+/* ── VENDOR CHOICE ── */
+#s5{
+  background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:20px 16px;
+}
+.vc-panel{width:100%;max-width:360px;}
+.vc-title{font-size:15px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;}
+.vc-sub{font-size:11px;color:var(--muted);text-align:center;margin-bottom:16px;}
+.vc-cards{display:flex;flex-direction:column;gap:10px;}
+.vc{
+  border:2px solid var(--border);border-radius:14px;padding:14px 16px;
+  cursor:pointer;background:var(--white);
+  display:flex;align-items:center;gap:12px;
+  transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.vc:active{transform:scale(.97);border-color:var(--gold);}
+.vc.used{opacity:.4;pointer-events:none;}
+.vc-icon{font-size:32px;flex-shrink:0;}
+.vc-info .vn{font-size:14px;font-weight:700;color:var(--text);}
+.vc-info .vp{font-size:12px;color:var(--gold);font-weight:700;margin:2px 0;}
+.vc-info .vd{font-size:11px;color:var(--muted);}
+
+/* ── VENDOR RESULT ── */
+#s6{
+  background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:24px 20px;text-align:center;
+}
+.vr-panel{
+  background:var(--white);border:2px solid var(--border);border-radius:20px;
+  padding:24px 20px;max-width:320px;width:100%;
+  box-shadow:0 4px 16px rgba(0,0,0,.1);
+}
+.vr-icon{font-size:52px;margin-bottom:10px;display:block;animation:fu .4s both;}
+.vr-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;animation:fu .4s .1s both;}
+.vr-txt{font-size:13px;color:var(--muted);line-height:1.9;white-space:pre-line;text-align:left;animation:fu .4s .2s both;}
+
+/* ── REBIRTH ── */
+#s7{background:#1A0A00;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;}
+@keyframes shake2{from{transform:translateX(-5px) rotate(-2deg)}to{transform:translateX(5px) rotate(2deg)}}
+.rb-cry{font-size:clamp(28px,9vw,46px);font-weight:900;color:#FF5030;animation:shake2 .2s ease-in-out infinite alternate;}
+@keyframes swirl{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.rb-sw{font-size:52px;margin:18px 0;animation:swirl 1.6s linear infinite;}
+.rb-hint{font-size:13px;color:#666;animation:fu .7s 1.8s both;}
+
+/* ── SPARROW ── */
+#s8{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 60%,var(--ground) 60%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;
+}
+.sp-panel{
+  background:rgba(255,254,248,.96);border:3px solid var(--border);
+  border-radius:20px;padding:20px;max-width:320px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+}
+.sp-img{width:90px;height:90px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;margin-bottom:10px;animation:expPop .6s .2s both;}
+.sp-name{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;animation:fu .6s .3s both;}
+.sp-speech{font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px;animation:fu .6s .4s both;}
+.sp-book{
+  background:#FFF3C0;border:2px solid var(--gold);border-radius:12px;
+  padding:12px 14px;text-align:left;animation:fu .6s .5s both;
+}
+.sp-bt{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.sp-bd{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* scene SVG clouds inline */
+.sc-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+
+/* ── 第一章追加樣式 ── */
+
+:root{
+  --sky:#87CEEB;--sky2:#B8E4F7;--gnd:#5DBB4A;--gnd2:#4AA038;
+  --gold:#D4920A;--gl:#FFF3C0;--gd:#8B6010;
+  --white:#FFFEF8;--text:#3A2E1A;--muted:#7A6840;
+  --red:#E05030;--blue:#3A78C8;--green:#4AA038;
+  --border:#C8B880;--bg:#F8F4E8;
+  --pu:#7050B0;--pu2:#E8E0F8;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--sky);}
+body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var(--text);}
+
+.scr{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .4s;z-index:1;overflow-y:auto;}
+.scr.on{opacity:1;pointer-events:all;}
+
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes expPop{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+.a1{animation:fu .6s .1s both}.a2{animation:fu .6s .4s both}
+.a3{animation:fu .6s .7s both}.a4{animation:fu .6s 1s both}.a5{animation:fu .6s 1.3s both}
+
+/* clouds */
+.cloud{position:fixed;background:white;border-radius:50px;opacity:.88;pointer-events:none;z-index:0;}
+.c1{width:80px;height:26px;top:6%;left:4%;}
+.c1::before{content:'';position:absolute;width:44px;height:40px;background:white;border-radius:50%;top:-18px;left:10px;}
+.c1::after{content:'';position:absolute;width:30px;height:30px;background:white;border-radius:50%;top:-12px;left:36px;}
+.c2{width:64px;height:22px;top:12%;right:7%;}
+.c2::before{content:'';position:absolute;width:36px;height:34px;background:white;border-radius:50%;top:-14px;left:8px;}
+.c3{width:96px;height:28px;top:20%;left:22%;}
+.c3::before{content:'';position:absolute;width:48px;height:44px;background:white;border-radius:50%;top:-20px;left:14px;}
+.c3::after{content:'';position:absolute;width:34px;height:32px;background:white;border-radius:50%;top:-14px;left:46px;}
+
+/* shared panel */
+.panel{
+  background:rgba(255,254,248,.96);border:3px solid var(--border);
+  border-radius:20px;padding:20px;max-width:360px;width:100%;
+  box-shadow:0 4px 20px rgba(0,0,0,.12);position:relative;z-index:1;
+}
+.panel-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.panel-sub{font-size:11px;color:var(--muted);margin-bottom:14px;}
+
+.btn-main{
+  padding:12px 32px;background:var(--gold);border:none;
+  color:white;font-family:inherit;font-size:13px;font-weight:700;
+  letter-spacing:.1em;cursor:pointer;border-radius:30px;
+  box-shadow:0 4px 0 var(--gd);transition:transform .1s,box-shadow .1s;
+}
+.btn-main:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gd);}
+.btn-full{width:100%;margin-top:14px;}
+
+/* sky bg screens */
+.sky-bg{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px 18px;gap:14px;
+}
+
+/* NARRATION (story screens) */
+#c1s-narr{background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);display:flex;flex-direction:column;}
+.scene2{position:relative;flex:1;overflow:hidden;min-height:200px;}
+.sc2-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.hud2{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;padding:8px 12px;background:linear-gradient(180deg,rgba(255,254,248,.9),transparent);}
+.hn{font-size:11px;font-weight:700;color:var(--text);}
+.hc{font-size:9px;color:var(--muted);}
+.hqr{text-align:right;font-size:9px;color:var(--muted);}
+.hquest{color:var(--gold);font-weight:700;font-size:9px;}
+
+/* NPCs in scene */
+.npc2{position:absolute;text-align:center;z-index:8;}
+.nn2{font-size:9px;font-weight:700;color:var(--text);background:rgba(255,255,255,.85);border-radius:8px;padding:1px 6px;margin-bottom:1px;white-space:nowrap;}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.nf{animation:fl 2.5s ease-in-out infinite;}
+.npc2.dim{filter:brightness(.55) saturate(.4);}
+.npc2.lit{filter:none;}
+#pl2{position:absolute;left:50%;transform:translateX(-50%);text-align:center;z-index:10;transition:bottom .9s cubic-bezier(.25,0,.35,1);}
+.pn2{font-size:9px;font-weight:700;color:var(--text);background:rgba(255,255,255,.85);border-radius:8px;padding:1px 6px;margin-bottom:2px;}
+
+/* dialogue */
+.dlg2{background:var(--white);border-top:3px solid var(--border);padding:14px 16px 16px;flex-shrink:0;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;}
+.dspk2{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;padding-bottom:6px;border-bottom:1.5px solid var(--border);margin-bottom:8px;}
+.dtxt2{font-size:14px;color:var(--text);line-height:1.9;white-space:pre-line;flex:1;}
+.dnxt2{margin-top:10px;width:100%;padding:11px;background:var(--gold);border:none;color:white;font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.1em;cursor:pointer;border-radius:20px;box-shadow:0 3px 0 var(--gd);transition:transform .1s,box-shadow .1s;}
+.dnxt2:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gd);}
+
+/* ── EVALUATION ── */
+.eval-screen{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:20px 16px;gap:0;}
+.eval-header{width:100%;max-width:360px;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.eval-badge{background:var(--gold);color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.eval-step{font-size:11px;color:var(--muted);}
+.eval-q{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.6;}
+.eval-situation{font-size:13px;color:var(--muted);background:#FFF8E8;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;line-height:1.8;margin-bottom:14px;}
+.expand-btn{font-size:11px;color:var(--blue);cursor:pointer;margin-bottom:12px;text-decoration:underline;}
+.law-text{font-size:11px;color:#888;background:#F5F5F0;border:1px solid #DDD;border-radius:8px;padding:10px;line-height:1.7;margin-bottom:12px;display:block;}
+.level-btns{display:flex;gap:10px;width:100%;max-width:360px;margin-bottom:12px;}
+.lbtn{
+  flex:1;padding:14px 8px;border:2px solid var(--border);border-radius:12px;
+  background:var(--white);cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;
+  color:var(--text);transition:all .2s;text-align:center;
+}
+.lbtn:active{transform:scale(.96);}
+.lbtn.chosen-p{background:#E8F5E8;border-color:#50C040;color:#2A6020;}
+.lbtn.chosen-m{background:#FFF3C0;border-color:#D4920A;color:#7A4010;}
+.lbtn.chosen-h{background:#FFE8E0;border-color:#E05030;color:#801010;}
+.eval-result{display:none;background:#F0F8FF;border:2px solid var(--blue);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#2A4880;line-height:1.8;}
+.sp-say{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.sp-tiny{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;}
+.sp-bubble{background:#FFF3C0;border:1.5px solid var(--gold);border-radius:0 12px 12px 12px;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;flex:1;}
+
+/* ── MTPD/RTO/RPO ── */
+#c1s-trp{background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:16px 16px 24px;overflow-y:auto;}
+.trp-title{font-size:15px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;}
+.trp-sub{font-size:11px;color:var(--muted);text-align:center;margin-bottom:16px;}
+.trp-card{width:100%;max-width:360px;background:var(--white);border:2px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;}
+.trp-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.trp-def{font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.6;}
+.trp-opts{display:flex;gap:6px;flex-wrap:wrap;}
+.topt{
+  padding:8px 10px;border:1.5px solid var(--border);border-radius:20px;
+  background:var(--white);cursor:pointer;font-family:inherit;font-size:12px;
+  color:var(--muted);transition:all .2s;
+}
+.topt.sel{background:var(--gold);border-color:var(--gd);color:white;font-weight:700;}
+.topt:active{transform:scale(.95);}
+.trp-err{display:none;background:#FFE8E0;border:1.5px solid var(--red);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--red);margin-top:10px;line-height:1.7;width:100%;max-width:360px;}
+.trp-ok{display:none;background:#E8F5E8;border:1.5px solid #50C040;border-radius:10px;padding:10px 12px;font-size:12px;color:#2A6020;margin-top:10px;line-height:1.7;width:100%;max-width:360px;}
+
+/* ── ROCK SMASH ── */
+#c1s-rock2{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;
+}
+.rock-panel2{background:rgba(255,254,248,.96);border:3px solid var(--border);border-radius:20px;padding:20px;max-width:320px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);}
+.thought2{min-height:36px;font-size:15px;color:#8B4010;font-weight:700;margin:10px 0;line-height:1.6;}
+@keyframes rockShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+#rock2{cursor:pointer;transition:transform .1s;display:block;margin:8px auto;}
+#rock2:active{transform:scale(.92);}
+#rock2.shake{animation:rockShake .2s ease-in-out;}
+@keyframes explode{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(2)}}
+.exploding{animation:explode .4s ease-out forwards;}
+
+/* ── EXP ── */
+.exp-screen{background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;}
+.exp-panel{background:rgba(255,254,248,.96);border:3px solid #FFD700;border-radius:20px;padding:22px 24px;max-width:300px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.15);animation:expPop .5s .2s both;}
+.exp-icon2{font-size:48px;display:block;margin-bottom:8px;}
+.exp-title2{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;}
+.exp-pts2{font-size:28px;font-weight:900;color:var(--gold);}
+.exp-sub2{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.8;}
+
+/* ── FINAL ── */
+#c1s-final{background:linear-gradient(135deg,#1A3A6A 0%,#2A5A9A 50%,#1A3A6A 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;}
+.final-panel{background:rgba(255,254,248,.08);border:2px solid rgba(255,255,255,.2);border-radius:20px;padding:28px 24px;max-width:320px;width:100%;}
+.final-moon{font-size:56px;display:block;margin-bottom:8px;animation:bounce 3s ease-in-out infinite;}
+.final-msg{font-size:14px;color:rgba(255,248,220,.9);line-height:2;margin-bottom:16px;}
+.final-annan{font-size:20px;font-weight:900;color:#FFE066;margin:12px 0;animation:bounce 2s ease-in-out infinite;}
+.final-q{font-size:15px;font-weight:700;color:white;line-height:1.8;margin-top:16px;padding:14px;background:rgba(255,255,255,.1);border-radius:12px;border:1.5px solid rgba(255,255,255,.2);}
+.final-q em{color:#FFE066;font-style:normal;}
+
+
+/* ── BACK BUTTON ── */
+#back-btn-disabled{
+  position:fixed;top:10px;left:12px;z-index:100;
+  width:36px;height:36px;
+  background:rgba(255,254,248,.9);
+  border:2px solid #C8B880;
+  border-radius:50%;
+  display:flex;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+  font-size:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  transition:transform .15s, opacity .2s;
+  opacity:0;
+  pointer-events:none;
+}
+
+</style>
+<title>轉生成為資訊人｜第一章：採購</title>
+</head>
+<body>
+<!-- clouds (shared) -->
+<div class="cloud c1"></div>
+<div class="cloud c2"></div>
+<div class="cloud c3"></div>
+
+<!-- ── S0: CHAPTER INTRO ── -->
+<div class="scr on sky-bg" id="c1s0">
+  <div class="panel a1" style="text-align:center">
+    <div style="font-size:10px;letter-spacing:.22em;color:var(--muted)">第一章開始</div>
+    <div style="width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8px auto"></div>
+    <img src="data:image/webp;base64,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" alt="資安小麻雀" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;">
+    <div style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:6px" class="a2">第一章：找個好廠商</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.9;margin-bottom:14px" class="a3">
+      勇者拿著程序書，準備重新出發。<br>
+      但小麻雀說：<br>
+      「等等！先開會評估需求，<br>才能找到對的廠商喔！」
+    </div>
+    <button class="btn-main a4" onclick="startNarr()">好，開會！🗣️</button>
+  </div>
+</div>
+
+<!-- ── S-NARR: STORY SCENE ── -->
+<div class="scr" id="c1s-narr">
+<div class="scene2" id="c1scene2">
+  <svg class="sc2-svg" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid slice">
+    <!-- sky/ground -->
+    <rect x="0" y="0" width="390" height="175" fill="#87CEEB"/>
+    <rect x="0" y="175" width="390" height="125" fill="#5DBB4A"/>
+    <rect x="0" y="175" width="390" height="6" fill="#4AA038"/>
+    <!-- clouds -->
+    <ellipse cx="55" cy="42" rx="40" ry="16" fill="white" opacity=".9"/>
+    <ellipse cx="36" cy="36" rx="24" ry="20" fill="white" opacity=".9"/>
+    <ellipse cx="72" cy="36" rx="20" ry="18" fill="white" opacity=".9"/>
+    <ellipse cx="288" cy="30" rx="34" ry="14" fill="white" opacity=".9"/>
+    <ellipse cx="270" cy="25" rx="20" ry="17" fill="white" opacity=".9"/>
+    <ellipse cx="308" cy="25" rx="18" ry="16" fill="white" opacity=".9"/>
+    <!-- sun -->
+    <circle cx="340" cy="45" r="24" fill="#FFE050" opacity=".9"/>
+    <!-- meeting hall (center) -->
+    <rect x="130" y="98" width="130" height="92" rx="6" fill="#F0E8C0" stroke="#C8A850" stroke-width="2"/>
+    <polygon points="122,102 268,102 199,72" fill="#E0980A" stroke="#B87010" stroke-width="1.5"/>
+    <rect x="160" y="120" width="28" height="28" rx="3" fill="#B8D0F0" stroke="#88A0C8" stroke-width="1.5"/>
+    <rect x="202" y="120" width="28" height="28" rx="3" fill="#B8D0F0" stroke="#88A0C8" stroke-width="1.5"/>
+    <rect x="170" y="160" width="30" height="30" rx="4" fill="#C8A850" stroke="#A08030" stroke-width="1.5"/>
+    <circle cx="197" cy="175" r="3" fill="#886020"/>
+    <text x="195" y="95" fill="#8B6010" font-size="7" text-anchor="middle" font-family="sans-serif" font-weight="bold">村民大會堂</text>
+    <!-- trees -->
+    <ellipse cx="90" cy="188" rx="22" ry="17" fill="#50C040"/>
+    <ellipse cx="88" cy="176" rx="16" ry="14" fill="#68D858"/>
+    <rect x="85" y="198" width="7" height="18" fill="#8B6010"/>
+    <ellipse cx="300" cy="186" rx="20" ry="16" fill="#50C040"/>
+    <ellipse cx="302" cy="174" rx="14" ry="13" fill="#68D858"/>
+    <rect x="299" y="196" width="7" height="18" fill="#8B6010"/>
+    <!-- path -->
+    <path d="M180 182 L210 182 L216 300 L174 300Z" fill="#D4B870" stroke="#C0A050" stroke-width="1.5"/>
+  </svg>
+
+  <div class="hud2">
+    <div><div class="hn">⚔️ 勇者・系統負責人</div><div class="hc">Lv.2 ─ 安安村</div></div>
+    <div class="hqr"><div>📍 村民大會堂</div><div class="hquest" id="c1hquest2">召開村民大會</div></div>
+  </div>
+
+  <!-- player -->
+  <div id="c1pl2" style="bottom:-10%">
+    <div class="pn2">你（勇者）</div>
+    <svg viewBox="0 0 36 48" width="30" height="40">
+      <ellipse cx="18" cy="47" rx="10" ry="3.5" fill="rgba(0,0,0,.15)"/>
+      <rect x="12" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+      <rect x="20" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+      <rect x="9" y="18" width="18" height="17" rx="5" fill="#5A9EE0" stroke="#3A78C0" stroke-width="1.5"/>
+      <rect x="9" y="28" width="18" height="4" rx="2" fill="#3A78C0"/>
+      <rect x="27" y="16" width="3" height="14" rx="1.5" fill="#FFD700" stroke="#C0A010" stroke-width=".8"/>
+      <rect x="24" y="20" width="9" height="2.5" rx="1.5" fill="#C0A010"/>
+      <circle cx="18" cy="13" r="10" fill="#FFDDA0" stroke="#D4A870" stroke-width="1.5"/>
+      <path d="M8 11 Q9 4 18 4 Q27 4 28 11" fill="#5A3010"/>
+      <circle cx="14.5" cy="13" r="2" fill="#3A2010"/><circle cx="21.5" cy="13" r="2" fill="#3A2010"/>
+      <path d="M14 18 Q18 21 22 18" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- NPC 萬物屋 -->
+  <div class="npc2 dim" id="c1npc-mw2" style="left:4%;bottom:32%">
+    <div class="nf"><div class="nn2">萬物屋</div>
+    <svg viewBox="0 0 32 44" width="26" height="36">
+      <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#50A050"/>
+      <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#50A050"/>
+      <rect x="8" y="17" width="16" height="15" rx="4" fill="#68B868" stroke="#50A050" stroke-width="1.5"/>
+      <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+      <path d="M7 9 Q8 3 16 3 Q24 3 25 9" fill="#5A3010"/>
+      <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+      <path d="M13 16 Q16 19 19 16" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+    </svg></div>
+  </div>
+
+  <!-- NPC 村長 -->
+  <div class="npc2 dim" id="c1npc-my2" style="right:4%;bottom:31%">
+    <div class="nf" style="animation-delay:.7s"><div class="nn2">村長大人</div>
+    <svg viewBox="0 0 32 44" width="26" height="36">
+      <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#8060C0"/>
+      <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#8060C0"/>
+      <rect x="8" y="17" width="16" height="15" rx="4" fill="#A080D8" stroke="#8060C0" stroke-width="1.5"/>
+      <polygon points="9,18 12,11 16,15 20,11 23,18" fill="#FFD700" stroke="#C0A010" stroke-width="1"/>
+      <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+      <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+      <path d="M13 17 Q16 16 19 17" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+    </svg></div>
+  </div>
+
+</div><!-- /scene2 -->
+<div class="dlg2">
+  <div><div class="dspk2" id="c1dspk2">旁白</div><div class="dtxt2" id="c1dtxt2">⋯⋯</div></div>
+  <button class="dnxt2" id="c1dnxt2" onclick="advNarr()">繼續 ▶</button>
+</div>
+</div>
+
+<!-- ── EVAL SCREENS ── -->
+<div class="scr eval-screen" id="c1s-e1">
+  <div class="eval-header"><span class="eval-badge">機密性</span><span class="eval-step">1 / 4</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="data:image/webp;base64,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" alt="小麻雀">
+      <div class="sp-bubble">如果安安電子系統被入侵，<br>村民的姓名和 email 外洩了，<br>你覺得對安安村的影響有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——存了哪些資料？如果外洩，影響有多大？</div>
+    <div class="level-btns">
+      <button class="lbtn" onclick="pickLevel('e1','普')">普</button>
+      <button class="lbtn" onclick="pickLevel('e1','中')">中</button>
+      <button class="lbtn" onclick="pickLevel('e1','高')">高</button>
+    </div>
+    <div class="eval-result" id="c1res-e1"></div>
+    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e1')">📄 收起法規原文</span>
+    <div class="law-text" id="c1law-e1">普：造成未經授權之資訊揭露，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
+    <button class="btn-main btn-full" id="c1btn-e1" style="display:none" onclick="go('c1s-e2')">下一項：完整性 ▶</button>
+  </div>
+</div>
+
+<div class="scr eval-screen" id="c1s-e2">
+  <div class="eval-header"><span class="eval-badge">完整性</span><span class="eval-step">2 / 4</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="data:image/webp;base64,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" alt="小麻雀">
+      <div class="sp-bubble">如果安安電子系統的資料被竄改，村民收到的安安訊息寄錯人，你覺得影響有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——如果資料被竄改或錯誤，會影響哪些業務？</div>
+    <div class="level-btns">
+      <button class="lbtn" onclick="pickLevel('e2','普')">普</button>
+      <button class="lbtn" onclick="pickLevel('e2','中')">中</button>
+      <button class="lbtn" onclick="pickLevel('e2','高')">高</button>
+    </div>
+    <div class="eval-result" id="c1res-e2"></div>
+    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e2')">📄 收起法規原文</span>
+    <div class="law-text" id="c1law-e2">普：造成資訊錯誤或遭竄改，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
+    <button class="btn-main btn-full" id="c1btn-e2" style="display:none" onclick="go('c1s-e3')">下一項：可用性 ▶</button>
+  </div>
+</div>
+
+<div class="scr eval-screen" id="c1s-e3">
+  <div class="eval-header"><span class="eval-badge">可用性</span><span class="eval-step">3 / 4</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="data:image/webp;base64,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" alt="小麻雀">
+      <div class="sp-bubble">如果安安電子系統當掉，村民今晚收不到安安訊息，影響有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——如果停擺，誰會受影響？可以等多久？</div>
+    <div class="level-btns">
+      <button class="lbtn" onclick="pickLevel('e3','普')">普</button>
+      <button class="lbtn" onclick="pickLevel('e3','中')">中</button>
+      <button class="lbtn" onclick="pickLevel('e3','高')">高</button>
+    </div>
+    <div class="eval-result" id="c1res-e3"></div>
+    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e3')">📄 收起法規原文</span>
+    <div class="law-text" id="c1law-e3">普：造成資訊存取或使用中斷，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
+    <button class="btn-main btn-full" id="c1btn-e3" style="display:none" onclick="go('c1s-e4')">下一項：法遵性 ▶</button>
+  </div>
+</div>
+
+<div class="scr eval-screen" id="c1s-e4">
+  <div class="eval-header"><span class="eval-badge">法遵性</span><span class="eval-step">4 / 4</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="data:image/webp;base64,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" alt="小麻雀">
+      <div class="sp-bubble">如果安安電子系統沒有符合資安法規的要求，對安安村的影響有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——涉及哪些法規？違規可能帶來怎樣的損失？</div>
+    <div class="level-btns">
+      <button class="lbtn" onclick="pickLevel('e4','普')">普</button>
+      <button class="lbtn" onclick="pickLevel('e4','中')">中</button>
+      <button class="lbtn" onclick="pickLevel('e4','高')">高</button>
+    </div>
+    <div class="eval-result" id="c1res-e4"></div>
+    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e4')">📄 收起法規原文</span>
+    <div class="law-text" id="c1law-e4">普：其他資通系統設置或運作於法令有相關規範之情形，影響有限。<br>中：可能使機關或人員受行政罰、懲戒或懲處。<br>高：可能使機關所屬人員負刑事責任。</div>
+    <button class="btn-main btn-full" id="c1btn-e4" style="display:none" onclick="showLevelResult()">查看系統等級結果 ✅</button>
+  </div>
+</div>
+
+<!-- LEVEL RESULT -->
+<div class="scr sky-bg" id="c1s-elevel">
+  <div class="panel a1" style="text-align:center;max-width:340px">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">四項評估完成！</div>
+    <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px" id="c1level-summary"></div>
+    <div style="font-size:28px;font-weight:900;margin:8px 0" id="c1level-result-badge"></div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:14px" id="c1level-explain"></div>
+    <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--gd);line-height:1.8;text-align:left">
+      🐦 小麻雀說：「現在換你想想——<br><strong>你的系統，答案一樣嗎？</strong>」
+    </div>
+    <div style="display:flex;gap:8px;margin-top:14px">
+      <button class="btn-main" style="flex:1;padding:12px 8px;font-size:12px;background:#A09060;box-shadow:0 3px 0 #706040" onclick="resetEval()">↩ 重新評估</button>
+      <button class="btn-main" style="flex:2;padding:12px 8px;font-size:12px" onclick="go('c1s-trp')">繼續：MTPD / RTO / RPO ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- MTPD/RTO/RPO -->
+<div class="scr" id="c1s-trp" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:16px 16px 80px;overflow-y:auto;">
+  <div style="font-size:15px;font-weight:700;color:var(--text);text-align:center;margin:8px 0 4px;position:relative;z-index:1">⏱️ 設定時間目標</div>
+  <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:14px;position:relative;z-index:1">如果安安電子系統出問題，你們能接受多久？</div>
+
+  <div class="trp-card">
+    <div class="trp-label">MTPD｜最大可容忍中斷時間</div>
+    <div class="trp-def">系統最多可以壞多久？超過後村民會開始抓狂。</div>
+    <div class="trp-opts">
+      <button class="topt" onclick="selTRP('mtpd',this,'4小時')">4小時</button>
+      <button class="topt" onclick="selTRP('mtpd',this,'8小時')">8小時</button>
+      <button class="topt" onclick="selTRP('mtpd',this,'24小時')">24小時</button>
+      <button class="topt" onclick="selTRP('mtpd',this,'3天')">3天</button>
+      <button class="topt" onclick="selTRP('mtpd',this,'7天')">7天</button>
+    </div>
+  </div>
+
+  <div class="trp-card">
+    <div class="trp-label">RTO｜復原時間目標</div>
+    <div class="trp-def">系統最晚多久內必須修好？廠商要配合這個時間！</div>
+    <div class="trp-opts">
+      <button class="topt" onclick="selTRP('rto',this,'4小時')">4小時</button>
+      <button class="topt" onclick="selTRP('rto',this,'8小時')">8小時</button>
+      <button class="topt" onclick="selTRP('rto',this,'24小時')">24小時</button>
+      <button class="topt" onclick="selTRP('rto',this,'3天')">3天</button>
+      <button class="topt" onclick="selTRP('rto',this,'7天')">7天</button>
+    </div>
+  </div>
+
+  <div class="trp-card">
+    <div class="trp-label">RPO｜資料復原時間目標</div>
+    <div class="trp-def">最多可接受遺失多久的資料？決定備份頻率。</div>
+    <div class="trp-opts">
+      <button class="topt" onclick="selTRP('rpo',this,'4小時')">4小時</button>
+      <button class="topt" onclick="selTRP('rpo',this,'8小時')">8小時</button>
+      <button class="topt" onclick="selTRP('rpo',this,'24小時')">24小時</button>
+      <button class="topt" onclick="selTRP('rpo',this,'3天')">3天</button>
+      <button class="topt" onclick="selTRP('rpo',this,'7天')">7天</button>
+    </div>
+  </div>
+
+  <div class="trp-err" id="c1trp-err">⚠️ <span id="c1trp-err-msg"></span></div>
+  <div class="trp-ok" id="c1trp-ok">✅ 邏輯正確！<br><span id="c1trp-ok-msg"></span><br><br>🐦 記得：這是你心目中的初稿，<strong>還要跟廠商討論</strong>，確認他們做不做得到，最後再寫進合約喔！</div>
+
+  <button class="btn-main" style="margin-top:14px;width:100%;max-width:360px" onclick="checkTRP()">確認設定 ✅</button>
+  <button class="btn-main" style="margin-top:8px;width:100%;max-width:360px;background:#A09060;box-shadow:0 3px 0 #706040;font-size:12px" onclick="resetTRP()">↩ 重新設定</button>
+    <div id="c1trp-continue" style="display:none;text-align:right;margin-top:10px">
+      <button class="btn-main" style="padding:11px 24px;background:#50A050;box-shadow:0 4px 0 #308030;font-size:13px" onclick="go('c1s-narr2')">我看完了，繼續 ▶</button>
+    </div>
+</div>
+
+<!-- NARR2: 文件準備完成 -->
+<div class="scr" id="c1s-narr2" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px">
+  <div class="panel a1" style="max-width:340px">
+    <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;text-align:center">📋 文件準備完成</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px">
+      小麻雀拿出了一疊厚厚的文件：<br>
+      ・資通訊系統委外自評表<br>
+      ・資通訊委外合約書附則<br>
+      ・保密切結書<br><br>
+      勇者跟村民們討論完所有文件，<br>
+      現在要把文件交給廠商了⋯⋯
+    </div>
+    <button class="btn-main btn-full" onclick="go('c1s-vendor2')">把文件交給廠商 📄</button>
+  </div>
+</div>
+
+<!-- VENDOR2: 第二次選廠商 -->
+<div class="scr" id="c1s-vendor2" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px">
+  <div style="width:100%;max-width:360px">
+    <div style="text-align:center;margin-bottom:6px">
+      <div style="font-size:14px;font-weight:700;color:var(--text)" id="v2-title">把文件交給哪個廠商？</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:3px">三個都要給喔</div>
+    </div>
+    <!-- 青筋顯示區 -->
+    <div style="text-align:center;font-size:28px;min-height:40px;margin:10px 0;letter-spacing:4px" id="v2-anger"></div>
+    <!-- 廠商卡片 -->
+    <div style="display:flex;flex-direction:column;gap:10px" id="v2-cards">
+      <div class="vc" id="v2-apple" onclick="pickV2('apple')">
+        <div class="vc-icon">🍎</div>
+        <div class="vc-info">
+          <div class="vn">商人 Apple</div>
+          <div class="vd">送送送！辦到好！我什麼都可以！</div>
+        </div>
+      </div>
+      <div class="vc" id="v2-banana" onclick="pickV2('banana')">
+        <div class="vc-icon">🍌</div>
+        <div class="vc-info">
+          <div class="vn">廠商 Banana</div>
+          <div class="vd">面有難色⋯⋯</div>
+        </div>
+      </div>
+      <div class="vc" id="v2-lemon" onclick="pickV2('lemon')">
+        <div class="vc-icon">🍋</div>
+        <div class="vc-info">
+          <div class="vn">廠商 Lemon</div>
+          <div class="vd">最便宜的我！選我！</div>
+        </div>
+      </div>
+    </div>
+    <!-- 廠商反應 -->
+    <div id="v2-reaction" style="display:none;margin-top:12px;background:#FFE8E0;border:1.5px solid var(--red);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--red);text-align:center;line-height:1.8"></div>
+    <button class="btn-main btn-full" id="v2-next" style="display:none;margin-top:12px" onclick="nextV2()">繼續 ▶</button>
+  </div>
+</div>
+
+<!-- BUDDHA FIRE -->
+<div class="scr sky-bg" id="c1s-buddha">
+  <div class="panel a1" style="text-align:center;max-width:320px">
+    <div style="font-size:48px;margin-bottom:8px;animation:bounce 0.3s ease-in-out infinite alternate">💢💢💢</div>
+    <div style="font-size:24px;font-weight:900;color:var(--red);margin-bottom:8px">佛也發火！！！</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px">
+      三個廠商都嫌文件太多、要求太高⋯⋯<br><br>
+      但是為了全村的權益，<br>
+      <strong style="color:#8B4010">我要加油！</strong>
+    </div>
+    <button class="btn-main btn-full" onclick="go('c1s-rock2')">身心寬暢 GO 💢</button>
+  </div>
+</div>
+
+<!-- ROCK2 -->
+<div class="scr" id="c1s-rock2" style="background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;">
+  <div class="rock-panel2">
+    <div style="font-size:14px;color:var(--muted);margin-bottom:4px">⚡ 再次戰勝心魔</div>
+    <div class="thought2" id="c1thought2">⋯⋯</div>
+    <svg id="c1rock2" viewBox="0 0 120 100" width="130" height="108" onclick="hitRock2()">
+      <polygon id="c1rock2-body" points="20,85 12,55 30,30 55,18 82,22 102,40 108,68 95,85" fill="#A09080" stroke="#706050" stroke-width="2"/>
+      <polygon points="30,50 45,35 65,30 80,38 88,55 78,68 45,70" fill="#B8A898" opacity=".6"/>
+      <line id="c1r2c1" x1="60" y1="20" x2="55" y2="55" stroke="#706050" stroke-width="2" opacity="0"/>
+      <line id="c1r2c2" x1="60" y1="55" x2="80" y2="75" stroke="#706050" stroke-width="2" opacity="0"/>
+      <line id="c1r2c3" x1="60" y1="55" x2="35" y2="70" stroke="#706050" stroke-width="2" opacity="0"/>
+      <line id="c1r2c4" x1="40" y1="25" x2="50" y2="55" stroke="#706050" stroke-width="1.5" opacity="0"/>
+      <text x="60" y="98" text-anchor="middle" font-size="10" fill="#A09080">👆 點擊打石頭</text>
+    </svg>
+    <div class="hit-count" id="c1hit2-count">還需要 5 下</div>
+  </div>
+</div>
+
+<!-- EXP2 -->
+<div class="scr exp-screen" id="c1s-exp2">
+  <div class="exp-panel">
+    <span class="exp-icon2">💪</span>
+    <div class="exp-title2">再次戰勝心魔！</div>
+    <div class="exp-pts2">經驗值 +10</div>
+    <div class="exp-sub2">「我是勇者！不管廠商怎麼抱怨！」<br>你深呼吸，繼續前進。</div>
+  </div>
+  <button class="btn-main" style="margin-top:18px;animation:fu .6s .6s both;opacity:0" onclick="go('c1s-procure')">進入採購階段 ▶</button>
+</div>
+
+<!-- PROCURE -->
+<div class="scr sky-bg" id="c1s-procure">
+  <div class="panel a1" style="text-align:center;max-width:340px">
+    <div style="font-size:28px;margin-bottom:8px">🏪</div>
+    <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px">採購階段</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px">
+      勇者把所有文件交給萬物屋。<br>
+      萬物屋開始辦理採購程序⋯⋯<br><br>
+      評選、議價、簽約⋯⋯<br><br>
+      終於——
+    </div>
+    <div style="font-size:18px;font-weight:900;color:var(--gold);margin-bottom:6px">🎉 安安電子系統，到手了！</div>
+    <button class="btn-main btn-full" style="margin-top:10px" onclick="go('c1s-launch')">系統上線 🚀</button>
+  </div>
+</div>
+
+<!-- LAUNCH / ANNAN -->
+<div class="scr" id="c1s-launch" style="background:linear-gradient(135deg,#1A3A6A,#2A5A9A,#1A3A6A);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;overflow:hidden;">
+  <!-- phone lights -->
+  <canvas id="phone-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0"></canvas>
+  <div class="final-panel a1" style="position:relative;z-index:1">
+    <span class="final-moon">🌙</span>
+    <div class="final-msg">
+      勇者獲得了超級管理員權限。<br>
+      匯入村民資料完成。<br><br>
+      晚上 8:00，系統準時發出第一封訊息⋯⋯
+    </div>
+    <div class="final-annan">📱「親愛的村民，安安！」</div>
+    <div class="final-msg" style="font-size:12px;margin-top:10px">村民的手機一一亮起。<br>村長說：「你們做得非常好。」</div>
+    <div style="font-size:16px;font-weight:900;color:#FFE066;margin-top:16px;animation:bounce 1.5s ease-in-out infinite">👏 讓我們為自己鼓掌 👏</div>
+    <button class="btn-main" style="margin-top:16px;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A" onclick="go('c1s-exp100')">繼續 ▶</button>
+  </div>
+</div>
+
+<!-- EXP +100 -->
+<div class="scr exp-screen" id="c1s-exp100">
+  <div class="exp-panel">
+    <span class="exp-icon2">🌟</span>
+    <div class="exp-title2">系統成功建置！</div>
+    <div class="exp-pts2">經驗值 +100 🎊</div>
+    <div class="exp-sub2">第一章完成！<br>你從一個平凡的村民，<br>變成了真正的系統負責人。</div>
+  </div>
+  <button class="btn-main" style="margin-top:18px;animation:fu .6s .6s both;opacity:0" onclick="go('c1s-final')">最後的話 ▶</button>
+</div>
+
+<!-- FINAL MESSAGE -->
+<div class="scr" id="c1s-final" style="background:linear-gradient(135deg,#1A3A6A,#2A5A9A,#1A3A6A);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;">
+  <div class="final-panel a1" style="padding:28px 22px">
+    <img src="data:image/webp;base64,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" alt="小麻雀" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,215,0,.6);margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;animation:expPop .6s .2s both">
+    <div class="final-q">
+      「現在換你想想——<br><em>你的系統，答案一樣嗎？</em>」
+    </div>
+    <div style="font-size:11px;color:rgba(255,248,220,.5);margin-top:16px">～ 第二章：日常維運 即將開放 ～</div>
+    <button onclick="location.href='index.html'" style="margin-top:14px;padding:10px 20px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,248,220,.8);font-family:inherit;font-size:12px;border-radius:20px;cursor:pointer">← 回到章節選單</button>
+  </div>
+</div>
+
+<script>
+const _hist1=[];
+function go(id){
+  const cur=document.querySelector('.scr.on');
+  if(cur) _hist1.push(cur.id);
+  if(_hist1.length>30) _hist1.shift();
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  const el=document.getElementById(id);
+  if(el){el.classList.add('on');el.scrollTop=0;}
+  _updateBack();
+}
+function goBack(){
+  if(_hist1.length===0){location.href='index.html';return;}
+  const prev=_hist1.pop();
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  const el=document.getElementById(prev);
+  if(el){el.classList.add('on');el.scrollTop=0;}
+}
+function _updateBack(){ /* back button disabled */ }
+
+/* ══ 第一章 JS ══ */
+
+function $el(id){ return document.getElementById(id); }
+function $show(id){ const e=$el(id); if(e) e.style.display='block'; }
+function $hide(id){ const e=$el(id); if(e) e.style.display='none'; }
+function $txt(id,v){ const e=$el(id); if(e) e.textContent=v; }
+
+
+const C1SCREENS=['c1s0','c1s-narr','c1s-e1','c1s-e2','c1s-e3','c1s-e4','c1s-elevel','c1s-trp','c1s-narr2','c1s-rock2','c1s-exp2','c1s-procure','c1s-launch','c1s-exp100','c1s-final'];
+
+
+/* NARR SCRIPT */
+const NSCRIPT=[
+  {spk:'旁白',txt:'你帶著委外管理程序書，\n走進了村民大會堂。\n\n今天要召開村民大會，\n正式評估安安電子系統的需求。',npc:'none'},
+  {spk:'勇者（你）',txt:'會議名稱：安安電子系統\n功能：每天發訊息給村民說安安\n\n現在，我們要依據程序書來規劃！',npc:'pl'},
+  {spk:'村長大人',txt:'我全力支持！\n\n（坐在角落喝茶）',npc:'my'},
+  {spk:'萬物屋（單位窗口）',txt:'好！那我來記錄！\n首先要評估系統的防護等級⋯⋯',npc:'mw'},
+  {spk:'旁白',txt:'小麻雀拿出了委外自評表，\n開始協助評估系統等級。\n\n你需要依序評估四個面向⋯⋯',npc:'none',action:'eval'},
+];
+let ns=0;
+function startNarr(){
+  go('c1s-narr');ns=0;
+  const pl=document.getElementById('c1pl2');
+  pl.style.transition='none';pl.style.bottom='-10%';
+  setTimeout(()=>{pl.style.transition='bottom .9s cubic-bezier(.25,0,.35,1)';pl.style.bottom='30%';},100);
+  setTimeout(()=>showNS(0),1200);
+}
+function showNS(i){
+  const s=NSCRIPT[i];
+  document.getElementById('c1dspk2').textContent=s.spk;
+  document.getElementById('c1dtxt2').textContent=s.txt;
+  const mw=document.getElementById('c1npc-mw2');
+  const my=document.getElementById('c1npc-my2');
+  mw.className='npc2'+(s.npc==='mw'?' lit':' dim');
+  my.className='npc2'+(s.npc==='my'?' lit':' dim');
+  document.getElementById('c1hquest2').textContent=i<2?'召開村民大會':i<4?'評估需求':'評估系統等級';
+  $txt('c1dnxt2',s.action?'開始評估 ▶':'繼續 ▶');
+}
+function advNarr(){
+  if(NSCRIPT[ns]&&NSCRIPT[ns].action==='eval'){go('c1s-e1');return;}
+  ns++;if(ns<NSCRIPT.length)showNS(ns);
+}
+
+/* EVAL */
+const EVAL_DATA={
+  e1:{
+    普:{c:'chosen-p',txt:'✅ 安安系統只存姓名和 email，外洩影響相對有限，普級合理。\n\n💡 你們的系統呢？如果存了身分證、健保資料⋯⋯等級就不同了！'},
+    中:{c:'chosen-m',txt:'你選了中級。安安系統只存姓名和 email，普級已足夠，不過若你認為信譽損害嚴重，中級也可以討論。'},
+    高:{c:'chosen-h',txt:'你選了高級。安安系統資料量有限，但若你的單位對資料外洩非常敏感，高級也是一種選擇。'},
+  },
+  e2:{
+    普:{c:'chosen-p',txt:'✅ 安安系統資料錯了頂多寄錯人，不影響重要業務，普級合理。\n\n💡 財務或人事系統的資料若被竄改，等級就完全不同了！'},
+    中:{c:'chosen-m',txt:'你選了中級。若你認為大量資料錯誤需要花很多時間修正，中級也是合理的考量。'},
+    高:{c:'chosen-h',txt:'你選了高級。若系統資料對業務運作至關重要，高級也可以討論。'},
+  },
+  e3:{
+    普:{c:'chosen-p',txt:'✅ 安安系統晚一天說安安，村民頂多有點失落，普級合理。\n\n💡 簽到系統或問卷系統停擺呢？同學還在等填表喔！'},
+    中:{c:'chosen-m',txt:'你選了中級。若你認為系統停擺影響業務運作嚴重，中級也是合理的。'},
+    高:{c:'chosen-h',txt:'你選了高級。若系統 24 小時不中斷是業務必要條件，高級是正確選擇。'},
+  },
+  e4:{
+    普:{c:'chosen-p',txt:'✅ 安安系統有法規要遵守，但違規頂多行政處分，普級合理。\n\n💡 涉及學生個資或成績資料的系統，法遵等級就需要再評估！'},
+    中:{c:'chosen-m',txt:'你選了中級。若違規可能讓機關人員受懲處，中級是合理的選擇。'},
+    高:{c:'chosen-h',txt:'你選了高級。若違規可能讓人員負刑事責任，高級是必要的。'},
+  },
+};
+const chosen={e1:null,e2:null,e3:null,e4:null};
+const LVL_ORDER=['普','中','高'];
+
+function pickLevel(eid,lv){
+  chosen[eid]=lv;
+  const data=EVAL_DATA[eid][lv];
+  // update buttons
+  document.querySelectorAll(`#c1s-${eid} .lbtn`).forEach(b=>{
+    b.className='lbtn';
+    if(b.textContent===lv)b.classList.add(data.c);
+  });
+  const res=document.getElementById('c1res-'+eid);
+  if(res){res.textContent=data.txt;res.style.display='block';}
+  $show('c1btn-'+eid);
+}
+
+function toggleLaw(id){
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.style.display=el.style.display==='block'?'none':'block';
+}
+
+function showLevelResult(){
+  const lvls=['e1','e2','e3','e4'].map(e=>chosen[e]||'普');
+  const maxIdx=Math.max(...lvls.map(l=>LVL_ORDER.indexOf(l)));
+  const finalLv=LVL_ORDER[maxIdx];
+  const names=['機密性','完整性','可用性','法遵性'];
+  const summary=names.slice(0,2).map((n,i)=>`${n}：${lvls[i]}`).join('　　')+'<br>'+names.slice(2).map((n,i)=>`${n}：${lvls[i+2]}`).join('　　');
+  document.getElementById('c1level-summary').innerHTML=summary;
+  const badges={普:'🟢 普級',中:'🟡 中級',高:'🔴 高級'};
+  document.getElementById('c1level-result-badge').textContent=badges[finalLv];
+  const explains={
+    普:'安安電子系統屬於普級系統。四個面向中最高為普級，代表整體資安要求相對基本。',
+    中:'安安電子系統屬於中級系統。至少一個面向達到中級，需要較嚴格的資安措施。',
+    高:'安安電子系統屬於高級系統！至少一個面向達到高級，需要最高等級的資安保護。'
+  };
+  document.getElementById('c1level-explain').textContent=explains[finalLv];
+  go('c1s-elevel');
+}
+
+/* MTPD/RTO/RPO */
+const TRP_VALS={mtpd:null,rto:null,rpo:null};
+const TRP_ORDER=['4小時','8小時','24小時','3天','7天'];
+
+function selTRP(key,btn,val){
+  TRP_VALS[key]=val;
+  btn.closest('.trp-opts').querySelectorAll('.topt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('c1trp-err').style.display='none';
+  document.getElementById('c1trp-ok').style.display='none';
+  // c1trp-next removed
+}
+
+function checkTRP(){
+  const{mtpd,rto,rpo}=TRP_VALS;
+  if(!mtpd||!rto||!rpo){
+    $show('c1trp-err'); $txt('c1trp-err-msg','請三個都選完再確認喔！');
+    return;
+  }
+  const mi=TRP_ORDER.indexOf(mtpd),ri=TRP_ORDER.indexOf(rto),pi=TRP_ORDER.indexOf(rpo);
+  if(ri>mi){
+    $show('c1trp-err'); $txt('c1trp-err-msg',`RTO（${rto}）比 MTPD（${mtpd}）還長！系統還沒修好，容忍時間就到了，這樣不行！請重新調整。`);
+    return;
+  }
+  if(pi>ri){
+    $show('c1trp-err'); $txt('c1trp-err-msg',`RPO（${rpo}）比 RTO（${rto}）還長！系統恢復了但備份跟不上，請重新調整。`);
+    return;
+  }
+  $show('c1trp-ok');
+  $txt('c1trp-ok-msg',`MTPD ${mtpd}、RTO ${rto}、RPO ${rpo}。每 ${rpo} 備份一次，${rto} 內要修好，最多壞 ${mtpd}。`);
+  $show('c1trp-continue');
+}
+
+/* ROCK 2 */
+const T2=['好煩！','我又不是資訊本科的⋯⋯','我只是個普通村民⋯⋯','我連系統是什麼都不太懂⋯⋯','啊啊啊。'];
+const C2=['c1r2c1','c1r2c2','c1r2c3','c1r2c4'];
+let hits2=0;
+function hitRock2(){
+  if(hits2>=5)return;
+  const r=document.getElementById('c1rock2');
+  r.classList.remove('shake');void r.offsetWidth;r.classList.add('shake');
+  document.getElementById('c1thought2').textContent=T2[hits2];
+  if(hits2<C2.length)document.getElementById(C2[hits2]).setAttribute('opacity','1');
+  hits2++;
+  document.getElementById('c1hit2-count').textContent=hits2<5?`還需要 ${5-hits2} 下`:'再用力一下！';
+  if(hits2===5){
+    setTimeout(()=>{
+      document.getElementById('c1rock2-body').classList.add('exploding');
+      document.getElementById('c1thought2').textContent='💥 石頭碎裂！\n「我是勇者！」';
+      document.getElementById('c1hit2-count').textContent='';
+      document.getElementById('c1rock2').style.pointerEvents='none';
+      setTimeout(()=>go('c1s-exp2'),1200);
+    },300);
+  }
+}
+
+document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+
+
+/* back button handled in go() */;
+
+function goBack(){
+  if(history_stack.length === 0) return;
+  const prev = history_stack.pop();
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  const el = document.getElementById(prev);
+  if(el){ el.classList.add('on'); el.scrollTop=0; }
+  updateBackBtn();
+}
+
+/* updateBackBtn removed */
+
+
+/* ── VENDOR 2 LOGIC ── */
+const V2_REACT = {
+  apple: '🍎 商人 Apple：\n「太麻煩了吧！」\n（挖鼻屎）',
+  banana: '🍌 廠商 Banana：\n「你們怎麼要求那麼多！」',
+  lemon: '🍋 廠商 Lemon：\n「蛤！！！！」',
+};
+const V2_ORDER = ['apple','banana','lemon'];
+const v2_done = new Set();
+
+let v2_locked = false;
+
+function pickV2(id){
+  if(v2_done.has(id) || v2_locked) return;
+  v2_locked = true;
+  v2_done.add(id);
+
+  // Grey out chosen card
+  const card = document.getElementById('v2-'+id);
+  if(card){ card.classList.add('used'); card.querySelector('.vd').textContent='（已交給）'; }
+
+  // Lock other cards temporarily
+  V2_ORDER.filter(x=>!v2_done.has(x)).forEach(oid=>{
+    const c = document.getElementById('v2-'+oid);
+    if(c) c.style.opacity='.35';
+  });
+
+  // Show reaction
+  const react = document.getElementById('v2-reaction');
+  if(react){ react.textContent = V2_REACT[id]; react.style.display='block'; }
+
+  // Update anger symbols
+  const anger = document.getElementById('v2-anger');
+  if(anger) anger.textContent = '💢'.repeat(v2_done.size);
+
+  // Show next button
+  const btn = document.getElementById('v2-next');
+  if(btn) btn.style.display = 'block';
+
+  // Update title
+  const title = document.getElementById('v2-title');
+  if(title){
+    const left = V2_ORDER.filter(x=>!v2_done.has(x)).length;
+    if(left === 0) title.textContent = '三個都交了！';
+    else if(left === 1) title.textContent = '還有最後一個⋯⋯';
+    else title.textContent = '再交給下一個！';
+  }
+}
+
+function nextV2(){
+  const left = V2_ORDER.filter(x=>!v2_done.has(x));
+
+  // Hide reaction and next button
+  const react = document.getElementById('v2-reaction');
+  if(react) react.style.display='none';
+  const btn = document.getElementById('v2-next');
+  if(btn) btn.style.display='none';
+
+  if(left.length > 0){
+    // Unlock remaining cards
+    left.forEach(oid=>{
+      const c = document.getElementById('v2-'+oid);
+      if(c) c.style.opacity='1';
+    });
+    v2_locked = false;
+  } else {
+    // All done -> 佛也發火
+    go('c1s-buddha');
+    // Reset for potential replay
+    v2_done.clear();
+    v2_locked = false;
+    V2_ORDER.forEach(id=>{
+      const card = document.getElementById('v2-'+id);
+      if(card){
+        card.classList.remove('used');
+        card.style.opacity='1';
+        card.querySelector('.vd').textContent = id==='apple'?'送送送！辦到好！我什麼都可以！':id==='banana'?'面有難色⋯⋯':'最便宜的我！選我！';
+      }
+    });
+    const anger = document.getElementById('v2-anger');
+    if(anger) anger.textContent='';
+  }
+}
+
+function resetEval(){
+  // Reset all 4 eval choices
+  ['e1','e2','e3','e4'].forEach(eid=>{
+    chosen[eid]=null;
+    const res=$el('c1res-'+eid);
+    if(res){res.style.display='none';res.textContent='';}
+    const btn=$el('c1btn-'+eid);
+    if(btn) btn.style.display='none';
+    document.querySelectorAll(`#c1s-${eid} .lbtn`).forEach(b=>b.className='lbtn');
+  });
+  go('c1s-e1');
+}
+
+function resetTRP(){
+  // Reset TRP selections
+  Object.keys(TRP_VALS).forEach(k=>TRP_VALS[k]=null);
+  document.querySelectorAll('.topt').forEach(b=>b.classList.remove('sel'));
+  $hide('c1trp-err');$hide('c1trp-ok');$hide('c1trp-continue');// c1trp-next removed
+}
+
+
+/* ── PHONE LIGHTS ANIMATION ── */
+function initPhoneLights(){
+  const canvas = document.getElementById('phone-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth || 390;
+  canvas.height = canvas.offsetHeight || 600;
+  const W = canvas.width, H = canvas.height;
+
+  const phones = Array.from({length:28}, (_,i) => ({
+    x: (Math.random() * .9 + .05) * W,
+    y: (Math.random() * .9 + .05) * H,
+    r: Math.random() * 7 + 5,
+    alpha: 0,
+    delay: i * 120 + Math.random() * 200,
+    born: false,
+    pulse: 0,
+    speed: Math.random() * .02 + .01,
+  }));
+
+  const start = performance.now();
+  function draw(now){
+    ctx.clearRect(0,0,W,H);
+    phones.forEach(p=>{
+      const elapsed = now - start;
+      if(elapsed < p.delay) return;
+      if(!p.born){ p.born=true; p.alpha=0; }
+      p.alpha = Math.min(p.alpha + .04, .85);
+      p.pulse += p.speed;
+      const glow = p.alpha * (.7 + .3 * Math.sin(p.pulse));
+      // outer glow
+      const grad = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*2.5);
+      grad.addColorStop(0, `rgba(180,220,255,${glow * .6})`);
+      grad.addColorStop(1, 'rgba(180,220,255,0)');
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r*2.5,0,Math.PI*2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+      // inner dot
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = `rgba(220,240,255,${glow})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+}
+
+// Init when launch screen becomes active
+const _origGo = go;
+go = function(id){
+  _origGo(id);
+  if(id==='c1s-launch') setTimeout(initPhoneLights, 100);
+};
+
+</script>
+</body>
+</html>

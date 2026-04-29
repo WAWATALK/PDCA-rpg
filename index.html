@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<style>
+
+:root{
+  --sky:#87CEEB;--sky2:#B8E4F7;--ground:#5DBB4A;--ground2:#4AA038;
+  --gold:#D4920A;--gl:#FFF3C0;--gd:#8B6010;
+  --white:#FFFEF8;--text:#3A2E1A;--muted:#7A6840;
+  --red:#E05030;--blue:#3A78C8;--green:#4AA038;
+  --border:#C8B880;--bg:#F8F4E8;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--sky);}
+body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',sans-serif;color:var(--text);}
+
+/* SCREENS */
+.scr{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .4s;z-index:1;}
+.scr.on{opacity:1;pointer-events:all;}
+
+/* ── TITLE ── */
+#s0{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 60%,var(--ground) 60%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;
+}
+/* clouds */
+.cloud{position:absolute;background:white;border-radius:50px;opacity:.9;}
+.c1{width:80px;height:28px;top:8%;left:5%;}
+.c1::before{content:'';position:absolute;width:44px;height:44px;background:white;border-radius:50%;top:-20px;left:12px;}
+.c1::after{content:'';position:absolute;width:32px;height:32px;background:white;border-radius:50%;top:-14px;left:36px;}
+.c2{width:64px;height:22px;top:14%;right:8%;}
+.c2::before{content:'';position:absolute;width:36px;height:36px;background:white;border-radius:50%;top:-16px;left:10px;}
+.c3{width:96px;height:30px;top:22%;left:25%;}
+.c3::before{content:'';position:absolute;width:48px;height:48px;background:white;border-radius:50%;top:-22px;left:16px;}
+.c3::after{content:'';position:absolute;width:36px;height:36px;background:white;border-radius:50%;top:-16px;left:48px;}
+/* ground details */
+.grass{position:absolute;bottom:0;left:0;right:0;height:40%;}
+
+.title-panel{
+  background:rgba(255,254,248,.92);border:3px solid var(--border);
+  border-radius:20px;padding:20px 24px;max-width:340px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+  position:relative;z-index:2;
+}
+.ey{font-size:10px;letter-spacing:.22em;color:var(--muted);}
+.dv{width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8px auto;}
+.mt{font-size:clamp(22px,7vw,30px);font-weight:900;color:#3A2E1A;line-height:1.4;}
+.st{font-size:11px;color:var(--muted);margin-top:4px;}
+.story{font-size:13px;color:var(--muted);line-height:2;margin:14px 0;text-align:left;border-left:3px solid var(--border);padding-left:12px;}
+.story em{color:#8B4010;font-style:normal;font-weight:700;}
+
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.btn-main{
+  padding:12px 36px;background:var(--gold);border:none;
+  color:white;font-family:inherit;font-size:14px;font-weight:700;
+  letter-spacing:.12em;cursor:pointer;border-radius:30px;
+  box-shadow:0 4px 0 var(--gd);
+  animation:bounce 2s ease-in-out infinite;
+  transition:transform .1s, box-shadow .1s;
+}
+.btn-main:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gd);}
+
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.a1{animation:fu .6s .1s both}.a2{animation:fu .6s .4s both}
+.a3{animation:fu .6s .7s both}.a4{animation:fu .6s 1s both}
+.a5{animation:fu .6s 1.3s both}
+
+/* ── CLASS ── */
+#s1{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 60%,var(--ground) 60%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;
+}
+.class-panel{
+  background:rgba(255,254,248,.95);border:3px solid var(--border);
+  border-radius:20px;padding:22px 20px;max-width:320px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+}
+.class-badge{
+  display:inline-block;background:#FFE066;border:2px solid var(--gold);
+  border-radius:20px;padding:3px 14px;font-size:10px;color:var(--gd);
+  font-weight:700;letter-spacing:.1em;margin-bottom:10px;
+}
+.class-icon{font-size:52px;display:block;margin-bottom:8px;}
+.class-name{font-size:22px;font-weight:900;color:var(--text);margin-bottom:2px;}
+.class-title{font-size:11px;color:var(--gold);letter-spacing:.12em;margin-bottom:12px;}
+.class-desc{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:12px;}
+.skills{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.skill{font-size:11px;padding:4px 10px;border-radius:20px;background:#FFF3C0;border:1px solid #D4920A;color:var(--gd);font-weight:700;}
+
+/* ── STORY SCENE ── */
+#s2{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 55%,var(--ground) 55%,var(--ground2) 100%);
+  display:flex;flex-direction:column;
+}
+.scene{position:relative;flex:1;overflow:hidden;}
+.scene-clouds{position:absolute;top:0;left:0;width:100%;pointer-events:none;}
+
+/* buildings */
+.bld{position:absolute;bottom:42%;}
+
+/* player */
+#pl{position:absolute;left:50%;transform:translateX(-50%);text-align:center;z-index:10;transition:bottom .9s cubic-bezier(.25,0,.35,1);}
+.pn{font-size:9px;color:var(--text);font-weight:700;margin-bottom:2px;background:rgba(255,255,255,.8);border-radius:10px;padding:1px 6px;}
+@keyframes wk{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+#pl.walk{animation:wk .7s ease-in-out infinite;}
+
+/* NPCs */
+.npc{position:absolute;text-align:center;z-index:8;}
+.nn{font-size:9px;color:var(--text);font-weight:700;margin-bottom:2px;background:rgba(255,255,255,.8);border-radius:10px;padding:1px 6px;white-space:nowrap;}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.nfloat{animation:fl 2.5s ease-in-out infinite;}
+.npc.dim{filter:brightness(.6) saturate(.5);}
+.npc.active{filter:none;}
+
+/* HUD */
+.hud{
+  position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:8px 12px;
+  background:linear-gradient(180deg,rgba(255,254,248,.9) 0%,transparent 100%);
+}
+.hn{font-size:11px;color:var(--text);font-weight:700;}
+.hc{font-size:9px;color:var(--muted);}
+.hr{text-align:right;font-size:9px;color:var(--muted);}
+.hq{color:var(--gold);font-weight:700;margin-top:1px;}
+
+/* DIALOGUE */
+.dlg{
+  background:var(--white);border-top:3px solid var(--border);
+  padding:14px 16px 16px;flex-shrink:0;min-height:145px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.dspk{
+  font-size:11px;font-weight:700;color:var(--gold);
+  letter-spacing:.08em;padding-bottom:6px;
+  border-bottom:1.5px solid var(--border);margin-bottom:8px;
+}
+.dtxt{font-size:14px;color:var(--text);line-height:1.9;white-space:pre-line;flex:1;}
+.dnxt{
+  margin-top:10px;width:100%;padding:11px;
+  background:var(--gold);border:none;
+  color:white;font-family:inherit;font-size:13px;font-weight:700;
+  letter-spacing:.1em;cursor:pointer;border-radius:20px;
+  box-shadow:0 3px 0 var(--gd);transition:transform .1s,box-shadow .1s;
+}
+.dnxt:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gd);}
+
+/* ── ROCK SMASH ── */
+#s3{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 55%,var(--ground) 55%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;
+}
+.rock-panel{
+  background:rgba(255,254,248,.95);border:3px solid var(--border);
+  border-radius:20px;padding:20px;max-width:320px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+}
+.rock-title{font-size:14px;color:var(--muted);margin-bottom:4px;}
+.thought{
+  min-height:36px;font-size:15px;color:#8B4010;font-weight:700;
+  margin:10px 0;line-height:1.6;
+}
+@keyframes rockShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+#rock-svg{cursor:pointer;transition:transform .1s;display:block;margin:10px auto;}
+#rock-svg:active{transform:scale(.92);}
+#rock-svg.shake{animation:rockShake .2s ease-in-out;}
+.hit-count{font-size:11px;color:var(--muted);margin-top:6px;}
+@keyframes crack{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.crack-line{animation:crack .15s ease-out both;}
+@keyframes explode{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(2)}}
+.exploding{animation:explode .4s ease-out forwards;}
+
+/* ── EXP ── */
+#s4{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 55%,var(--ground) 55%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;
+}
+@keyframes expPop{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+.exp-panel{
+  background:rgba(255,254,248,.95);border:3px solid #FFD700;
+  border-radius:20px;padding:22px 24px;max-width:300px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.15);
+  animation:expPop .5s .2s both;
+}
+.exp-icon{font-size:48px;display:block;margin-bottom:8px;}
+.exp-title{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;}
+.exp-pts{font-size:28px;font-weight:900;color:var(--gold);}
+.exp-sub{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.7;}
+
+/* ── VENDOR CHOICE ── */
+#s5{
+  background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:20px 16px;
+}
+.vc-panel{width:100%;max-width:360px;}
+.vc-title{font-size:15px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;}
+.vc-sub{font-size:11px;color:var(--muted);text-align:center;margin-bottom:16px;}
+.vc-cards{display:flex;flex-direction:column;gap:10px;}
+.vc{
+  border:2px solid var(--border);border-radius:14px;padding:14px 16px;
+  cursor:pointer;background:var(--white);
+  display:flex;align-items:center;gap:12px;
+  transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);
+}
+.vc:active{transform:scale(.97);border-color:var(--gold);}
+.vc.used{opacity:.4;pointer-events:none;}
+.vc-icon{font-size:32px;flex-shrink:0;}
+.vc-info .vn{font-size:14px;font-weight:700;color:var(--text);}
+.vc-info .vp{font-size:12px;color:var(--gold);font-weight:700;margin:2px 0;}
+.vc-info .vd{font-size:11px;color:var(--muted);}
+
+/* ── VENDOR RESULT ── */
+#s6{
+  background:var(--bg);display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:24px 20px;text-align:center;
+}
+.vr-panel{
+  background:var(--white);border:2px solid var(--border);border-radius:20px;
+  padding:24px 20px;max-width:320px;width:100%;
+  box-shadow:0 4px 16px rgba(0,0,0,.1);
+}
+.vr-icon{font-size:52px;margin-bottom:10px;display:block;animation:fu .4s both;}
+.vr-name{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px;animation:fu .4s .1s both;}
+.vr-txt{font-size:13px;color:var(--muted);line-height:1.9;white-space:pre-line;text-align:left;animation:fu .4s .2s both;}
+
+/* ── REBIRTH ── */
+#s7{background:#1A0A00;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;}
+@keyframes shake2{from{transform:translateX(-5px) rotate(-2deg)}to{transform:translateX(5px) rotate(2deg)}}
+.rb-cry{font-size:clamp(28px,9vw,46px);font-weight:900;color:#FF5030;animation:shake2 .2s ease-in-out infinite alternate;}
+@keyframes swirl{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.rb-sw{font-size:52px;margin:18px 0;animation:swirl 1.6s linear infinite;}
+.rb-hint{font-size:13px;color:#666;animation:fu .7s 1.8s both;}
+
+/* ── SPARROW ── */
+#s8{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 60%,var(--ground) 60%,var(--ground2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;
+}
+.sp-panel{
+  background:rgba(255,254,248,.96);border:3px solid var(--border);
+  border-radius:20px;padding:20px;max-width:320px;width:100%;
+  text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);
+}
+.sp-img{width:90px;height:90px;border-radius:50%;border:3px solid var(--gold);object-fit:cover;margin-bottom:10px;animation:expPop .6s .2s both;}
+.sp-name{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;animation:fu .6s .3s both;}
+.sp-speech{font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px;animation:fu .6s .4s both;}
+.sp-book{
+  background:#FFF3C0;border:2px solid var(--gold);border-radius:12px;
+  padding:12px 14px;text-align:left;animation:fu .6s .5s both;
+}
+.sp-bt{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:6px;}
+.sp-bd{font-size:12px;color:var(--muted);line-height:1.7;}
+
+/* scene SVG clouds inline */
+.sc-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+
+/* ── 第一章追加樣式 ── */
+
+:root{
+  --sky:#87CEEB;--sky2:#B8E4F7;--gnd:#5DBB4A;--gnd2:#4AA038;
+  --gold:#D4920A;--gl:#FFF3C0;--gd:#8B6010;
+  --white:#FFFEF8;--text:#3A2E1A;--muted:#7A6840;
+  --red:#E05030;--blue:#3A78C8;--green:#4AA038;
+  --border:#C8B880;--bg:#F8F4E8;
+  --pu:#7050B0;--pu2:#E8E0F8;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--sky);}
+body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var(--text);}
+
+.scr{position:fixed;inset:0;opacity:0;pointer-events:none;transition:opacity .4s;z-index:1;overflow-y:auto;}
+.scr.on{opacity:1;pointer-events:all;}
+
+@keyframes fu{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes expPop{0%{transform:scale(0) rotate(-10deg)}60%{transform:scale(1.15) rotate(3deg)}100%{transform:scale(1) rotate(0)}}
+.a1{animation:fu .6s .1s both}.a2{animation:fu .6s .4s both}
+.a3{animation:fu .6s .7s both}.a4{animation:fu .6s 1s both}.a5{animation:fu .6s 1.3s both}
+
+/* clouds */
+.cloud{position:fixed;background:white;border-radius:50px;opacity:.88;pointer-events:none;z-index:0;}
+.c1{width:80px;height:26px;top:6%;left:4%;}
+.c1::before{content:'';position:absolute;width:44px;height:40px;background:white;border-radius:50%;top:-18px;left:10px;}
+.c1::after{content:'';position:absolute;width:30px;height:30px;background:white;border-radius:50%;top:-12px;left:36px;}
+.c2{width:64px;height:22px;top:12%;right:7%;}
+.c2::before{content:'';position:absolute;width:36px;height:34px;background:white;border-radius:50%;top:-14px;left:8px;}
+.c3{width:96px;height:28px;top:20%;left:22%;}
+.c3::before{content:'';position:absolute;width:48px;height:44px;background:white;border-radius:50%;top:-20px;left:14px;}
+.c3::after{content:'';position:absolute;width:34px;height:32px;background:white;border-radius:50%;top:-14px;left:46px;}
+
+/* shared panel */
+.panel{
+  background:rgba(255,254,248,.96);border:3px solid var(--border);
+  border-radius:20px;padding:20px;max-width:360px;width:100%;
+  box-shadow:0 4px 20px rgba(0,0,0,.12);position:relative;z-index:1;
+}
+.panel-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.panel-sub{font-size:11px;color:var(--muted);margin-bottom:14px;}
+
+.btn-main{
+  padding:12px 32px;background:var(--gold);border:none;
+  color:white;font-family:inherit;font-size:13px;font-weight:700;
+  letter-spacing:.1em;cursor:pointer;border-radius:30px;
+  box-shadow:0 4px 0 var(--gd);transition:transform .1s,box-shadow .1s;
+}
+.btn-main:active{transform:translateY(3px);box-shadow:0 1px 0 var(--gd);}
+.btn-full{width:100%;margin-top:14px;}
+
+/* sky bg screens */
+.sky-bg{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px 18px;gap:14px;
+}
+
+/* NARRATION (story screens) */
+#c1s-narr{background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);display:flex;flex-direction:column;}
+.scene2{position:relative;flex:1;overflow:hidden;min-height:200px;}
+.sc2-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.hud2{position:absolute;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;padding:8px 12px;background:linear-gradient(180deg,rgba(255,254,248,.9),transparent);}
+.hn{font-size:11px;font-weight:700;color:var(--text);}
+.hc{font-size:9px;color:var(--muted);}
+.hqr{text-align:right;font-size:9px;color:var(--muted);}
+.hquest{color:var(--gold);font-weight:700;font-size:9px;}
+
+/* NPCs in scene */
+.npc2{position:absolute;text-align:center;z-index:8;}
+.nn2{font-size:9px;font-weight:700;color:var(--text);background:rgba(255,255,255,.85);border-radius:8px;padding:1px 6px;margin-bottom:1px;white-space:nowrap;}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.nf{animation:fl 2.5s ease-in-out infinite;}
+.npc2.dim{filter:brightness(.55) saturate(.4);}
+.npc2.lit{filter:none;}
+#pl2{position:absolute;left:50%;transform:translateX(-50%);text-align:center;z-index:10;transition:bottom .9s cubic-bezier(.25,0,.35,1);}
+.pn2{font-size:9px;font-weight:700;color:var(--text);background:rgba(255,255,255,.85);border-radius:8px;padding:1px 6px;margin-bottom:2px;}
+
+/* dialogue */
+.dlg2{background:var(--white);border-top:3px solid var(--border);padding:14px 16px 16px;flex-shrink:0;min-height:140px;display:flex;flex-direction:column;justify-content:space-between;}
+.dspk2{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.08em;padding-bottom:6px;border-bottom:1.5px solid var(--border);margin-bottom:8px;}
+.dtxt2{font-size:14px;color:var(--text);line-height:1.9;white-space:pre-line;flex:1;}
+.dnxt2{margin-top:10px;width:100%;padding:11px;background:var(--gold);border:none;color:white;font-family:inherit;font-size:13px;font-weight:700;letter-spacing:.1em;cursor:pointer;border-radius:20px;box-shadow:0 3px 0 var(--gd);transition:transform .1s,box-shadow .1s;}
+.dnxt2:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gd);}
+
+/* ── EVALUATION ── */
+.eval-screen{background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:20px 16px;gap:0;}
+.eval-header{width:100%;max-width:360px;display:flex;align-items:center;gap:8px;margin-bottom:12px;}
+.eval-badge{background:var(--gold);color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+.eval-step{font-size:11px;color:var(--muted);}
+.eval-q{font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.6;}
+.eval-situation{font-size:13px;color:var(--muted);background:#FFF8E8;border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;line-height:1.8;margin-bottom:14px;}
+.expand-btn{font-size:11px;color:var(--blue);cursor:pointer;margin-bottom:12px;text-decoration:underline;}
+.law-text{font-size:11px;color:#888;background:#F5F5F0;border:1px solid #DDD;border-radius:8px;padding:10px;line-height:1.7;margin-bottom:12px;display:none;}
+.level-btns{display:flex;gap:10px;width:100%;max-width:360px;margin-bottom:12px;}
+.lbtn{
+  flex:1;padding:14px 8px;border:2px solid var(--border);border-radius:12px;
+  background:var(--white);cursor:pointer;font-family:inherit;font-size:13px;font-weight:700;
+  color:var(--text);transition:all .2s;text-align:center;
+}
+.lbtn:active{transform:scale(.96);}
+.lbtn.chosen-p{background:#E8F5E8;border-color:#50C040;color:#2A6020;}
+.lbtn.chosen-m{background:#FFF3C0;border-color:#D4920A;color:#7A4010;}
+.lbtn.chosen-h{background:#FFE8E0;border-color:#E05030;color:#801010;}
+.eval-result{display:none;background:#F0F8FF;border:2px solid var(--blue);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#2A4880;line-height:1.8;}
+.sp-say{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.sp-tiny{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;}
+.sp-bubble{background:#FFF3C0;border:1.5px solid var(--gold);border-radius:0 12px 12px 12px;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;flex:1;}
+
+/* ── MTPD/RTO/RPO ── */
+#c1s-trp{background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:16px 16px 24px;overflow-y:auto;}
+.trp-title{font-size:15px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;}
+.trp-sub{font-size:11px;color:var(--muted);text-align:center;margin-bottom:16px;}
+.trp-card{width:100%;max-width:360px;background:var(--white);border:2px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;}
+.trp-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.trp-def{font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.6;}
+.trp-opts{display:flex;gap:6px;flex-wrap:wrap;}
+.topt{
+  padding:8px 10px;border:1.5px solid var(--border);border-radius:20px;
+  background:var(--white);cursor:pointer;font-family:inherit;font-size:12px;
+  color:var(--muted);transition:all .2s;
+}
+.topt.sel{background:var(--gold);border-color:var(--gd);color:white;font-weight:700;}
+.topt:active{transform:scale(.95);}
+.trp-err{display:none;background:#FFE8E0;border:1.5px solid var(--red);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--red);margin-top:10px;line-height:1.7;width:100%;max-width:360px;}
+.trp-ok{display:none;background:#E8F5E8;border:1.5px solid #50C040;border-radius:10px;padding:10px 12px;font-size:12px;color:#2A6020;margin-top:10px;line-height:1.7;width:100%;max-width:360px;}
+
+/* ── ROCK SMASH ── */
+#c1s-rock2{
+  background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;
+}
+.rock-panel2{background:rgba(255,254,248,.96);border:3px solid var(--border);border-radius:20px;padding:20px;max-width:320px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.12);}
+.thought2{min-height:36px;font-size:15px;color:#8B4010;font-weight:700;margin:10px 0;line-height:1.6;}
+@keyframes rockShake{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+#rock2{cursor:pointer;transition:transform .1s;display:block;margin:8px auto;}
+#rock2:active{transform:scale(.92);}
+#rock2.shake{animation:rockShake .2s ease-in-out;}
+@keyframes explode{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(2)}}
+.exploding{animation:explode .4s ease-out forwards;}
+
+/* ── EXP ── */
+.exp-screen{background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 20px;}
+.exp-panel{background:rgba(255,254,248,.96);border:3px solid #FFD700;border-radius:20px;padding:22px 24px;max-width:300px;width:100%;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.15);animation:expPop .5s .2s both;}
+.exp-icon2{font-size:48px;display:block;margin-bottom:8px;}
+.exp-title2{font-size:18px;font-weight:900;color:var(--text);margin-bottom:4px;}
+.exp-pts2{font-size:28px;font-weight:900;color:var(--gold);}
+.exp-sub2{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.8;}
+
+/* ── FINAL ── */
+#c1s-final{background:linear-gradient(135deg,#1A3A6A 0%,#2A5A9A 50%,#1A3A6A 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;text-align:center;}
+.final-panel{background:rgba(255,254,248,.08);border:2px solid rgba(255,255,255,.2);border-radius:20px;padding:28px 24px;max-width:320px;width:100%;}
+.final-moon{font-size:56px;display:block;margin-bottom:8px;animation:bounce 3s ease-in-out infinite;}
+.final-msg{font-size:14px;color:rgba(255,248,220,.9);line-height:2;margin-bottom:16px;}
+.final-annan{font-size:20px;font-weight:900;color:#FFE066;margin:12px 0;animation:bounce 2s ease-in-out infinite;}
+.final-q{font-size:15px;font-weight:700;color:white;line-height:1.8;margin-top:16px;padding:14px;background:rgba(255,255,255,.1);border-radius:12px;border:1.5px solid rgba(255,255,255,.2);}
+.final-q em{color:#FFE066;font-style:normal;}
+
+
+/* ── BACK BUTTON ── */
+#back-btn{
+  position:fixed;top:10px;left:12px;z-index:100;
+  width:36px;height:36px;
+  background:rgba(255,254,248,.9);
+  border:2px solid #C8B880;
+  border-radius:50%;
+  display:flex;
+  align-items:center;justify-content:center;
+  cursor:pointer;
+  font-size:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.12);
+  transition:transform .15s, opacity .2s;
+  opacity:0;
+  pointer-events:none;
+}
+#back-btn:active{transform:scale(.9);}
+</style>
+<title>轉生成為資訊人｜PDCA 冒險</title>
+</head>
+<body>
+<div id="back-btn" onclick="goBack()">←</div>
+
+<div id="back-btn" onclick="goBack()">←</div>
+
+<!-- S0: TITLE -->
+<div class="scr on" id="s0">
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
+  <div class="title-panel">
+    <div class="ey a1">異世界轉生 RPG</div>
+    <div class="dv a1"></div>
+    <div class="mt a2">轉生成為<br>資訊人</div>
+    <div class="st a3">～明明只是個村民，為什麼要管系統～</div>
+    <div class="dv a3"></div>
+    <div class="story a4">
+      你只是一個<em>平凡的村民</em>。<br>
+      某天，村民大會提議要買一套<em>安安電子系統</em>。<br>
+      村長指著你說，<em>你去處理吧！</em><br>
+      從此，你的命運就開始轉變了。
+    </div>
+    <button class="btn-main a5" onclick="go(1)">▶ 開始冒險</button>
+  </div>
+</div>
+
+<!-- S1: CLASS -->
+<div class="scr" id="s1">
+  <div class="cloud c1"></div><div class="cloud c2"></div>
+  <div class="class-panel a1">
+    <div class="class-badge">轉職成功！</div>
+    <span class="class-icon">⚔️</span>
+    <div class="class-name">勇者</div>
+    <div class="class-title">〔 系統負責人 〕</div>
+    <div class="class-desc">只要講到系統都有他的事。<br>帳號清查、定期維護，統統都是你。<br>我又不是資訊本科的啊！</div>
+    <div class="skills">
+      <span class="skill">為什麼又是我</span>
+      <span class="skill">佛也發火</span>
+      <span class="skill">過關斬將</span>
+    </div>
+  </div>
+  <button class="btn-main a2" style="margin-top:18px" onclick="startStory()">就是我了，出發！⚔️</button>
+</div>
+
+<!-- S2: VILLAGE SCENE -->
+<div class="scr" id="s2">
+<div class="scene" id="scene">
+  <!-- sky SVG: clouds + buildings + trees -->
+  <svg class="sc-svg" viewBox="0 0 390 450" preserveAspectRatio="xMidYMid slice">
+    <!-- clouds -->
+    <ellipse cx="60" cy="50" rx="45" ry="18" fill="white" opacity=".9"/>
+    <ellipse cx="40" cy="44" rx="28" ry="22" fill="white" opacity=".9"/>
+    <ellipse cx="80" cy="44" rx="22" ry="20" fill="white" opacity=".9"/>
+    <ellipse cx="290" cy="35" rx="38" ry="15" fill="white" opacity=".9"/>
+    <ellipse cx="272" cy="30" rx="22" ry="18" fill="white" opacity=".9"/>
+    <ellipse cx="312" cy="30" rx="20" ry="18" fill="white" opacity=".9"/>
+    <ellipse cx="170" cy="60" rx="32" ry="12" fill="white" opacity=".75"/>
+    <!-- sun -->
+    <circle cx="340" cy="55" r="28" fill="#FFE050" opacity=".9"/>
+    <circle cx="340" cy="55" r="22" fill="#FFD020"/>
+
+    <!-- left building: 公告欄 -->
+    <rect x="14" y="200" width="90" height="110" rx="6" fill="#F4E0A0" stroke="#C8A850" stroke-width="2"/>
+    <rect x="14" y="188" width="90" height="20" rx="4" fill="#E8C060" stroke="#C8A850" stroke-width="2"/>
+    <text x="59" y="201" fill="#6B4010" font-size="8" text-anchor="middle" font-family="sans-serif" font-weight="bold">公告欄・任務</text>
+    <rect x="22" y="216" width="28" height="28" rx="3" fill="#B8D8F0" stroke="#88A8C8" stroke-width="1.5"/>
+    <rect x="58" y="216" width="28" height="28" rx="3" fill="#B8D8F0" stroke="#88A8C8" stroke-width="1.5"/>
+    <rect x="30" y="258" width="32" height="52" rx="4" fill="#C8A850" stroke="#A88030" stroke-width="1.5"/>
+    <!-- door knob -->
+    <circle cx="58" cy="284" r="3" fill="#886020"/>
+    <!-- roof triangle -->
+    <polygon points="8,192 104,192 56,165" fill="#D4920A" stroke="#A87010" stroke-width="1.5"/>
+
+    <!-- right building: 村長公館 -->
+    <rect x="282" y="196" width="98" height="114" rx="6" fill="#F0E8D0" stroke="#C8A850" stroke-width="2"/>
+    <rect x="282" y="183" width="98" height="20" rx="4" fill="#C0A0E0" stroke="#9070B8" stroke-width="2"/>
+    <text x="331" y="196" fill="#4A2080" font-size="8" text-anchor="middle" font-family="sans-serif" font-weight="bold">村長公館</text>
+    <rect x="292" y="212" width="26" height="28" rx="3" fill="#D4C0F0" stroke="#9070B8" stroke-width="1.5"/>
+    <rect x="346" y="212" width="26" height="28" rx="3" fill="#D4C0F0" stroke="#9070B8" stroke-width="1.5"/>
+    <rect x="308" y="258" width="30" height="52" rx="4" fill="#9070B8" stroke="#7050A0" stroke-width="1.5"/>
+    <circle cx="336" cy="284" r="3" fill="#6040A0"/>
+    <polygon points="276,187 386,187 331,158" fill="#9060C0" stroke="#7040A8" stroke-width="1.5"/>
+    <!-- crown on roof -->
+    <polygon points="320,158 325,148 331,155 337,148 342,158" fill="#FFD700" stroke="#D4A010" stroke-width="1"/>
+
+    <!-- trees -->
+    <ellipse cx="152" cy="268" rx="24" ry="20" fill="#50C040"/>
+    <ellipse cx="150" cy="255" rx="18" ry="16" fill="#68D858"/>
+    <rect x="147" y="280" width="8" height="22" fill="#8B6010"/>
+
+    <ellipse cx="238" cy="266" rx="22" ry="18" fill="#50C040"/>
+    <ellipse cx="240" cy="254" rx="16" ry="14" fill="#68D858"/>
+    <rect x="237" y="277" width="8" height="22" fill="#8B6010"/>
+
+    <!-- path -->
+    <path d="M180 295 L210 295 L218 450 L172 450Z" fill="#D4B870" stroke="#C0A050" stroke-width="1.5"/>
+    <!-- path lines -->
+    <line x1="193" y1="320" x2="207" y2="320" stroke="#C0A050" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="191" y1="350" x2="209" y2="350" stroke="#C0A050" stroke-width="1" stroke-dasharray="4 4"/>
+    <line x1="189" y1="380" x2="211" y2="380" stroke="#C0A050" stroke-width="1" stroke-dasharray="4 4"/>
+    <!-- flowers on ground -->
+    <circle cx="140" cy="300" r="5" fill="#FF8080" opacity=".8"/>
+    <circle cx="255" cy="298" r="4" fill="#FFD080" opacity=".8"/>
+    <circle cx="268" cy="305" r="3" fill="#FF80C0" opacity=".8"/>
+    <circle cx="128" cy="308" r="3" fill="#80D0FF" opacity=".8"/>
+  </svg>
+
+  <!-- HUD -->
+  <div class="hud">
+    <div>
+      <div class="hn">⚔️ 勇者・系統負責人</div>
+      <div class="hc">Lv.1 ─ 安安村</div>
+    </div>
+    <div class="hr">
+      <div>📍 安安村</div>
+      <div class="hq" id="hq">收到任務中⋯</div>
+    </div>
+  </div>
+
+  <!-- Player -->
+  <div id="pl" style="bottom:-20%">
+    <div class="pn">你（勇者）</div>
+    <svg viewBox="0 0 36 48" width="34" height="46">
+      <ellipse cx="18" cy="47" rx="10" ry="3.5" fill="rgba(0,0,0,.15)"/>
+      <rect x="12" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+      <rect x="20" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+      <rect x="9" y="18" width="18" height="17" rx="5" fill="#5A9EE0" stroke="#3A78C0" stroke-width="1.5"/>
+      <rect x="9" y="28" width="18" height="4" rx="2" fill="#3A78C0"/>
+      <!-- sword -->
+      <rect x="27" y="16" width="3" height="14" rx="1.5" fill="#FFD700" stroke="#C0A010" stroke-width=".8"/>
+      <rect x="24" y="20" width="9" height="2.5" rx="1.5" fill="#C0A010"/>
+      <!-- head -->
+      <circle cx="18" cy="13" r="10" fill="#FFDDA0" stroke="#D4A870" stroke-width="1.5"/>
+      <!-- hair -->
+      <path d="M8 11 Q9 4 18 4 Q27 4 28 11" fill="#5A3010"/>
+      <!-- eyes -->
+      <circle cx="14.5" cy="13" r="2" fill="#3A2010"/>
+      <circle cx="21.5" cy="13" r="2" fill="#3A2010"/>
+      <circle cx="15.1" cy="12.4" r=".8" fill="white" opacity=".7"/>
+      <circle cx="22.1" cy="12.4" r=".8" fill="white" opacity=".7"/>
+      <!-- smile -->
+      <path d="M14 18 Q18 21 22 18" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- NPC: 萬物屋 -->
+  <div class="npc dim" id="npc-mw" style="left:6%;bottom:34%">
+    <div class="nfloat">
+      <div class="nn">萬物屋</div>
+      <svg viewBox="0 0 36 48" width="32" height="42">
+        <ellipse cx="18" cy="47" rx="9" ry="3" fill="rgba(0,0,0,.12)"/>
+        <rect x="12" y="32" width="5" height="10" rx="2.5" fill="#50A050"/>
+        <rect x="20" y="32" width="5" height="10" rx="2.5" fill="#50A050"/>
+        <rect x="9" y="18" width="18" height="16" rx="5" fill="#68B868" stroke="#50A050" stroke-width="1.5"/>
+        <!-- clipboard -->
+        <rect x="27" y="18" width="9" height="12" rx="2" fill="#F5E8B0" stroke="#C8A850" stroke-width="1"/>
+        <rect x="29" y="16" width="5" height="4" rx="1.5" fill="#C8A850"/>
+        <line x1="28" y1="22" x2="35" y2="22" stroke="#C8A850" stroke-width=".8"/>
+        <line x1="28" y1="25" x2="35" y2="25" stroke="#C8A850" stroke-width=".8"/>
+        <circle cx="18" cy="12" r="10" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M8 10 Q9 3 18 3 Q27 3 28 10" fill="#5A3010"/>
+        <circle cx="14.5" cy="12" r="2" fill="#3A2010"/>
+        <circle cx="21.5" cy="12" r="2" fill="#3A2010"/>
+        <path d="M14 17 Q18 20 22 17" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:14px;font-weight:700;color:#E05030;animation:bounce 1s ease-in-out infinite">！</div>
+    </div>
+  </div>
+
+  <!-- NPC: 村長 -->
+  <div class="npc dim" id="npc-my" style="right:5%;bottom:33%">
+    <div class="nfloat" style="animation-delay:.7s">
+      <div class="nn">村長大人</div>
+      <svg viewBox="0 0 36 48" width="32" height="42">
+        <ellipse cx="18" cy="47" rx="9" ry="3" fill="rgba(0,0,0,.12)"/>
+        <rect x="12" y="32" width="5" height="10" rx="2.5" fill="#8060C0"/>
+        <rect x="20" y="32" width="5" height="10" rx="2.5" fill="#8060C0"/>
+        <rect x="9" y="18" width="18" height="16" rx="5" fill="#A080D8" stroke="#8060C0" stroke-width="1.5"/>
+        <!-- crown -->
+        <polygon points="10,19 14,11 18,16 22,11 26,19" fill="#FFD700" stroke="#C0A010" stroke-width="1"/>
+        <circle cx="18" cy="12" r="10" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <circle cx="14.5" cy="12" r="2" fill="#3A2010"/>
+        <circle cx="21.5" cy="12" r="2" fill="#3A2010"/>
+        <path d="M14 17 Q18 16 22 17" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div style="font-size:12px;font-weight:700;color:#8060C0;animation:bounce 1.2s ease-in-out infinite">👑</div>
+    </div>
+  </div>
+
+</div><!-- /scene -->
+<div class="dlg">
+  <div>
+    <div class="dspk" id="dspk">旁白</div>
+    <div class="dtxt" id="dtxt">⋯⋯</div>
+  </div>
+  <button class="dnxt" id="dnxt" onclick="advance()">繼續 ▶</button>
+</div>
+</div>
+
+<!-- S3: ROCK SMASH -->
+<div class="scr" id="s3">
+  <div class="cloud c1"></div><div class="cloud c3"></div>
+  <div class="rock-panel">
+    <div class="rock-title">⚡ 戰勝心魔</div>
+    <div class="thought" id="thought">⋯⋯</div>
+    <svg id="rock-svg" viewBox="0 0 120 100" width="130" height="108" onclick="hitRock()">
+      <!-- rock base -->
+      <polygon id="rock-body" points="20,85 12,55 30,30 55,18 82,22 102,40 108,68 95,85" fill="#A09080" stroke="#706050" stroke-width="2"/>
+      <polygon points="30,50 45,35 65,30 80,38 88,55 78,68 45,70" fill="#B8A898" opacity=".6"/>
+      <!-- crack lines (hidden initially) -->
+      <line id="crack1" x1="60" y1="20" x2="55" y2="55" stroke="#706050" stroke-width="2" opacity="0"/>
+      <line id="crack2" x1="60" y1="55" x2="80" y2="75" stroke="#706050" stroke-width="2" opacity="0"/>
+      <line id="crack3" x1="60" y1="55" x2="35" y2="70" stroke="#706050" stroke-width="2" opacity="0"/>
+      <line id="crack4" x1="40" y1="25" x2="50" y2="55" stroke="#706050" stroke-width="1.5" opacity="0"/>
+      <!-- hammer hint -->
+      <text x="60" y="98" text-anchor="middle" font-size="10" fill="#A09080">👆 點擊打石頭</text>
+    </svg>
+    <div class="hit-count" id="hit-count">還需要 5 下</div>
+  </div>
+</div>
+
+<!-- S4: EXP (after rock) -->
+<div class="scr" id="s4">
+  <div class="cloud c2"></div>
+  <div class="exp-panel">
+    <span class="exp-icon">💪</span>
+    <div class="exp-title">戰勝心魔！</div>
+    <div class="exp-pts">經驗值 +10</div>
+    <div class="exp-sub">「好！就是我了！衝！」<br>你握緊劍，踏出了第一步。</div>
+  </div>
+  <button class="btn-main" style="margin-top:18px;animation:fu .6s .6s both;opacity:0" onclick="go(5)">繼續冒險 ▶</button>
+</div>
+
+<!-- S5: VENDOR CHOICE -->
+<div class="scr" id="s5">
+  <div class="vc-panel">
+    <div class="vc-title" id="vc-title">👀 三位廠商出現了！</div>
+    <div class="vc-sub" id="vc-sub">選一個吧⋯⋯（不管選哪個）</div>
+    <div class="vc-cards">
+      <div class="vc" id="vc-apple" onclick="pickVendor('apple')">
+        <div class="vc-icon">🍎</div>
+        <div class="vc-info">
+          <div class="vn">商人 Apple</div>
+          <div class="vp">💰 35 鷹幣</div>
+          <div class="vd">送送送！辦到好！通通沒問題！</div>
+        </div>
+      </div>
+      <div class="vc" id="vc-banana" onclick="pickVendor('banana')">
+        <div class="vc-icon">🍌</div>
+        <div class="vc-info">
+          <div class="vn">廠商 Banana</div>
+          <div class="vp">💰 30 鷹幣</div>
+          <div class="vd">面有難色，要求也太多了吧！</div>
+        </div>
+      </div>
+      <div class="vc" id="vc-lemon" onclick="pickVendor('lemon')">
+        <div class="vc-icon">🍋</div>
+        <div class="vc-info">
+          <div class="vn">廠商 Lemon</div>
+          <div class="vp">💰 28 鷹幣</div>
+          <div class="vd">最便宜！選我！選我！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S6: VENDOR RESULT -->
+<div class="scr" id="s6">
+  <div class="vr-panel">
+    <span class="vr-icon" id="vr-icon"></span>
+    <div class="vr-name" id="vr-name"></div>
+    <div class="vr-txt" id="vr-txt"></div>
+  </div>
+  <button class="btn-main" id="vr-btn" style="margin-top:18px;animation:fu .5s .4s both;opacity:0" onclick="afterVendor()">⋯⋯</button>
+</div>
+
+<!-- S7: REBIRTH -->
+<div class="scr" id="s7">
+  <div class="rb-cry">啊啊啊啊啊！！！</div>
+  <div class="rb-sw">🌀</div>
+  <div class="rb-hint">⋯⋯時間開始倒轉了⋯⋯</div>
+  <button class="btn-main" style="animation:fu .7s 2.5s both;opacity:0;margin-top:20px;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A" onclick="go(8)">✨ 光芒出現了</button>
+</div>
+
+<!-- S8: SPARROW -->
+<div class="scr" id="s8">
+  <div class="cloud c1"></div><div class="cloud c2"></div>
+  <div class="sp-panel a1">
+    <img class="sp-img" src="data:image/webp;base64,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" alt="資安小麻雀">
+    <div class="sp-name a2">資安小麻雀登場！</div>
+    <div class="sp-speech a3">「Hello World！<br>我是資安小麻雀！<br>我來幫忙你～ 🐦」</div>
+    <div class="sp-book a3">
+      <div class="sp-bt">📖 獲得寶典！【委外管理程序書】</div>
+      <div class="sp-bd">小麻雀打開了一本超級大本的程序書。<br>勇者爬上書頁，開始認真讀書。<br><br>「原來⋯⋯採購廠商之前要先做這些事啊⋯⋯」</div>
+    </div>
+    <button class="btn-main a4" style="margin-top:16px;width:100%" onclick="go(9)">第一章開始 📖</button>
+  </div>
+</div>
+
+<!-- S9: EXP FINAL -->
+<div class="scr exp-screen" id="s9">
+  <div class="cloud c1"></div><div class="cloud c3"></div>
+  <div class="exp-panel a1">
+    <span class="exp-icon">⭐</span>
+    <div class="exp-title">序章完成！</div>
+    <div class="exp-pts">經驗值 +10</div>
+    <div class="exp-sub" style="margin-top:10px">
+      勇者學到了：<br>
+      重點不只是選商，<br>
+      <strong style="color:#8B4010">所有應辦事項都落實要求，未來才更有保障。</strong><br><br>
+      <span style="font-size:11px;color:#A09060">選擇你想前往的章節吧！</span>
+    </div>
+  </div>
+  <button class="btn-main" style="margin-top:18px;animation:fu .6s 1s both;opacity:0" onclick="go('smenu')">選擇冒險章節 ▶</button>
+</div>
+
+
+
+<!-- ── CHAPTER MENU ── -->
+<div class="scr sky-bg" id="smenu">
+  <div style="position:relative;z-index:1;width:100%;max-width:360px">
+    <div style="text-align:center;margin-bottom:18px">
+      <div style="font-size:10px;letter-spacing:.22em;color:#7A6840">選擇冒險</div>
+      <div style="width:120px;height:2px;background:linear-gradient(90deg,transparent,#D4920A,transparent);margin:8px auto"></div>
+      <div style="font-size:20px;font-weight:900;color:#3A2E1A">你要前往哪個章節？</div>
+      <div style="font-size:11px;color:#7A6840;margin-top:4px">每個章節都可以獨立挑戰</div>
+    </div>
+
+    <!-- Ch1: 採購 -->
+    <div onclick="location.href='ch1.html'" style="background:rgba(255,254,248,.96);border:3px solid #D4920A;border-radius:16px;padding:16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px;box-shadow:0 4px 14px rgba(0,0,0,.1);transition:transform .15s" ontouchstart="this.style.transform='scale(.97)'" ontouchend="this.style.transform='scale(1)'">
+      <div style="font-size:36px;flex-shrink:0">🏪</div>
+      <div>
+        <div style="font-size:11px;color:#D4920A;font-weight:700;letter-spacing:.08em;margin-bottom:2px">第一章</div>
+        <div style="font-size:16px;font-weight:900;color:#3A2E1A;margin-bottom:3px">委外採購</div>
+        <div style="font-size:11px;color:#7A6840">找廠商、評估需求、訂定合約</div>
+      </div>
+      <div style="margin-left:auto;font-size:20px">▶</div>
+    </div>
+
+    <!-- Ch2: 維護 (locked) -->
+    <div style="background:rgba(200,190,180,.3);border:2px solid #C8B880;border-radius:16px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;opacity:.6">
+      <div style="font-size:36px;flex-shrink:0">🔧</div>
+      <div>
+        <div style="font-size:11px;color:#A09060;font-weight:700;letter-spacing:.08em;margin-bottom:2px">第二章</div>
+        <div style="font-size:16px;font-weight:900;color:#7A6840;margin-bottom:3px">日常維護</div>
+        <div style="font-size:11px;color:#A09060">帳號管理、系統盤點、日常維運</div>
+      </div>
+      <div style="margin-left:auto;font-size:16px">🔒</div>
+    </div>
+
+    <!-- Ch3: 稽核 (locked) -->
+    <div style="background:rgba(200,190,180,.3);border:2px solid #C8B880;border-radius:16px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;opacity:.6">
+      <div style="font-size:36px;flex-shrink:0">📋</div>
+      <div>
+        <div style="font-size:11px;color:#A09060;font-weight:700;letter-spacing:.08em;margin-bottom:2px">第三章</div>
+        <div style="font-size:16px;font-weight:900;color:#7A6840;margin-bottom:3px">內部稽核</div>
+        <div style="font-size:11px;color:#A09060">自我檢查、稽核準備、應對委員</div>
+      </div>
+      <div style="margin-left:auto;font-size:16px">🔒</div>
+    </div>
+
+    <!-- Ch4: 矯正 (locked) -->
+    <div style="background:rgba(200,190,180,.3);border:2px solid #C8B880;border-radius:16px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;opacity:.6">
+      <div style="font-size:36px;flex-shrink:0">🛠️</div>
+      <div>
+        <div style="font-size:11px;color:#A09060;font-weight:700;letter-spacing:.08em;margin-bottom:2px">第四章</div>
+        <div style="font-size:16px;font-weight:900;color:#7A6840;margin-bottom:3px">稽核矯正</div>
+        <div style="font-size:11px;color:#A09060">找出問題、提出改善、追蹤成效</div>
+      </div>
+      <div style="margin-left:auto;font-size:16px">🔒</div>
+    </div>
+
+    <!-- Ch5: 續約 (locked) -->
+    <div style="background:rgba(200,190,180,.3);border:2px solid #C8B880;border-radius:16px;padding:16px;margin-bottom:10px;display:flex;align-items:center;gap:14px;opacity:.6">
+      <div style="font-size:36px;flex-shrink:0">📅</div>
+      <div>
+        <div style="font-size:11px;color:#A09060;font-weight:700;letter-spacing:.08em;margin-bottom:2px">第五章</div>
+        <div style="font-size:16px;font-weight:900;color:#7A6840;margin-bottom:3px">隔年續約</div>
+        <div style="font-size:11px;color:#A09060">評估成效、準備下一輪採購</div>
+      </div>
+      <div style="margin-left:auto;font-size:16px">🔒</div>
+    </div>
+
+    <button onclick="go(9)" style="width:100%;padding:10px;background:transparent;border:1.5px solid #C8B880;color:#7A6840;font-family:inherit;font-size:11px;border-radius:20px;cursor:pointer;margin-top:4px">← 回顧序章</button>
+  </div>
+</div>
+
+<script>
+/* SCREEN */
+const _SCREENS=['s0','s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+const _hist=[];
+function go(i){
+  const cur=document.querySelector('.scr.on');
+  if(cur) _hist.push(cur.id);
+  if(_hist.length>30) _hist.shift();
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  const id=typeof i==='number'?_SCREENS[i]:i;
+  const el=document.getElementById(id);
+  if(el){el.classList.add('on');el.scrollTop=0;}
+  _updateBack();
+}
+function goBack(){
+  if(_hist.length===0) return;
+  const prev=_hist.pop();
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  const el=document.getElementById(prev);
+  if(el){el.classList.add('on');el.scrollTop=0;}
+  _updateBack();
+}
+function _updateBack(){
+  const btn=document.getElementById('back-btn');
+  if(!btn) return;
+  const cur=document.querySelector('.scr.on');
+  const hideOn=['s0','s1','smenu'];
+  if(!cur||hideOn.includes(cur.id)||_hist.length===0){
+    btn.style.opacity='0';
+    btn.style.pointerEvents='none';
+  } else {
+    btn.style.opacity='1';
+    btn.style.pointerEvents='all';
+  }
+}
+
+/* STORY SCRIPT */
+const SCRIPT=[
+  {spk:'旁白',txt:'你踏入了安安村。\n藍藍的天，白白的雲，\n綠草如茵的美好村莊。\n\n⋯⋯但你現在完全笑不出來。',npc:'none'},
+  {spk:'萬物屋（單位窗口）',txt:'勇者！你來了！\n跟你說喔，我們的預算只有\n30 鷹幣！',npc:'mw'},
+  {spk:'萬物屋（單位窗口）',txt:'而且要在年底前核銷驗收完成！\n廠商的部分你自己去找一找喔～\n\n事情怎麼這麼多⋯⋯我先去忙了！',npc:'mw'},
+  {spk:'村長大人',txt:'你去處理吧。',npc:'my'},
+  {spk:'村長大人',txt:'你們全權處理！\n\n（瀟灑地轉身走回公館）',npc:'my'},
+  {spk:'旁白',txt:'預算 30 鷹幣。\n期限：年底前。\n負責人：你。\n\n你的腿有點軟。\n\n⋯⋯先去打一塊石頭吧。',npc:'none',action:'rock'},
+];
+let step=0;
+
+function setNPC(w){
+  document.getElementById('npc-mw').className='npc'+(w==='mw'?' active':' dim');
+  document.getElementById('npc-my').className='npc'+(w==='my'?' active':' dim');
+}
+function showStep(i){
+  const s=SCRIPT[i];
+  document.getElementById('dspk').textContent=s.spk;
+  document.getElementById('dtxt').textContent=s.txt;
+  setNPC(s.npc||'none');
+  document.getElementById('hq').textContent=i<3?'任務：聽取說明':i<5?'任務：拜訪村長':'任務：尋找廠商';
+  document.getElementById('dnxt').textContent=s.action?'去打石頭 💪':'繼續 ▶';
+}
+function advance(){
+  if(SCRIPT[step]&&SCRIPT[step].action==='rock'){go(3);return;}
+  step++;
+  if(step<SCRIPT.length)showStep(step);
+}
+
+/* GAME START */
+function startStory(){
+  go(2);step=0;
+  const pl=document.getElementById('pl');
+  pl.style.transition='none';pl.style.bottom='-20%';pl.classList.remove('walk');
+  setTimeout(()=>{pl.style.transition='bottom 1s cubic-bezier(.25,0,.35,1)';pl.style.bottom='30%';pl.classList.add('walk');},150);
+  setTimeout(()=>{pl.classList.remove('walk');showStep(0);},1500);
+}
+
+/* ROCK SMASH */
+const THOUGHTS=['⋯⋯為什麼是我⋯⋯','我又不是資訊本科的⋯⋯','我只是個普通村民⋯⋯','我連系統是什麼都不太懂⋯⋯','⋯⋯但好像也沒有別人了。'];
+const CRACKS=['crack1','crack2','crack3','crack4'];
+let hits=0;
+function hitRock(){
+  if(hits>=5)return;
+  const rockSvg=document.getElementById('rock-svg');
+  rockSvg.classList.remove('shake');
+  void rockSvg.offsetWidth;
+  rockSvg.classList.add('shake');
+  document.getElementById('thought').textContent=THOUGHTS[hits];
+  if(hits<CRACKS.length)document.getElementById(CRACKS[hits]).setAttribute('opacity','1');
+  hits++;
+  document.getElementById('hit-count').textContent=hits<5?`還需要 ${5-hits} 下`:'再用力一下！';
+  if(hits===5){
+    setTimeout(()=>{
+      document.getElementById('rock-body').classList.add('exploding');
+      document.getElementById('thought').textContent='💥 石頭碎裂！\n「好！就是我了！衝！」';
+      document.getElementById('hit-count').textContent='';
+      document.getElementById('rock-svg').style.pointerEvents='none';
+      setTimeout(()=>go(4),1200);
+    },300);
+  }
+}
+
+/* VENDORS */
+const VD={
+  apple:{icon:'🍎',name:'商人 Apple 的結果⋯⋯',txt:'商人 A 雖然送了很多功能，\n感覺非常划算！\n\n但聯絡廠商時，\n你問能否協助 Windows 更新，\n商人兩手一攤：\n\n「這個你們應該要自己做吧？」\n\n（挖鼻屎）'},
+  banana:{icon:'🍌',name:'廠商 Banana 的結果⋯⋯',txt:'廠商從頭到尾面有難色，\n說你們的需求太多了⋯⋯\n\n某天早上，你收到一張紙條：\n\n「bye bye 👋」\n\n廠商跑掉了。\n案件破局。'},
+  lemon:{icon:'🍋',name:'廠商 Lemon 的結果⋯⋯',txt:'最便宜！28 鷹幣！\n感覺撿到便宜了⋯⋯\n\n產品驗收、交貨、收款。\n\n然後廠商⋯⋯\n\n\n變成一縷輕煙，\n人間蒸發了。'},
+};
+const tried=new Set();
+const ORDER=['apple','banana','lemon'];
+
+function pickVendor(id){
+  tried.add(id);
+  const v=VD[id];
+  document.getElementById('vr-icon').textContent=v.icon;
+  document.getElementById('vr-name').textContent=v.name;
+  document.getElementById('vr-txt').textContent=v.txt;
+  const remaining=ORDER.filter(x=>!tried.has(x));
+  const btn=document.getElementById('vr-btn');
+  btn.style.animation='none';btn.style.opacity='0';
+  void btn.offsetWidth;
+  btn.style.animation='fu .5s .4s both';
+  if(remaining.length>0){
+    btn.textContent='⋯⋯換一個試試？';
+    btn.onclick=backToVendors;
+  }else{
+    btn.textContent='啊啊啊啊啊啊啊啊 →';
+    btn.style.background='#E05030';
+    btn.style.boxShadow='0 4px 0 #A03010';
+    btn.onclick=()=>go(7);
+  }
+  go(6);
+}
+function afterVendor(){backToVendors();}
+function backToVendors(){
+  document.getElementById('vc-title').textContent=tried.size===1?'😬 換一個試試？':tried.size===2?'😰 還有最後一個⋯⋯':'👀 三位廠商出現了！';
+  document.getElementById('vc-sub').textContent=tried.size===1?'也許下一個會不一樣？（不會的）':tried.size===2?'最後一個，一定沒問題？（真的不會的）':'選一個吧⋯⋯';
+  ORDER.forEach(id=>{
+    const el=document.getElementById('vc-'+id);
+    if(tried.has(id)){el.classList.add('used');el.querySelector('.vd').textContent='（已試過，很慘）';}
+  });
+  go(5);
+}
+
+document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+
+
+
+function $el(id){ return document.getElementById(id); }
+function $show(id){ const e=$el(id); if(e) e.style.display='block'; }
+function $hide(id){ const e=$el(id); if(e) e.style.display='none'; }
+function $flex(id){ const e=$el(id); if(e) e.style.display='flex'; }
+function $txt(id,v){ const e=$el(id); if(e) e.textContent=v; }
+</script>
+</body>
+</html>
