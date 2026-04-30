@@ -390,7 +390,7 @@
     </div>
 
     <!-- Apple NPC -->
-    <div class="npc" id="npc-apple" style="left:6%;bottom:38%" onclick="talkVendor('apple')">
+    <div class="npc" id="npc-lemon" style="right:6%;bottom:28%" onclick="talkVendor('lemon')">
       <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -406,7 +406,7 @@
     </div>
 
     <!-- Banana NPC -->
-    <div class="npc" id="npc-banana" style="left:38%;bottom:36%" onclick="talkVendor('banana')">
+    <div class="npc" id="npc-banana" style="left:38%;bottom:26%" onclick="talkVendor('banana')">
       <div class="npc-inner npc-float" style="animation-delay:.5s"><div class="npc-name">廠商 Banana</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -422,7 +422,7 @@
     </div>
 
     <!-- Lemon NPC -->
-    <div class="npc" id="npc-lemon" style="right:6%;bottom:38%" onclick="talkVendor('lemon')">
+    <div class="npc" id="npc-lemon" style="right:6%;bottom:28%" onclick="talkVendor('lemon')">
       <div class="npc-inner npc-float" style="animation-delay:1s"><div class="npc-name">廠商 Lemon</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -499,14 +499,14 @@
       <text x="106" y="57" fill="#E05030" font-size="8" text-anchor="middle" font-family="sans-serif" font-weight="bold">⚠️ 請勿睡著</text>
     </svg>
     <div style="position:relative;height:88px;margin:0 auto 8px">
-      <svg viewBox="0 0 120 65" width="170" height="92" style="display:block;margin:0 auto">
-        <ellipse cx="60" cy="62" rx="50" ry="6" fill="rgba(0,0,0,.1)"/>
-        <rect x="18" y="38" width="84" height="20" rx="10" fill="#5A9EE0" stroke="#3A78C0" stroke-width="1.5"/>
-        <circle cx="26" cy="42" r="14" fill="#FFDDA0" stroke="#D4A870" stroke-width="1.5"/>
-        <path d="M19 41 Q22 39 24 41" fill="none" stroke="#3A2010" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M28 41 Q30 39 33 41" fill="none" stroke="#3A2010" stroke-width="1.6" stroke-linecap="round"/>
-        <path d="M21 49 Q26 52 31 49" fill="none" stroke="#B88250" stroke-width="1.6" stroke-linecap="round"/>
-        <rect x="88" y="47" width="3" height="15" rx="1.5" fill="#FFD700" stroke="#C0A010" stroke-width=".8" transform="rotate(25 90 55)"/>
+    <div style="position:relative;height:88px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;gap:8px">
+  <span style="font-size:32px;color:#6090C0;font-weight:800;animation:floatZ 2s ease-in-out infinite 0s">z</span>
+  <span style="font-size:40px;color:#4070A0;font-weight:900;animation:floatZ 2s ease-in-out infinite .5s">Z</span>
+  <span style="font-size:48px;color:#2050A0;font-weight:900;animation:floatZ 2s ease-in-out infinite 1s">Z</span>
+</div>
+  <div style="font-size:15px;font-weight:700;color:#8B4010;margin-bottom:14px">勇者進入睡眠 💤</div>
+  <button class="btn" style="width:100%;background:#E05030;box-shadow:0 4px 0 #A03010" onclick="go('s-wakeup')">🐦 小麻雀急忙出現！</button>
+</div>
       </svg>
       <span style="position:absolute;top:2px;left:56%;font-size:14px;color:#6090C0;font-weight:700;animation:floatZ 2s ease-in-out infinite 0s">z</span>
       <span style="position:absolute;top:-6px;left:64%;font-size:18px;color:#4070A0;font-weight:700;animation:floatZ 2s ease-in-out infinite .6s">Z</span>
