@@ -1057,42 +1057,39 @@ const V2_REACT = {
   banana: '🍌 廠商 Banana：\n「你們怎麼要求那麼多！」',
   lemon: '🍋 廠商 Lemon：\n「蛤！！！！」',
 };
+
 const V2_ORDER = ['apple','banana','lemon'];
 const v2_done = new Set();
-
 let v2_locked = false;
 
 function pickV2(id){
   if(v2_done.has(id) || v2_locked) return;
+
   v2_locked = true;
   v2_done.add(id);
 
-  // Grey out chosen card
-function pickV2(id){
-  if(v2_done.has(id) || v2_locked) return;
-  v2_locked = true;
-  v2_done.add(id);
+  const card = document.getElementById('v2-' + id);
+  if(card){
+    card.classList.add('used');
+    const desc = card.querySelector('.vd');
+    if(desc) desc.textContent = '（已交付文件）';
+  }
 
-  // Grey out chosen card
-  const card = document.getElementById('v2-'+id);
-  if(card){ card.classList.add('used'); card.querySelector('.vd').textContent='（已交給）'; }
+  const react = document.getElementById('v2-reaction');
+  if(react){
+    react.style.display = 'block';
+    react.textContent = V2_REACT[id] || '';
+  }
 
-// Lock other cards temporarily
-// V2_ORDER.filter(x=>!v2_done.has(x)).forEach(oid=>{
-//   const c = document.getElementById('v2-'+oid);
-//   if(c) c.classList.add('dimmed');
-// });
   const anger = document.getElementById('v2-anger');
   if(anger) anger.textContent = '💢'.repeat(v2_done.size);
 
-  // Show next button
   const btn = document.getElementById('v2-next');
   if(btn) btn.style.display = 'block';
 
-  // Update title
   const title = document.getElementById('v2-title');
   if(title){
-    const left = V2_ORDER.filter(x=>!v2_done.has(x)).length;
+    const left = V2_ORDER.filter(x => !v2_done.has(x)).length;
     if(left === 0) title.textContent = '三個都交付文件了！';
     else if(left === 1) title.textContent = '還有最後一個⋯⋯';
     else title.textContent = '再交給下一個！';
@@ -1100,41 +1097,21 @@ function pickV2(id){
 }
 
 function nextV2(){
-  const left = V2_ORDER.filter(x=>!v2_done.has(x));
-
-  // Hide reaction and next button
   const react = document.getElementById('v2-reaction');
-  if(react) react.style.display='none';
-function nextV2(){
-  const left = V2_ORDER.filter(x=>!v2_done.has(x));
+  if(react) react.style.display = 'none';
 
-  // Hide reaction and next button
-  const react = document.getElementById('v2-reaction');
-  if(react) react.style.display='none';
   const btn = document.getElementById('v2-next');
-  if(btn) btn.style.display='none';
+  if(btn) btn.style.display = 'none';
 
-if(left.length > 0){
-  // Unlock remaining cards
-  left.forEach(oid=>{
-    const c = document.getElementById('v2-'+oid);
-    if(c) c.classList.remove('dimmed');
-  });
-  v2_locked = false;
-    V2_ORDER.forEach(id=>{
-      const card = document.getElementById('v2-'+id);
-      if(card){
-        card.classList.remove('used');
-        card.style.opacity='1';
-        card.querySelector('.vd').textContent = id==='apple'?'送送送！辦到好！我什麼都可以！':id==='banana'?'面有難色⋯⋯':'最便宜的我！選我！';
-V2_ORDER.forEach(id=>{
-  const card = document.getElementById('v2-'+id);
-  if(card){
-    card.classList.remove('used');
-    card.classList.remove('dimmed');
-    card.querySelector('.vd').textContent = id==='apple'?'送送送！辦到好！我什麼都可以！':id==='banana'?'面有難色⋯⋯':'最便宜的我！選我！';
+  const left = V2_ORDER.filter(x => !v2_done.has(x));
 
-function resetEval(){
+  if(left.length > 0){
+    v2_locked = false;
+    return;
+  }
+
+  go('c1s-launch');
+}
   // Reset all 4 eval choices
   ['e1','e2','e3','e4'].forEach(eid=>{
     chosen[eid]=null;
