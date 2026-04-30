@@ -207,11 +207,11 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',s
 }
 .vc:active{transform:scale(.97);border-color:var(--gold);}
 .vc.used{opacity:.4;pointer-events:none;}
+.vc.dimmed{opacity:.35;pointer-events:none;}
 .vc-icon{font-size:32px;flex-shrink:0;}
 .vc-info .vn{font-size:14px;font-weight:700;color:var(--text);}
 .vc-info .vp{font-size:12px;color:var(--gold);font-weight:700;margin:2px 0;}
 .vc-info .vd{font-size:11px;color:var(--muted);}
-
 /* ── VENDOR RESULT ── */
 #s6{
   background:var(--bg);display:flex;flex-direction:column;
@@ -642,7 +642,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div style="font-size:28px;font-weight:900;margin:8px 0" id="c1level-result-badge"></div>
     <div style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:14px" id="c1level-explain"></div>
     <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--gd);line-height:1.8;text-align:left">
-      🐦 小麻雀說：「現在換你想想——<br><strong>你的系統，答案一樣嗎？</strong>」
+      小麻雀說：「現在換你想想——<br><strong>你的系統，答案一樣嗎？</strong>」
     </div>
     <div style="display:flex;gap:8px;margin-top:14px">
       <button class="btn-main" style="flex:1;padding:12px 8px;font-size:12px;background:#A09060;box-shadow:0 3px 0 #706040" onclick="resetEval()">↩ 重新評估</button>
@@ -1068,20 +1068,20 @@ function pickV2(id){
   v2_done.add(id);
 
   // Grey out chosen card
+function pickV2(id){
+  if(v2_done.has(id) || v2_locked) return;
+  v2_locked = true;
+  v2_done.add(id);
+
+  // Grey out chosen card
   const card = document.getElementById('v2-'+id);
   if(card){ card.classList.add('used'); card.querySelector('.vd').textContent='（已交給）'; }
 
-  // Lock other cards temporarily
-  V2_ORDER.filter(x=>!v2_done.has(x)).forEach(oid=>{
-    const c = document.getElementById('v2-'+oid);
-    if(c) c.style.opacity='.35';
-  });
-
-  // Show reaction
-  const react = document.getElementById('v2-reaction');
-  if(react){ react.textContent = V2_REACT[id]; react.style.display='block'; }
-
-  // Update anger symbols
+// Lock other cards temporarily
+V2_ORDER.filter(x=>!v2_done.has(x)).forEach(oid=>{
+  const c = document.getElementById('v2-'+oid);
+  if(c) c.classList.add('dimmed');
+});
   const anger = document.getElementById('v2-anger');
   if(anger) anger.textContent = '💢'.repeat(v2_done.size);
 
@@ -1105,34 +1105,34 @@ function nextV2(){
   // Hide reaction and next button
   const react = document.getElementById('v2-reaction');
   if(react) react.style.display='none';
+function nextV2(){
+  const left = V2_ORDER.filter(x=>!v2_done.has(x));
+
+  // Hide reaction and next button
+  const react = document.getElementById('v2-reaction');
+  if(react) react.style.display='none';
   const btn = document.getElementById('v2-next');
   if(btn) btn.style.display='none';
 
-  if(left.length > 0){
-    // Unlock remaining cards
-    left.forEach(oid=>{
-      const c = document.getElementById('v2-'+oid);
-      if(c) c.style.opacity='1';
-    });
-    v2_locked = false;
-  } else {
-    // All done -> 佛也發火
-    go('c1s-buddha');
-    // Reset for potential replay
-    v2_done.clear();
-    v2_locked = false;
+if(left.length > 0){
+  // Unlock remaining cards
+  left.forEach(oid=>{
+    const c = document.getElementById('v2-'+oid);
+    if(c) c.classList.remove('dimmed');
+  });
+  v2_locked = false;
     V2_ORDER.forEach(id=>{
       const card = document.getElementById('v2-'+id);
       if(card){
         card.classList.remove('used');
         card.style.opacity='1';
         card.querySelector('.vd').textContent = id==='apple'?'送送送！辦到好！我什麼都可以！':id==='banana'?'面有難色⋯⋯':'最便宜的我！選我！';
-      }
-    });
-    const anger = document.getElementById('v2-anger');
-    if(anger) anger.textContent='';
-  }
-}
+V2_ORDER.forEach(id=>{
+  const card = document.getElementById('v2-'+id);
+  if(card){
+    card.classList.remove('used');
+    card.classList.remove('dimmed');
+    card.querySelector('.vd').textContent = id==='apple'?'送送送！辦到好！我什麼都可以！':id==='banana'?'面有難色⋯⋯':'最便宜的我！選我！';
 
 function resetEval(){
   // Reset all 4 eval choices
