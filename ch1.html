@@ -1112,28 +1112,6 @@ function nextV2(){
 
   go('c1s-launch');
 }
-  // Reset all 4 eval choices
-  ['e1','e2','e3','e4'].forEach(eid=>{
-    chosen[eid]=null;
-    const res=$el('c1res-'+eid);
-    if(res){res.style.display='none';res.textContent='';}
-    const btn=$el('c1btn-'+eid);
-    if(btn) btn.style.display='none';
-    document.querySelectorAll(`#c1s-${eid} .lbtn`).forEach(b=>b.className='lbtn');
-  });
-  go('c1s-e1');
-}
-
-function resetTRP(){
-  // Reset TRP selections
-  Object.keys(TRP_VALS).forEach(k=>TRP_VALS[k]=null);
-  document.querySelectorAll('.topt').forEach(b=>b.classList.remove('sel'));
-  $hide('c1trp-err');$hide('c1trp-ok');$hide('c1trp-continue');// c1trp-next removed
-}
-
-
-/* ── PHONE LIGHTS ANIMATION ── */
-function initPhoneLights(){
   const canvas = document.getElementById('phone-canvas');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
@@ -1156,6 +1134,7 @@ function initPhoneLights(){
   function draw(now){
     ctx.clearRect(0,0,W,H);
     phones.forEach(p=>{
+      function resetEval(){
       const elapsed = now - start;
       if(elapsed < p.delay) return;
       if(!p.born){ p.born=true; p.alpha=0; }
