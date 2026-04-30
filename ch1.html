@@ -568,7 +568,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <button class="lbtn" onclick="pickLevel('e1','高')">高</button>
     </div>
     <div class="eval-result" id="c1res-e1"></div>
-    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e1')">📄 收起法規原文</span>
+    <span class="expand-btn" id="expand-btn-e1" onclick="toggleLaw('c1law-e1')">📄 收起法規原文</span>
     <div class="law-text" id="c1law-e1">普：造成未經授權之資訊揭露，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
     <button class="btn-main btn-full" id="c1btn-e1" style="display:none" onclick="go('c1s-e2')">下一項：完整性 ▶</button>
   </div>
@@ -588,7 +588,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <button class="lbtn" onclick="pickLevel('e2','高')">高</button>
     </div>
     <div class="eval-result" id="c1res-e2"></div>
-    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e2')">📄 收起法規原文</span>
+    <span class="expand-btn" id="expand-btn-e2" onclick="toggleLaw('c1law-e2')">📄 收起法規原文</span>
     <div class="law-text" id="c1law-e2">普：造成資訊錯誤或遭竄改，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
     <button class="btn-main btn-full" id="c1btn-e2" style="display:none" onclick="go('c1s-e3')">下一項：可用性 ▶</button>
   </div>
@@ -608,7 +608,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <button class="lbtn" onclick="pickLevel('e3','高')">高</button>
     </div>
     <div class="eval-result" id="c1res-e3"></div>
-    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e3')">📄 收起法規原文</span>
+    <span class="expand-btn" id="expand-btn-e3" onclick="toggleLaw('c1law-e3')">📄 收起法規原文</span>
     <div class="law-text" id="c1law-e3">普：造成資訊存取或使用中斷，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
     <button class="btn-main btn-full" id="c1btn-e3" style="display:none" onclick="go('c1s-e4')">下一項：法遵性 ▶</button>
   </div>
@@ -628,7 +628,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <button class="lbtn" onclick="pickLevel('e4','高')">高</button>
     </div>
     <div class="eval-result" id="c1res-e4"></div>
-    <span class="expand-btn" id="expand-btn- onclick="toggleLaw('c1law-e4')">📄 收起法規原文</span>
+    <span class="expand-btn" id="expand-btn-e4" onclick="toggleLaw('c1law-e4')">📄 收起法規原文</span>
     <div class="law-text" id="c1law-e4">普：其他資通系統設置或運作於法令有相關規範之情形，影響有限。<br>中：可能使機關或人員受行政罰、懲戒或懲處。<br>高：可能使機關所屬人員負刑事責任。</div>
     <button class="btn-main btn-full" id="c1btn-e4" style="display:none" onclick="showLevelResult()">查看系統等級結果 ✅</button>
   </div>
@@ -1039,13 +1039,21 @@ document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
 
 /* back button handled in go() */;
 
-function goBack(){
-  if(history_stack.length === 0) return;
-  const prev = history_stack.pop();
-  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-  const el = document.getElementById(prev);
-  if(el){ el.classList.add('on'); el.scrollTop=0; }
-  updateBackBtn();
+function resetEval(){
+  ['e1','e2','e3','e4'].forEach(eid=>{
+    chosen[eid]=null;
+    document.querySelectorAll('#c1s-'+eid+' .lbtn').forEach(b=>b.className='lbtn');
+    const res=document.getElementById('c1res-'+eid);
+    if(res){res.textContent='';res.style.display='none';}
+    $hide('c1btn-'+eid);
+  });
+  go('c1s-e1');
+}
+
+function resetTRP(){
+  TRP_VALS.mtpd=null;TRP_VALS.rto=null;TRP_VALS.rpo=null;
+  document.querySelectorAll('.topt').forEach(b=>b.classList.remove('sel'));
+  $hide('c1trp-err');$hide('c1trp-ok');$hide('c1trp-continue');
 }
 
 /* updateBackBtn removed */
@@ -1110,7 +1118,7 @@ function nextV2(){
     return;
   }
 
-go('c1s-launch');
+  go('c1s-buddha');
 }
 
 function initPhoneCanvas(){
