@@ -1110,10 +1110,13 @@ function nextV2(){
     return;
   }
 
-  go('c1s-launch');
+go('c1s-launch');
 }
+
+function initPhoneCanvas(){
   const canvas = document.getElementById('phone-canvas');
   if(!canvas) return;
+
   const ctx = canvas.getContext('2d');
   canvas.width = canvas.offsetWidth || 390;
   canvas.height = canvas.offsetHeight || 600;
@@ -1131,40 +1134,49 @@ function nextV2(){
   }));
 
   const start = performance.now();
+
   function draw(now){
     ctx.clearRect(0,0,W,H);
+
     phones.forEach(p=>{
-      function resetEval(){
       const elapsed = now - start;
       if(elapsed < p.delay) return;
-      if(!p.born){ p.born=true; p.alpha=0; }
+
+      if(!p.born){
+        p.born = true;
+        p.alpha = 0;
+      }
+
       p.alpha = Math.min(p.alpha + .04, .85);
       p.pulse += p.speed;
+
       const glow = p.alpha * (.7 + .3 * Math.sin(p.pulse));
-      // outer glow
+
       const grad = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*2.5);
       grad.addColorStop(0, `rgba(180,220,255,${glow * .6})`);
       grad.addColorStop(1, 'rgba(180,220,255,0)');
+
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r*2.5,0,Math.PI*2);
       ctx.fillStyle = grad;
       ctx.fill();
-      // inner dot
+
       ctx.beginPath();
       ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
       ctx.fillStyle = `rgba(220,240,255,${glow})`;
       ctx.fill();
     });
+
     requestAnimationFrame(draw);
   }
+
   requestAnimationFrame(draw);
 }
-
 // Init when launch screen becomes active
 const _origGo = go;
 go = function(id){
   _origGo(id);
-  if(id==='c1s-launch') setTimeout(initPhoneLights, 100);
+  if(id==='c1s-launch') setTimeout(initPhoneCanvas, 100);
 };
 
 </script>
