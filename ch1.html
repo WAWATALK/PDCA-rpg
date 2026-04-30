@@ -1078,10 +1078,10 @@ function pickV2(id){
   if(card){ card.classList.add('used'); card.querySelector('.vd').textContent='（已交給）'; }
 
 // Lock other cards temporarily
-V2_ORDER.filter(x=>!v2_done.has(x)).forEach(oid=>{
-  const c = document.getElementById('v2-'+oid);
-  if(c) c.classList.add('dimmed');
-});
+// V2_ORDER.filter(x=>!v2_done.has(x)).forEach(oid=>{
+//   const c = document.getElementById('v2-'+oid);
+//   if(c) c.classList.add('dimmed');
+// });
   const anger = document.getElementById('v2-anger');
   if(anger) anger.textContent = '💢'.repeat(v2_done.size);
 
