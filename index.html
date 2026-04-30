@@ -594,6 +594,27 @@
 /* ── 序章流程 ── */
 let heroName = '勇者';
 
+function applyHeroName(){
+  document.querySelectorAll('.hname').forEach(el => {
+    el.textContent = `⚔️ ${heroName}・系統負責人`;
+  });
+  document.querySelectorAll('.player-name').forEach(el => {
+    el.textContent = `你（${heroName}）`;
+  });
+}
+
+function pickName(name){
+  heroName = name || '勇者';
+  applyHeroName();
+  if(typeof fadeScene === 'function'){
+    fadeScene(startPrologue, 320);
+  }else{
+    startPrologue();
+  }
+}
+
+window.pickName = pickName;
+applyHeroName();
 /* ── 序章流程 ── */
 function startPrologue(){
   go('s-scene');
