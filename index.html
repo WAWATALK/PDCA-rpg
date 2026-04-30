@@ -814,6 +814,9 @@ function backToMarket(){
 function afterVendor(){ backToMarket(); }
 
 document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
+
+// 從章節直接跳回選單
+if(location.hash==='#menu') go('s-menu');
 </script>
 </body>
 </html>

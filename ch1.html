@@ -646,12 +646,103 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
     <div style="display:flex;gap:8px;margin-top:14px">
       <button class="btn-main" style="flex:1;padding:12px 8px;font-size:12px;background:#A09060;box-shadow:0 3px 0 #706040" onclick="resetEval()">↩ 重新評估</button>
-      <button class="btn-main" style="flex:2;padding:12px 8px;font-size:12px" onclick="go('c1s-trp')">繼續：MTPD / RTO / RPO ▶</button>
+      <button class="btn-main" style="flex:2;padding:12px 8px;font-size:12px" onclick="go('c1s-risk1')">繼續：評估風險值 ▶</button>
     </div>
   </div>
 </div>
 
-<!-- MTPD/RTO/RPO -->
+<!-- ── RISK 1: 可能性 ── -->
+<div class="scr eval-screen" id="c1s-risk1">
+  <div class="eval-header"><span class="eval-badge">風險評估</span><span class="eval-step">1 / 2</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble">系統等級出來了！<br>接下來評估威脅<strong>發生的可能性</strong>——<br>安安電子系統曾經出過問題嗎？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:14px">💡 回想看看——這套系統或類似系統，過去有沒有發生過資安事件？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:12px 14px" onclick="pickRisk('prob',1,this)">
+        <div style="font-size:13px;font-weight:700">1｜機率偏低</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">過去從未發生，或預期不太可能發生</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:12px 14px" onclick="pickRisk('prob',2,this)">
+        <div style="font-size:13px;font-weight:700">2｜機率偏高</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">三年內曾發生一次，或預期可能發生</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:12px 14px" onclick="pickRisk('prob',3,this)">
+        <div style="font-size:13px;font-weight:700">3｜機率極高</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">三年內發生一次以上，或預期極可能發生</div>
+      </button>
+    </div>
+    <button class="btn-main btn-full" id="c1btn-risk1" style="display:none;margin-top:4px" onclick="go('c1s-risk2')">下一項：影響程度 ▶</button>
+  </div>
+</div>
+
+<!-- ── RISK 2: 影響程度 ── -->
+<div class="scr eval-screen" id="c1s-risk2">
+  <div class="eval-header"><span class="eval-badge">風險評估</span><span class="eval-step">2 / 2</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble">最後一題！<br>如果安安電子系統真的出問題，<br><strong>影響程度</strong>有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:14px">💡 受影響的範圍有多大？只有你自己，還是整個學校都會受衝擊？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:12px 14px" onclick="pickRisk('impact',1,this)">
+        <div style="font-size:13px;font-weight:700">1｜影響個人業務層面</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">只影響少數人或特定業務</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:12px 14px" onclick="pickRisk('impact',2,this)">
+        <div style="font-size:13px;font-weight:700">2｜影響單位部門業務營運</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">整個部門或單位都會受到影響</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:12px 14px" onclick="pickRisk('impact',3,this)">
+        <div style="font-size:13px;font-weight:700">3｜影響全校業務營運</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">全校層級都會受到波及</div>
+      </button>
+    </div>
+    <button class="btn-main btn-full" id="c1btn-risk2" style="display:none;margin-top:4px" onclick="calcRisk()">計算風險值 🔢</button>
+  </div>
+</div>
+
+<!-- ── RISK RESULT ── -->
+<div class="scr sky-bg" id="c1s-risk-result">
+  <div class="panel a1" style="text-align:center;max-width:340px">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">風險值計算結果</div>
+    <!-- 算式 -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:8px 12px;text-align:center">
+        <div style="font-size:9px;color:var(--muted)">資產價值</div>
+        <div style="font-size:22px;font-weight:900;color:var(--gold)" id="c1rv-asset">—</div>
+      </div>
+      <div style="font-size:18px;color:var(--muted)">×</div>
+      <div style="background:#E8F0FF;border:1.5px solid var(--blue);border-radius:10px;padding:8px 12px;text-align:center">
+        <div style="font-size:9px;color:var(--muted)">可能性</div>
+        <div style="font-size:22px;font-weight:900;color:var(--blue)" id="c1rv-prob">—</div>
+      </div>
+      <div style="font-size:18px;color:var(--muted)">×</div>
+      <div style="background:#FFE8F0;border:1.5px solid #C04080;border-radius:10px;padding:8px 12px;text-align:center">
+        <div style="font-size:9px;color:var(--muted)">影響程度</div>
+        <div style="font-size:22px;font-weight:900;color:#C04080" id="c1rv-impact">—</div>
+      </div>
+      <div style="font-size:18px;color:var(--muted)">=</div>
+      <div style="border-radius:10px;padding:8px 14px;text-align:center" id="c1rv-result-box">
+        <div style="font-size:9px;color:var(--muted)">風險值</div>
+        <div style="font-size:28px;font-weight:900" id="c1rv-score">—</div>
+      </div>
+    </div>
+    <!-- 判斷說明 -->
+    <div id="c1rv-verdict" style="border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left"></div>
+    <!-- 小麻雀說 -->
+    <div class="sp-say" id="c1rv-sp-row">
+      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble" id="c1rv-sp-msg"></div>
+    </div>
+    <button class="btn-main btn-full" style="margin-top:14px" id="c1rv-next" onclick="go('c1s-trp')">繼續：設定時間目標 ▶</button>
+  </div>
+</div>
+
+
 <div class="scr" id="c1s-trp" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:12px 16px 32px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
   <div style="font-size:15px;font-weight:700;color:var(--text);text-align:center;margin:4px 0 2px;position:relative;z-index:1">⏱️ 設定時間目標</div>
   <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px;position:relative;z-index:1">如果安安電子系統出問題，你們能接受多久？</div>
@@ -848,7 +939,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       「現在換你想想——<br><em>你的系統，答案一樣嗎？</em>」
     </div>
     <div style="font-size:11px;color:rgba(255,248,220,.5);margin-top:16px">～ 第二章：日常維運 即將開放 ～</div>
-    <button onclick="location.href='index.html'" class="btn-main" style="margin-top:16px;width:100%;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A;font-size:14px">📖 前往章節選單</button>
+    <button onclick="location.href='index.html#menu'" class="btn-main" style="margin-top:16px;width:100%;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A;font-size:14px">📖 前往章節選單</button>
   </div>
 </div>
 
@@ -880,7 +971,7 @@ function $hide(id){ const e=$el(id); if(e) e.style.display='none'; }
 function $txt(id,v){ const e=$el(id); if(e) e.textContent=v; }
 
 
-const C1SCREENS=['c1s0','c1s-narr','c1s-e1','c1s-e2','c1s-e3','c1s-e4','c1s-elevel','c1s-trp','c1s-narr2','c1s-rock2','c1s-exp2','c1s-procure','c1s-launch','c1s-exp100','c1s-final'];
+const C1SCREENS=['c1s0','c1s-narr','c1s-e1','c1s-e2','c1s-e3','c1s-e4','c1s-elevel','c1s-risk1','c1s-risk2','c1s-risk-result','c1s-trp','c1s-narr2','c1s-rock2','c1s-exp2','c1s-procure','c1s-launch','c1s-exp100','c1s-final'];
 
 
 /* NARR SCRIPT */
@@ -976,6 +1067,60 @@ function showLevelResult(){
   };
   document.getElementById('c1level-explain').textContent=explains[finalLv];
   go('c1s-elevel');
+}
+
+/* ── RISK ASSESSMENT ── */
+const RISK_VALS={prob:null,impact:null};
+const ASSET_SCORE={普:2,中:3,高:4};
+
+function pickRisk(key,val,btn){
+  RISK_VALS[key]=val;
+  const container=btn.closest('.level-btns');
+  container.querySelectorAll('.lbtn').forEach(b=>{
+    b.className='lbtn';b.style.textAlign='left';b.style.padding='12px 14px';
+  });
+  btn.classList.add(val===1?'chosen-p':val===2?'chosen-m':'chosen-h');
+  $show(key==='prob'?'c1btn-risk1':'c1btn-risk2');
+}
+
+function calcRisk(){
+  const badge=document.getElementById('c1level-result-badge').textContent;
+  const finalLv=badge.includes('普')?'普':badge.includes('中')?'中':'高';
+  const asset=ASSET_SCORE[finalLv];
+  const prob=RISK_VALS.prob||1;
+  const impact=RISK_VALS.impact||1;
+  const score=asset*prob*impact;
+
+  $txt('c1rv-asset',asset);$txt('c1rv-prob',prob);$txt('c1rv-impact',impact);$txt('c1rv-score',score);
+
+  const box=document.getElementById('c1rv-result-box');
+  const verdict=document.getElementById('c1rv-verdict');
+  const spMsg=document.getElementById('c1rv-sp-msg');
+  const scoreEl=document.getElementById('c1rv-score');
+
+  if(score<=6){
+    box.style.cssText='background:#E8F5E8;border:2px solid #50C040;border-radius:10px;padding:8px 14px;text-align:center';
+    scoreEl.style.color='#2A6020';
+    verdict.style.cssText='background:#E8F5E8;border:1.5px solid #50C040;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left;color:#2A6020';
+    verdict.textContent='✅ 低風險（風險值 ≤ 6）\n可接受風險，維持現有管控措施，定期監控即可。';
+    spMsg.textContent='風險在可接受範圍內！繼續設定時間目標，準備找廠商吧！';
+    document.querySelector('#c1s-risk-result .sp-tiny').src='assets/sp.png';
+  } else if(score<=12){
+    box.style.cssText='background:#FFF3C0;border:2px solid #D4920A;border-radius:10px;padding:8px 14px;text-align:center';
+    scoreEl.style.color='#8B6010';
+    verdict.style.cssText='background:#FFF3C0;border:1.5px solid #D4920A;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left;color:#8B4010';
+    verdict.textContent='⚠️ 中風險（風險值 7–12）\n可接受風險，但需要採取控制措施，降低風險後繼續監控。';
+    spMsg.textContent='風險還在可接受範圍，不過要注意喔！繼續設定時間目標，把控制措施寫進合約裡！';
+    document.querySelector('#c1s-risk-result .sp-tiny').src='assets/sp.png';
+  } else {
+    box.style.cssText='background:#FFE8E0;border:2px solid #E05030;border-radius:10px;padding:8px 14px;text-align:center';
+    scoreEl.style.color='#E05030';
+    verdict.style.cssText='background:#FFE8E0;border:1.5px solid #E05030;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left;color:#801010';
+    verdict.innerHTML='🚨 <strong>不可接受風險（風險值 ≥ 13）</strong><br>風險超標！必須立即採取行動降低風險，<br>並聯繫圖資處協助處理。';
+    spMsg.innerHTML='風險值超過 12，這是<strong>不可接受風險</strong>！<br>在繼續委外流程之前，請先<strong>聯繫圖資處</strong>，一起討論如何降低風險喔！';
+    document.querySelector('#c1s-risk-result .sp-tiny').src='assets/sp-speech.png';
+  }
+  go('c1s-risk-result');
 }
 
 /* MTPD/RTO/RPO */
