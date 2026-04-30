@@ -518,9 +518,9 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </svg>
   </div>
 
-  <!-- NPC 萬物屋 -->
+  <!-- NPC 萬事屋 -->
   <div class="npc2 dim" id="c1npc-mw2" style="left:4%;bottom:32%">
-    <div class="nf"><div class="nn2">萬物屋</div>
+    <div class="nf"><div class="nn2">萬事屋</div>
     <svg viewBox="0 0 32 44" width="26" height="36">
       <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#50A050"/>
       <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#50A050"/>
@@ -660,8 +660,6 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div class="trp-label">MTPD｜最大可容忍中斷時間</div>
     <div class="trp-def">系統最多可以壞多久？超過後村民會開始抓狂。</div>
     <div class="trp-opts">
-      <button class="topt" onclick="selTRP('mtpd',this,'4小時')">4小時</button>
-      <button class="topt" onclick="selTRP('mtpd',this,'8小時')">8小時</button>
       <button class="topt" onclick="selTRP('mtpd',this,'24小時')">24小時</button>
       <button class="topt" onclick="selTRP('mtpd',this,'3天')">3天</button>
       <button class="topt" onclick="selTRP('mtpd',this,'7天')">7天</button>
@@ -672,8 +670,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div class="trp-label">RTO｜復原時間目標</div>
     <div class="trp-def">系統最晚多久內必須修好？廠商要配合這個時間！</div>
     <div class="trp-opts">
-      <button class="topt" onclick="selTRP('rto',this,'4小時')">4小時</button>
-      <button class="topt" onclick="selTRP('rto',this,'8小時')">8小時</button>
+
       <button class="topt" onclick="selTRP('rto',this,'24小時')">24小時</button>
       <button class="topt" onclick="selTRP('rto',this,'3天')">3天</button>
       <button class="topt" onclick="selTRP('rto',this,'7天')">7天</button>
@@ -684,8 +681,6 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div class="trp-label">RPO｜資料復原時間目標</div>
     <div class="trp-def">最多可接受遺失多久的資料？決定備份頻率。</div>
     <div class="trp-opts">
-      <button class="topt" onclick="selTRP('rpo',this,'4小時')">4小時</button>
-      <button class="topt" onclick="selTRP('rpo',this,'8小時')">8小時</button>
       <button class="topt" onclick="selTRP('rpo',this,'24小時')">24小時</button>
       <button class="topt" onclick="selTRP('rpo',this,'3天')">3天</button>
       <button class="topt" onclick="selTRP('rpo',this,'7天')">7天</button>
@@ -693,7 +688,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
   </div>
 
   <div class="trp-err" id="c1trp-err">⚠️ <span id="c1trp-err-msg"></span></div>
-  <div class="trp-ok" id="c1trp-ok">✅ 邏輯正確！<br><span id="c1trp-ok-msg"></span><br><br>🐦 記得：這是你心目中的初稿，<strong>還要跟廠商討論</strong>，確認他們做不做得到，最後再寫進合約喔！</div>
+  <div class="trp-ok" id="c1trp-ok">✅ 邏輯正確！<br><span id="c1trp-ok-msg"></span><br><br> 記得：這是你心目中的初稿，<strong>還要跟廠商討論</strong>，確認他們做不做得到，最後再寫進合約喔！</div>
 
   <button class="btn-main" style="margin-top:14px;width:100%;max-width:360px" onclick="checkTRP()">確認設定 ✅</button>
   <button class="btn-main" style="margin-top:8px;width:100%;max-width:360px;background:#A09060;box-shadow:0 3px 0 #706040;font-size:12px" onclick="resetTRP()">↩ 重新設定</button>
@@ -710,7 +705,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       小麻雀拿出了一疊厚厚的文件：<br>
       ・資通訊系統委外自評表<br>
       ・資通訊委外合約書附則<br>
-      ・保密切結書<br><br>
+      ・個人保密切結書<br><br>
       勇者跟村民們討論完所有文件，<br>
       現在要把文件交給廠商了⋯⋯
     </div>
@@ -732,7 +727,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <div class="vc" id="v2-apple" onclick="pickV2('apple')">
         <div class="vc-icon">🍎</div>
         <div class="vc-info">
-          <div class="vn">商人 Apple</div>
+          <div class="vn">廠商 Apple</div>
           <div class="vd">送送送！辦到好！我什麼都可以！</div>
         </div>
       </div>
@@ -795,7 +790,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <span class="exp-icon2">💪</span>
     <div class="exp-title2">再次戰勝心魔！</div>
     <div class="exp-pts2">經驗值 +10</div>
-    <div class="exp-sub2">「我是勇者！不管廠商怎麼抱怨！」<br>你深呼吸，繼續前進。</div>
+    <div class="exp-sub2">「我是勇者！不管廠商怎麼抱怨！」<br>深呼吸，繼續前進。</div>
   </div>
   <button class="btn-main" style="margin-top:18px;animation:fu .6s .6s both;opacity:0" onclick="go('c1s-procure')">進入採購階段 ▶</button>
 </div>
@@ -806,8 +801,8 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div style="font-size:28px;margin-bottom:8px">🏪</div>
     <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px">採購階段</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px">
-      勇者把所有文件交給萬物屋。<br>
-      萬物屋開始辦理採購程序⋯⋯<br><br>
+      勇者把所有文件交給萬事屋。<br>
+      萬事屋開始辦理採購程序⋯⋯<br><br>
       評選、議價、簽約⋯⋯<br><br>
       終於——
     </div>
@@ -828,8 +823,8 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       晚上 8:00，系統準時發出第一封訊息⋯⋯
     </div>
     <div class="final-annan">📱「親愛的村民，安安！」</div>
-    <div class="final-msg" style="font-size:12px;margin-top:10px">村民的手機一一亮起。<br>村長說：「你們做得非常好。」</div>
-    <div style="font-size:16px;font-weight:900;color:#FFE066;margin-top:16px;animation:bounce 1.5s ease-in-out infinite">👏 讓我們為自己鼓掌 👏</div>
+    <div class="final-msg" style="font-size:12px;margin-top:10px">村民的手機一一亮起。<br>村長說：「你們做得非常好」</div>
+    <div style="font-size:16px;font-weight:900;color:#FFE066;margin-top:16px;animation:bounce 1.5s ease-in-out infinite">👏 為自己鼓掌 👏</div>
     <button class="btn-main" style="margin-top:16px;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A" onclick="go('c1s-exp100')">繼續 ▶</button>
   </div>
 </div>
@@ -893,7 +888,7 @@ const NSCRIPT=[
   {spk:'旁白',txt:'你帶著委外管理程序書，\n走進了村民大會堂。\n\n今天要召開村民大會，\n正式評估安安電子系統的需求。',npc:'none'},
   {spk:'勇者（你）',txt:'會議名稱：安安電子系統\n功能：每天發訊息給村民說安安\n\n現在，我們要依據程序書來規劃！',npc:'pl'},
   {spk:'村長大人',txt:'我全力支持！\n\n（坐在角落喝茶）',npc:'my'},
-  {spk:'萬物屋（單位窗口）',txt:'好！那我來記錄！\n首先要評估系統的防護等級⋯⋯',npc:'mw'},
+  {spk:'萬事屋（單位窗口）',txt:'好！那我來記錄！\n首先要評估系統的防護等級⋯⋯',npc:'mw'},
   {spk:'旁白',txt:'小麻雀拿出了委外自評表，\n開始協助評估系統等級。\n\n你需要依序評估四個面向⋯⋯',npc:'none',action:'eval'},
 ];
 let ns=0;
@@ -985,7 +980,7 @@ function showLevelResult(){
 
 /* MTPD/RTO/RPO */
 const TRP_VALS={mtpd:null,rto:null,rpo:null};
-const TRP_ORDER=['4小時','8小時','24小時','3天','7天'];
+const TRP_ORDER=['24小時','3天','7天'];
 
 function selTRP(key,btn,val){
   TRP_VALS[key]=val;
@@ -1004,11 +999,11 @@ function checkTRP(){
   }
   const mi=TRP_ORDER.indexOf(mtpd),ri=TRP_ORDER.indexOf(rto),pi=TRP_ORDER.indexOf(rpo);
   if(ri>mi){
-    $show('c1trp-err'); $txt('c1trp-err-msg',`RTO（${rto}）比 MTPD（${mtpd}）還長！系統還沒修好，容忍時間就到了，這樣不行！請重新調整。`);
+    $show('c1trp-err'); $txt('c1trp-err-msg',`RTO（${rto}）比 MTPD（${mtpd}）NG！系統還沒修好，容忍時間就到了，這樣不行！請重新調整。`);
     return;
   }
   if(pi>ri){
-    $show('c1trp-err'); $txt('c1trp-err-msg',`RPO（${rpo}）比 RTO（${rto}）還長！系統恢復了但備份跟不上，請重新調整。`);
+    $show('c1trp-err'); $txt('c1trp-err-msg',`RPO（${rpo}）比 RTO（${rto}）NG！系統恢復了但備份跟不上，請重新調整。`);
     return;
   }
   $show('c1trp-ok');
@@ -1058,7 +1053,7 @@ function goBack(){
 
 /* ── VENDOR 2 LOGIC ── */
 const V2_REACT = {
-  apple: '🍎 商人 Apple：\n「太麻煩了吧！」\n（挖鼻屎）',
+  apple: '🍎 廠商 Apple：\n「太麻煩了吧！」\n（挖鼻屎）',
   banana: '🍌 廠商 Banana：\n「你們怎麼要求那麼多！」',
   lemon: '🍋 廠商 Lemon：\n「蛤！！！！」',
 };
@@ -1098,7 +1093,7 @@ function pickV2(id){
   const title = document.getElementById('v2-title');
   if(title){
     const left = V2_ORDER.filter(x=>!v2_done.has(x)).length;
-    if(left === 0) title.textContent = '三個都交了！';
+    if(left === 0) title.textContent = '三個都交付文件了！';
     else if(left === 1) title.textContent = '還有最後一個⋯⋯';
     else title.textContent = '再交給下一個！';
   }
