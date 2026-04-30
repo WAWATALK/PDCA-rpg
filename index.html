@@ -35,7 +35,7 @@
   background:linear-gradient(180deg,var(--sky) 0%,var(--sky2) 58%,var(--gnd) 58%,var(--gnd2) 100%);
   display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;
 }
-.class-badge{display:inline-block;background:#FFE066;border:2px solid var(--gold);border-radius:20px;padding:3px 14px;font-size:10px;color:var(--gold-dim);font-weight:700;letter-spacing:.1em;margin-bottom:10px;}
+.class-badge{display:inline-block;background:#FFE066;border:2px solid var(--gold);border-radius:20px;padding:4px 16px;font-size:13px;color:var(--gold-dim);font-weight:700;letter-spacing:.1em;margin-bottom:10px;}
 .class-icon{font-size:52px;display:block;margin-bottom:8px;}
 .class-name{font-size:22px;font-weight:900;color:var(--text);margin-bottom:2px;}
 .class-title-txt{font-size:11px;color:var(--gold);letter-spacing:.12em;margin-bottom:12px;}
@@ -153,7 +153,7 @@
       <span class="skill-tag">過關斬將</span>
     </div>
   </div>
-  <button class="btn a2" style="margin-top:16px" onclick="go('s-name')">就是我了，出發！⚔️</button>
+  <button class="btn a2" style="margin-top:16px" onclick="go('s-name')">捨我其誰！⚔️</button>
 </div>
 
 
@@ -307,7 +307,7 @@
     <span class="exp-icon">💪</span>
     <div class="exp-title">戰勝心魔！</div>
     <div class="exp-pts">經驗值 +10</div>
-    <div class="exp-sub">「好！就是我了！衝！」<br>你握緊劍，踏出了第一步。</div>
+    <div class="exp-sub">「好！我可以的！衝！」<br>你握緊劍，踏出了第一步。</div>
   </div>
   <button class="btn" style="margin-top:16px;animation:fadeUp .6s .6s both;opacity:0" onclick="goToMarket()">前往市集 🛒</button>
 </div>
@@ -315,7 +315,7 @@
 <!-- ⑥ 市集 -->
 <div class="scr" id="s-market" style="background:linear-gradient(180deg,#FFD580 0%,#FFB830 40%,var(--gnd) 40%,var(--gnd2) 100%);display:flex;flex-direction:column">
   <div class="scene" id="market-scene">
-    <svg class="scene-svg" viewBox="0 0 390 280" preserveAspectRatio="xMidYMid slice">
+  <svg class="scene-svg" viewBox="0 0 390 280" preserveAspectRatio="xMidYMid meet">
       <rect x="0" y="0" width="390" height="165" fill="#FFD580"/>
       <rect x="0" y="165" width="390" height="115" fill="#5DBB4A"/>
       <rect x="0" y="165" width="390" height="4" fill="#4AA038"/>
@@ -349,7 +349,7 @@
       <text x="195" y="95" font-size="16" text-anchor="middle" font-family="sans-serif">📄</text>
       <text x="230" y="95" font-size="16" text-anchor="middle" font-family="sans-serif">📄</text>
       <text x="160" y="123" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">合約為準</text>
-      <text x="205" y="123" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">超出不做</text>
+      <text x="205" y="123" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">多的不做</text>
 
       <!-- Lemon 攤位 -->
       <rect x="272" y="70" width="108" height="75" rx="5" fill="#FFF8E8" stroke="#C8A850" stroke-width="1.5"/>
@@ -368,7 +368,7 @@
 
     <div class="hud" style="background:linear-gradient(180deg,rgba(255,210,100,.9),transparent)">
       <div class="hud-l"><div class="hname" style="color:#6B3A00">⚔️ 勇者・系統負責人</div><div class="hcls" style="color:#8B5020">Lv.1 ─ 安安市集</div></div>
-      <div class="hud-r"><div style="color:#6B3A00">📍 安安市集</div><div class="hquest" id="market-quest" style="color:#B85A00">點廠商 NPC 洽談</div></div>
+      <div class="hud-r"><div style="color:#6B3A00">📍 安安市集</div><div class="hquest" id="market-quest" style="color:#B85A00">點選廠商洽談</div></div>
     </div>
 
     <!-- 勇者（市集版）-->
@@ -391,7 +391,7 @@
 
     <!-- Apple NPC -->
     <div class="npc" id="npc-apple" style="left:6%;bottom:38%" onclick="talkVendor('apple')">
-      <div class="npc-inner npc-float"><div class="npc-name">商人 Apple</div>
+      <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
         <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#A03010"/>
@@ -725,13 +725,13 @@ function goToMarket(){
 }
 
 const VENDOR_PITCH={
-  apple:{spk:'🍎 商人 Apple',lines:['您好您好！我是 Apple！\n送送送！辦到好！通通沒問題！\n只要 35 鷹幣！','功能超多！服務超好！\n售後保固應有盡有！\n請問何時可以簽約？😄']},
+  apple:{spk:'🍎 廠商 Apple',lines:['您好您好！我是 Apple！\n送送送！辦到好！通通沒問題！\n只要 35 鷹幣！','功能超多！服務超好！\n售後保固應有盡有！\n請問何時可以簽約？😄']},
   banana:{spk:'🍌 廠商 Banana',lines:['（面有難色）\n⋯⋯要求也太多了吧？\n30 鷹幣，一點都不能少！','我們公司很認真的！\n只是⋯⋯需求可以少一點嗎？']},
   lemon:{spk:'🍋 廠商 Lemon',lines:['選我！選我！\n前面兩個都太貴了！\n我只要 28 鷹幣！最便宜！','品質也很好的啦！\n相信我！選我就對了！\n28 鷹幣超划算！🍋']},
 };
 const VENDOR_RESULT={
-  apple:{icon:'🍎',name:'商人 Apple 的結果⋯⋯',txt:'商人 A 雖然送了很多功能，\n感覺非常划算！\n\n但合約寫得模糊不清，\n出問題後售後不理，\n兩手一攤：\n\n「這個你們應該要自己做吧？」\n\n（挖鼻屎）',lesson:'📌 教訓：合約內容要寫清楚，售後責任要明訂。'},
-  banana:{icon:'🍌',name:'廠商 Banana 的結果⋯⋯',txt:'廠商從頭到尾面有難色，\n說你們的需求太多了⋯⋯\n\n合約沒寫的事，一概不做。',lesson:'📌 教訓：需求要事先說清楚，合約外的事也要討論好。'},
+  apple:{icon:'🍎',name:'廠商 Apple 的結果⋯⋯',txt:'Apple 雖然送了很多功能，\n感覺非常划算！\n\n但合約寫得模糊不清，\n出問題後售後不理，\n兩手一攤：\n\n「這個你們應該要自己做吧？」\n\n（挖鼻屎）',lesson:'📌 教訓：合約內容要寫清楚，售後責任要明訂。'},
+  banana:{icon:'🍌',name:'廠商 Banana 的結果⋯⋯',txt:'Banana從頭到尾面有難色，\n說你們的需求太多了⋯⋯\n\n合約沒寫的事，一概不做。',lesson:'📌 教訓：需求要事先說清楚，合約外的事也要討論好。'},
   lemon:{icon:'🍋',name:'廠商 Lemon 的結果⋯⋯',txt:'最便宜！28 鷹幣！\n感覺撿到便宜了⋯⋯\n\n產品驗收、交貨、收款。\n\n然後廠商⋯⋯\n\n交付後倒閉，維修無門。\n人間蒸發。',lesson:'📌 教訓：選商前要查清楚廠商資格與口碑。'},
 };
 
