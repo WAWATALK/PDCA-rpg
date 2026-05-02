@@ -941,36 +941,36 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 <div class="scr sky-bg" id="c1s-risk-result">
   <div class="panel a1" style="text-align:center;max-width:340px">
     <div style="font-size:12px;color:var(--muted);margin-bottom:10px">風險值計算結果</div>
-    <!-- 算式 -->
-    <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px;flex-wrap:wrap">
-      <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:8px 12px;text-align:center">
+    <!-- 算式一整排 -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:14px;flex-wrap:nowrap">
+      <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:7px 8px;text-align:center;min-width:58px">
         <div style="font-size:9px;color:var(--muted)">資產價值</div>
-        <div style="font-size:22px;font-weight:900;color:var(--gold)" id="c1rv-asset">—</div>
+        <div style="font-size:20px;font-weight:900;color:var(--gold)" id="c1rv-asset">—</div>
       </div>
-      <div style="font-size:18px;color:var(--muted)">×</div>
-      <div style="background:#E8F0FF;border:1.5px solid var(--blue);border-radius:10px;padding:8px 12px;text-align:center">
+      <div style="font-size:14px;color:var(--muted)">×</div>
+      <div style="background:#E8F0FF;border:1.5px solid var(--blue);border-radius:10px;padding:7px 8px;text-align:center;min-width:58px">
         <div style="font-size:9px;color:var(--muted)">可能性</div>
-        <div style="font-size:22px;font-weight:900;color:var(--blue)" id="c1rv-prob">—</div>
+        <div style="font-size:20px;font-weight:900;color:var(--blue)" id="c1rv-prob">—</div>
       </div>
-      <div style="font-size:18px;color:var(--muted)">×</div>
-      <div style="background:#FFE8F0;border:1.5px solid #C04080;border-radius:10px;padding:8px 12px;text-align:center">
+      <div style="font-size:14px;color:var(--muted)">×</div>
+      <div style="background:#FFE8F0;border:1.5px solid #C04080;border-radius:10px;padding:7px 8px;text-align:center;min-width:58px">
         <div style="font-size:9px;color:var(--muted)">影響程度</div>
-        <div style="font-size:22px;font-weight:900;color:#C04080" id="c1rv-impact">—</div>
+        <div style="font-size:20px;font-weight:900;color:#C04080" id="c1rv-impact">—</div>
       </div>
-      <div style="font-size:18px;color:var(--muted)">=</div>
-      <div style="border-radius:10px;padding:8px 14px;text-align:center" id="c1rv-result-box">
+      <div style="font-size:14px;color:var(--muted)">=</div>
+      <div style="border-radius:10px;padding:7px 8px;text-align:center;min-width:58px" id="c1rv-result-box">
         <div style="font-size:9px;color:var(--muted)">風險值</div>
-        <div style="font-size:28px;font-weight:900" id="c1rv-score">—</div>
+        <div style="font-size:24px;font-weight:900" id="c1rv-score">—</div>
       </div>
     </div>
     <!-- 判斷說明 -->
-    <div id="c1rv-verdict" style="border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left"></div>
+    <div id="c1rv-verdict" style="border-radius:12px;padding:10px 14px;font-size:13px;line-height:1.8;margin-bottom:12px;text-align:left"></div>
     <!-- 小麻雀說 -->
-    <div class="sp-say" id="c1rv-sp-row">
+    <div class="sp-say" id="c1rv-sp-row" style="margin-bottom:12px">
       <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
       <div class="sp-bubble" id="c1rv-sp-msg"></div>
     </div>
-    <button class="btn-main btn-full" style="margin-top:14px" id="c1rv-next" onclick="go('c1s-trp')">繼續：設定時間目標 ▶</button>
+    <button class="btn-main btn-full" id="c1rv-next" onclick="go('c1s-trp')">繼續：設定時間目標 ▶</button>
   </div>
 </div>
 
@@ -1766,9 +1766,9 @@ function resetTRP(){
 
 /* ── VENDOR 2 LOGIC ── */
 const V2_REACT = {
-  apple: '🍎 廠商 Apple：\n「太麻煩了吧！」',
-  banana: '🍌 廠商 Banana：\n「你們怎麼要求那麼多！」',
-  lemon: '🍋 廠商 Lemon：\n「蛤！！！！」',
+  apple: '太麻煩了吧！\n（挖鼻屎）',
+  banana: '你們怎麼要求那麼多！\n（翻白眼）',
+  lemon: '蛤！！！！\n（抖腳）',
 };
 
 const V2_ORDER = ['apple','banana','lemon'];
