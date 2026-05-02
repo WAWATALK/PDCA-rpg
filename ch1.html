@@ -365,7 +365,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 .eval-result{display:none;background:#F0F8FF;border:2px solid var(--blue);border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:13px;color:#2A4880;line-height:1.8;}
 .sp-say{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
 .sp-tiny{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;}
-.sp-bubble{background:#FFF3C0;border:1.5px solid var(--gold);border-radius:0 12px 12px 12px;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;flex:1;}
+.sp-bubble{background:#FFF3C0;border:1.5px solid var(--gold);border-radius:0 12px 12px 12px;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;flex:1;white-space: pre-line;}
 
 /* ── MTPD/RTO/RPO ── */
 #c1s-trp{background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:16px 16px 24px;overflow-y:auto;}
@@ -435,7 +435,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 }
 
 </style>
-<title>轉生成為資訊人｜第一章：採購</title>
+<title>轉職成為資訊人-第一章：系統購置</title>
 </head>
 <body>
 <!-- clouds (shared) -->
@@ -449,59 +449,100 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div style="font-size:10px;letter-spacing:.22em;color:var(--muted)">第一章開始</div>
     <div style="width:120px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8px auto"></div>
     <img src="assets/sp.png" alt="資安小麻雀" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;">
-    <div style="font-size:16px;font-weight:900;color:var(--text);margin-bottom:6px" class="a2">第一章：找個好廠商</div>
-    <div style="font-size:12px;color:var(--muted);line-height:1.9;margin-bottom:14px" class="a3">
-      勇者拿著程序書，準備重新出發。<br>
-      但小麻雀說：<br>
-      「等等！先開會評估需求，<br>才能找到對的廠商喔！」
+    <div style="font-size:20px;font-weight:900;color:var(--text);margin-bottom:6px" class="a2">系統購置</div>
+    <div style="font-size:16px;color:var(--muted);line-height:1.9;margin-bottom:14px" class="a3">
+      勇者拿著程序書，準備重新出發<br><br>
+      但小麻雀說：等等！<br><br>先開會評估需求、訂定等級<br>
     </div>
-    <button class="btn-main a4" onclick="startNarr()">好，開會！🗣️</button>
+    <button class="btn-main a4" onclick="startNarr()">召開村民大會</button>
   </div>
 </div>
 
 <!-- ── S-NARR: STORY SCENE ── -->
-<div class="scr" id="c1s-narr">
+<div class="scr" id="c1s-narr" style="display:flex;flex-direction:column;overflow:hidden;">
 <div class="scene2" id="c1scene2">
   <svg class="sc2-svg" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid slice">
-    <!-- sky/ground -->
-    <rect x="0" y="0" width="390" height="175" fill="#87CEEB"/>
-    <rect x="0" y="175" width="390" height="125" fill="#5DBB4A"/>
-    <rect x="0" y="175" width="390" height="6" fill="#4AA038"/>
-    <!-- clouds -->
-    <ellipse cx="55" cy="42" rx="40" ry="16" fill="white" opacity=".9"/>
-    <ellipse cx="36" cy="36" rx="24" ry="20" fill="white" opacity=".9"/>
-    <ellipse cx="72" cy="36" rx="20" ry="18" fill="white" opacity=".9"/>
-    <ellipse cx="288" cy="30" rx="34" ry="14" fill="white" opacity=".9"/>
-    <ellipse cx="270" cy="25" rx="20" ry="17" fill="white" opacity=".9"/>
-    <ellipse cx="308" cy="25" rx="18" ry="16" fill="white" opacity=".9"/>
-    <!-- sun -->
-    <circle cx="340" cy="45" r="24" fill="#FFE050" opacity=".9"/>
-    <!-- meeting hall (center) -->
-    <rect x="130" y="98" width="130" height="92" rx="6" fill="#F0E8C0" stroke="#C8A850" stroke-width="2"/>
-    <polygon points="122,102 268,102 199,72" fill="#E0980A" stroke="#B87010" stroke-width="1.5"/>
-    <rect x="160" y="120" width="28" height="28" rx="3" fill="#B8D0F0" stroke="#88A0C8" stroke-width="1.5"/>
-    <rect x="202" y="120" width="28" height="28" rx="3" fill="#B8D0F0" stroke="#88A0C8" stroke-width="1.5"/>
-    <rect x="170" y="160" width="30" height="30" rx="4" fill="#C8A850" stroke="#A08030" stroke-width="1.5"/>
-    <circle cx="197" cy="175" r="3" fill="#886020"/>
-    <text x="195" y="95" fill="#8B6010" font-size="7" text-anchor="middle" font-family="sans-serif" font-weight="bold">村民大會堂</text>
-    <!-- trees -->
-    <ellipse cx="90" cy="188" rx="22" ry="17" fill="#50C040"/>
-    <ellipse cx="88" cy="176" rx="16" ry="14" fill="#68D858"/>
-    <rect x="85" y="198" width="7" height="18" fill="#8B6010"/>
-    <ellipse cx="300" cy="186" rx="20" ry="16" fill="#50C040"/>
-    <ellipse cx="302" cy="174" rx="14" ry="13" fill="#68D858"/>
-    <rect x="299" y="196" width="7" height="18" fill="#8B6010"/>
-    <!-- path -->
-    <path d="M180 182 L210 182 L216 300 L174 300Z" fill="#D4B870" stroke="#C0A050" stroke-width="1.5"/>
+    <!-- 天花板 -->
+    <rect x="0" y="0" width="390" height="18" fill="#C8A850"/>
+    <!-- 牆壁 -->
+    <rect x="0" y="18" width="390" height="192" fill="#FFF5E0"/>
+    <!-- 側牆陰影 -->
+    <rect x="0" y="18" width="28" height="192" fill="rgba(0,0,0,.07)"/>
+    <rect x="362" y="18" width="28" height="192" fill="rgba(0,0,0,.07)"/>
+    <!-- 踢腳板 -->
+    <rect x="0" y="205" width="390" height="5" fill="#C8A850"/>
+    <!-- 地板 -->
+    <rect x="0" y="210" width="390" height="90" fill="#D4B870"/>
+    <line x1="0" y1="230" x2="390" y2="230" stroke="#C0A050" stroke-width="1" opacity=".4"/>
+    <line x1="0" y1="250" x2="390" y2="250" stroke="#C0A050" stroke-width="1" opacity=".4"/>
+    <line x1="0" y1="270" x2="390" y2="270" stroke="#C0A050" stroke-width="1" opacity=".4"/>
+    <line x1="130" y1="210" x2="130" y2="300" stroke="#C0A050" stroke-width="1" opacity=".3"/>
+    <line x1="260" y1="210" x2="260" y2="300" stroke="#C0A050" stroke-width="1" opacity=".3"/>
+
+    <!-- 左側窗戶 -->
+    <rect x="32" y="38" width="60" height="70" rx="4" fill="#C8E8F8" stroke="#90B8C8" stroke-width="2"/>
+    <line x1="62" y1="38" x2="62" y2="108" stroke="#90B8C8" stroke-width="1.5"/>
+    <line x1="32" y1="73" x2="92" y2="73" stroke="#90B8C8" stroke-width="1.5"/>
+    <rect x="34" y="40" width="56" height="66" rx="2" fill="#D8F0FF" opacity=".6"/>
+
+    <!-- 右側窗戶 -->
+    <rect x="298" y="38" width="60" height="70" rx="4" fill="#C8E8F8" stroke="#90B8C8" stroke-width="2"/>
+    <line x1="328" y1="38" x2="328" y2="108" stroke="#90B8C8" stroke-width="1.5"/>
+    <line x1="298" y1="73" x2="358" y2="73" stroke="#90B8C8" stroke-width="1.5"/>
+    <rect x="300" y="40" width="56" height="66" rx="2" fill="#D8F0FF" opacity=".6"/>
+
+    <!-- 白板/投影幕 -->
+    <rect x="128" y="22" width="134" height="78" rx="4" fill="white" stroke="#C8A850" stroke-width="2"/>
+    <rect x="132" y="26" width="126" height="70" rx="2" fill="#F0F8FF"/>
+    <text x="195" y="48" fill="#4070A0" font-size="9" text-anchor="middle" font-family="sans-serif" font-weight="bold">📋 安安電子系統</text>
+    <text x="195" y="62" fill="#6090C0" font-size="8" text-anchor="middle" font-family="sans-serif">需求評估會議</text>
+    <rect x="140" y="70" width="40" height="6" rx="2" fill="#D4E8FF"/>
+    <rect x="185" y="70" width="30" height="6" rx="2" fill="#D4E8FF"/>
+    <rect x="220" y="70" width="30" height="6" rx="2" fill="#D4E8FF"/>
+    <!-- 白板架 -->
+    <line x1="162" y1="100" x2="158" y2="112" stroke="#A08030" stroke-width="2"/>
+    <line x1="228" y1="100" x2="232" y2="112" stroke="#A08030" stroke-width="2"/>
+
+    <!-- 會議桌 -->
+    <rect x="88" y="130" width="214" height="60" rx="10" fill="#C8A850" stroke="#A08030" stroke-width="2.5"/>
+    <rect x="90" y="132" width="210" height="56" rx="9" fill="#D4B860"/>
+    <!-- 桌面反光 -->
+    <rect x="100" y="134" width="120" height="5" rx="2" fill="rgba(255,255,255,.25)"/>
+
+    <!-- 桌上文件 -->
+    <rect x="106" y="143" width="20" height="26" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+    <rect x="109" y="146" width="13" height="2" rx="1" fill="#C8A850" opacity=".5"/>
+    <rect x="109" y="150" width="13" height="2" rx="1" fill="#C8A850" opacity=".5"/>
+    <rect x="109" y="154" width="9" height="2" rx="1" fill="#C8A850" opacity=".5"/>
+    <!-- 桌上筆電 -->
+    <rect x="168" y="138" width="32" height="22" rx="2" fill="#607090" stroke="#405070" stroke-width="1"/>
+    <rect x="170" y="140" width="28" height="17" rx="1" fill="#7888A0"/>
+    <rect x="162" y="160" width="44" height="4" rx="1" fill="#506080"/>
+    <!-- 桌上文件2 -->
+    <rect x="258" y="143" width="20" height="26" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+    <rect x="261" y="146" width="13" height="2" rx="1" fill="#C8A850" opacity=".5"/>
+    <rect x="261" y="150" width="13" height="2" rx="1" fill="#C8A850" opacity=".5"/>
+    <!-- 咖啡杯 -->
+    <rect x="230" y="148" width="14" height="12" rx="3" fill="#D4A870" stroke="#A08030" stroke-width="1"/>
+    <path d="M244 152 Q250 152 250 158 Q250 162 244 162" fill="none" stroke="#A08030" stroke-width="1.5"/>
+
+    <!-- 椅子（桌子後方） -->
+    <rect x="110" y="116" width="24" height="13" rx="4" fill="#A08060" stroke="#806040" stroke-width="1"/>
+    <rect x="183" y="116" width="24" height="13" rx="4" fill="#A08060" stroke="#806040" stroke-width="1"/>
+    <rect x="256" y="116" width="24" height="13" rx="4" fill="#A08060" stroke="#806040" stroke-width="1"/>
+    <!-- 椅子（桌子前方） -->
+    <rect x="110" y="192" width="24" height="13" rx="4" fill="#A08060" stroke="#806040" stroke-width="1"/>
+    <rect x="183" y="192" width="24" height="13" rx="4" fill="#A08060" stroke="#806040" stroke-width="1"/>
+    <rect x="256" y="192" width="24" height="13" rx="4" fill="#A08060" stroke="#806040" stroke-width="1"/>
   </svg>
 
   <div class="hud2">
     <div><div class="hn">⚔️ 勇者・系統負責人</div><div class="hc">Lv.2 ─ 安安村</div></div>
-    <div class="hqr"><div>📍 村民大會堂</div><div class="hquest" id="c1hquest2">召開村民大會</div></div>
+    <div class="hqr"><div>📍 會議室</div><div class="hquest" id="c1hquest2">需求評估會議</div></div>
   </div>
 
   <!-- player -->
-  <div id="c1pl2" style="bottom:-10%">
+  <div id="c1pl2" style="position:absolute;left:50%;transform:translateX(-50%);text-align:center;z-index:10;bottom:-10%">
     <div class="pn2">你（勇者）</div>
     <svg viewBox="0 0 36 48" width="30" height="40">
       <ellipse cx="18" cy="47" rx="10" ry="3.5" fill="rgba(0,0,0,.15)"/>
@@ -518,10 +559,11 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </svg>
   </div>
 
-  <!-- NPC 萬事屋 -->
-  <div class="npc2 dim" id="c1npc-mw2" style="left:4%;bottom:32%">
+  <!-- NPC 萬事屋（桌子左側） -->
+  <div class="npc2 dim" id="c1npc-mw2" style="left:8%;bottom:36%">
     <div class="nf"><div class="nn2">萬事屋</div>
-    <svg viewBox="0 0 32 44" width="26" height="36">
+    <svg viewBox="0 0 32 44" width="28" height="38">
+      <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
       <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#50A050"/>
       <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#50A050"/>
       <rect x="8" y="17" width="16" height="15" rx="4" fill="#68B868" stroke="#50A050" stroke-width="1.5"/>
@@ -532,10 +574,11 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </svg></div>
   </div>
 
-  <!-- NPC 村長 -->
-  <div class="npc2 dim" id="c1npc-my2" style="right:4%;bottom:31%">
+  <!-- NPC 村長大人（桌子右側） -->
+  <div class="npc2 dim" id="c1npc-my2" style="right:8%;bottom:36%">
     <div class="nf" style="animation-delay:.7s"><div class="nn2">村長大人</div>
-    <svg viewBox="0 0 32 44" width="26" height="36">
+    <svg viewBox="0 0 32 44" width="28" height="38">
+      <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
       <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#8060C0"/>
       <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#8060C0"/>
       <rect x="8" y="17" width="16" height="15" rx="4" fill="#A080D8" stroke="#8060C0" stroke-width="1.5"/>
@@ -544,6 +587,13 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
       <path d="M13 17 Q16 16 19 17" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
     </svg></div>
+  </div>
+
+  <!-- NPC 小麻雀（白板旁，協助說明） -->
+  <div class="npc2 dim" id="c1npc-sp2" style="left:50%;transform:translateX(-50%);bottom:58%">
+    <div class="nf" style="animation-delay:.4s"><div class="nn2">資安小麻雀</div>
+    <img src="assets/sp-note.png" style="width:52px;height:52px;border-radius:50%;border:2.5px solid var(--gold);display:block;margin:0 auto;box-shadow:0 2px 8px rgba(0,0,0,.2)"/>
+    </div>
   </div>
 
 </div><!-- /scene2 -->
@@ -555,62 +605,95 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 
 <!-- ── EVAL SCREENS ── -->
 <div class="scr eval-screen" id="c1s-e1">
-  <div class="eval-header"><span class="eval-badge">機密性</span><span class="eval-step">1 / 4</span></div>
+  <div class="eval-header"><span class="eval-badge">資訊資產價值：機密性 C</span><span class="eval-step">1 / 3</span></div>
   <div class="panel" style="width:100%;max-width:360px">
     <div class="sp-say">
       <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
-      <div class="sp-bubble">如果安安電子系統被入侵，<br>村民的姓名和 email 外洩了，<br>你覺得對安安村的影響有多大？</div>
+      <div class="sp-bubble">安安電子系統存了村民的資料，<br>機密程度大概是哪一級？</div>
     </div>
-    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——存了哪些資料？如果外洩，影響有多大？</div>
-    <div class="level-btns">
-      <button class="lbtn" onclick="pickLevel('e1','普')">普</button>
-      <button class="lbtn" onclick="pickLevel('e1','中')">中</button>
-      <button class="lbtn" onclick="pickLevel('e1','高')">高</button>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:10px">💡 想想系統裡存了什麼資料？外部人員看到合適嗎？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('c',1,this)">
+        <div style="font-size:13px;font-weight:700">1｜一般</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">無特殊機密性要求</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('c',2,this)">
+        <div style="font-size:13px;font-weight:700">2｜限閱</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">僅限組織內部或授權外部單位使用</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('c',3,this)">
+        <div style="font-size:13px;font-weight:700">3｜敏感</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">僅供內部相關業務承辦人員存取</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('c',4,this)">
+        <div style="font-size:13px;font-weight:700">4｜機密</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">包含為組織或法律所規範的機密資訊</div>
+      </button>
     </div>
     <div class="eval-result" id="c1res-e1"></div>
-    <span class="expand-btn" id="expand-btn-e1" onclick="toggleLaw('c1law-e1')">📄 收起法規原文</span>
-    <div class="law-text" id="c1law-e1">普：造成未經授權之資訊揭露，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
-    <button class="btn-main btn-full" id="c1btn-e1" style="display:none" onclick="go('c1s-e2')">下一項：完整性 ▶</button>
+    <button class="btn-main btn-full" id="c1btn-e1" style="display:none;margin-top:6px" onclick="go('c1s-e2')">下一項：完整性 ▶</button>
   </div>
 </div>
 
 <div class="scr eval-screen" id="c1s-e2">
-  <div class="eval-header"><span class="eval-badge">完整性</span><span class="eval-step">2 / 4</span></div>
+  <div class="eval-header"><span class="eval-badge">資訊資產價值：完整性 I</span><span class="eval-step">2 / 3</span></div>
   <div class="panel" style="width:100%;max-width:360px">
     <div class="sp-say">
       <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
-      <div class="sp-bubble">如果安安電子系統的資料被竄改，村民收到的安安訊息寄錯人，你覺得影響有多大？</div>
+      <div class="sp-bubble">如果安安電子系統的資料被竄改，<br>對村民和業務的影響有多大？</div>
     </div>
-    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——如果資料被竄改或錯誤，會影響哪些業務？</div>
-    <div class="level-btns">
-      <button class="lbtn" onclick="pickLevel('e2','普')">普</button>
-      <button class="lbtn" onclick="pickLevel('e2','中')">中</button>
-      <button class="lbtn" onclick="pickLevel('e2','高')">高</button>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:10px">💡 若資料被改錯，業務還能繼續嗎？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('i',1,this)">
+        <div style="font-size:13px;font-weight:700">1｜極低</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">資產本身完整性要求極低</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('i',2,this)">
+        <div style="font-size:13px;font-weight:700">2｜低</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">有完整性要求，但被破壞不會對組織造成傷害</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('i',3,this)">
+        <div style="font-size:13px;font-weight:700">3｜中</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">被破壞會對組織造成傷害，但不至於太嚴重</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('i',4,this)">
+        <div style="font-size:13px;font-weight:700">4｜高</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">被破壞會嚴重傷害組織，甚至造成業務終止</div>
+      </button>
     </div>
     <div class="eval-result" id="c1res-e2"></div>
-    <span class="expand-btn" id="expand-btn-e2" onclick="toggleLaw('c1law-e2')">📄 收起法規原文</span>
-    <div class="law-text" id="c1law-e2">普：造成資訊錯誤或遭竄改，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
-    <button class="btn-main btn-full" id="c1btn-e2" style="display:none" onclick="go('c1s-e3')">下一項：可用性 ▶</button>
+    <button class="btn-main btn-full" id="c1btn-e2" style="display:none;margin-top:6px" onclick="go('c1s-e3')">下一項：可用性 ▶</button>
   </div>
 </div>
 
 <div class="scr eval-screen" id="c1s-e3">
-  <div class="eval-header"><span class="eval-badge">可用性</span><span class="eval-step">3 / 4</span></div>
+  <div class="eval-header"><span class="eval-badge">資訊資產價值：可用性 A</span><span class="eval-step">3 / 3</span></div>
   <div class="panel" style="width:100%;max-width:360px">
     <div class="sp-say">
       <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
-      <div class="sp-bubble">如果安安電子系統當掉，村民今晚收不到安安訊息，影響有多大？</div>
+      <div class="sp-bubble">安安電子系統如果當掉，<br>最多可以接受停擺多久？</div>
     </div>
-    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——如果停擺，誰會受影響？可以等多久？</div>
-    <div class="level-btns">
-      <button class="lbtn" onclick="pickLevel('e3','普')">普</button>
-      <button class="lbtn" onclick="pickLevel('e3','中')">中</button>
-      <button class="lbtn" onclick="pickLevel('e3','高')">高</button>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:10px">💡 系統停擺多久，村民或業務會出問題？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('a',1,this)">
+        <div style="font-size:13px;font-weight:700">1｜容許失效 ≥ 72 小時</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">停三天以上也可以接受</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('a',2,this)">
+        <div style="font-size:13px;font-weight:700">2｜容許失效 48–72 小時</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">停兩到三天還可以撐</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('a',3,this)">
+        <div style="font-size:13px;font-weight:700">3｜容許失效 24–48 小時</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">最多停一到兩天</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickScore('a',4,this)">
+        <div style="font-size:13px;font-weight:700">4｜容許失效 &lt; 24 小時</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">停超過一天業務就會出問題</div>
+      </button>
     </div>
     <div class="eval-result" id="c1res-e3"></div>
-    <span class="expand-btn" id="expand-btn-e3" onclick="toggleLaw('c1law-e3')">📄 收起法規原文</span>
-    <div class="law-text" id="c1law-e3">普：造成資訊存取或使用中斷，對機關之營運、資產或信譽將產生有限之影響。<br>中：將產生嚴重之影響。<br>高：將產生非常嚴重或災難性之影響。</div>
-    <button class="btn-main btn-full" id="c1btn-e3" style="display:none" onclick="go('c1s-e4')">下一項：法遵性 ▶</button>
+    <button class="btn-main btn-full" id="c1btn-e3" style="display:none;margin-top:6px" onclick="showAssetCalc()">計算資訊資產價值 📊</button>
   </div>
 </div>
 
@@ -619,34 +702,183 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
   <div class="panel" style="width:100%;max-width:360px">
     <div class="sp-say">
       <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
-      <div class="sp-bubble">如果安安電子系統沒有符合資安法規的要求，對安安村的影響有多大？</div>
+      <div class="sp-bubble">如果安安電子系統沒有符合資安法規，<br>對安安村的影響有多大？</div>
     </div>
-    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:12px">💡 想想你們的系統——涉及哪些法規？違規可能帶來怎樣的損失？</div>
-    <div class="level-btns">
-      <button class="lbtn" onclick="pickLevel('e4','普')">普</button>
-      <button class="lbtn" onclick="pickLevel('e4','中')">中</button>
-      <button class="lbtn" onclick="pickLevel('e4','高')">高</button>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:10px">💡 涉及哪些法規？違規可能帶來行政罰或刑事責任？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickCompliance('普',this)">
+        <div style="font-size:13px;font-weight:700">普｜法令有相關規範</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickCompliance('中',this)">
+        <div style="font-size:13px;font-weight:700">中｜行政罰、懲戒或懲處</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickCompliance('高',this)">
+        <div style="font-size:13px;font-weight:700">高｜刑事責任</div>
+      </button>
     </div>
     <div class="eval-result" id="c1res-e4"></div>
-    <span class="expand-btn" id="expand-btn-e4" onclick="toggleLaw('c1law-e4')">📄 收起法規原文</span>
-    <div class="law-text" id="c1law-e4">普：其他資通系統設置或運作於法令有相關規範之情形，影響有限。<br>中：可能使機關或人員受行政罰、懲戒或懲處。<br>高：可能使機關所屬人員負刑事責任。</div>
-    <button class="btn-main btn-full" id="c1btn-e4" style="display:none" onclick="showLevelResult()">查看系統等級結果 ✅</button>
+    <button class="btn-main btn-full" id="c1btn-e4" style="display:none;margin-top:6px" onclick="showSystemLevel()">查看系統等級結果 ✅</button>
+  </div>
+</div>
+
+<!-- ── ASSET VALUE CALC ── -->
+<div class="scr sky-bg" id="c1s-asset">
+  <div class="panel a1" style="max-width:340px;-webkit-overflow-scrolling:touch;overflow-y:auto">
+    <div style="text-align:center;font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px">📊 資訊資產價值計算</div>
+
+    <!-- C / I / A 分數 -->
+    <div style="display:flex;gap:8px;justify-content:center;margin-bottom:10px">
+      <div style="flex:1;background:#E8F0FF;border:1.5px solid var(--blue);border-radius:10px;padding:10px 6px;text-align:center">
+        <div style="font-size:10px;color:var(--muted)">機密性 C</div>
+        <div style="font-size:26px;font-weight:900;color:var(--blue)" id="c1av-c">—</div>
+      </div>
+      <div style="flex:1;background:#E8F5E8;border:1.5px solid #50C040;border-radius:10px;padding:10px 6px;text-align:center">
+        <div style="font-size:10px;color:var(--muted)">完整性 I</div>
+        <div style="font-size:26px;font-weight:900;color:#2A6020" id="c1av-i">—</div>
+      </div>
+      <div style="flex:1;background:#FFE8F0;border:1.5px solid #C04080;border-radius:10px;padding:10px 6px;text-align:center">
+        <div style="font-size:10px;color:var(--muted)">可用性 A</div>
+        <div style="font-size:26px;font-weight:900;color:#C04080" id="c1av-a">—</div>
+      </div>
+    </div>
+
+    <!-- MAX 計算 -->
+    <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:10px 12px;text-align:center;margin-bottom:10px">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:2px">資訊資產價值 = MAX（C, I, A）</div>
+      <div style="font-size:30px;font-weight:900;color:var(--gold)" id="c1av-max">—</div>
+    </div>
+
+    <!-- 等級對應 -->
+    <div id="c1av-level-box" style="border-radius:10px;padding:10px 12px;margin-bottom:10px;text-align:center">
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px">對應防護等級</div>
+      <div style="font-size:22px;font-weight:900" id="c1av-level-badge">—</div>
+      <div style="font-size:11px;margin-top:4px" id="c1av-level-note"></div>
+    </div>
+
+    <!-- 法遵性（第一段不評，移除） -->
+
+    <!-- 小麻雀說 -->
+    <div class="sp-say" style="margin-bottom:12px">
+      <img class="sp-tiny" src="assets/sp-note.png" alt="小麻雀">
+      <div class="sp-bubble" id="c1av-sp-msg"></div>
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <button class="btn-main" style="flex:1;padding:12px 8px;font-size:12px;background:#A09060;box-shadow:0 3px 0 #706040" onclick="resetEval()">↩ 重新評估</button>
+      <button class="btn-main" style="flex:2;padding:12px 8px;font-size:12px" onclick="go('c1s-sl1')">確認等級，開始系統評估 ▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── SYSTEM LEVEL: 機密性 ── -->
+<div class="scr eval-screen" id="c1s-sl1">
+  <div class="eval-header"><span class="eval-badge">系統等級｜機密性</span><span class="eval-step">1 / 4</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble">現在換個角度評估——<br>如果安安電子系統資料外洩，<br>對機關的整體影響有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:10px">💡 發生資安事件，資訊外洩時，對機關的影響程度？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('c','普',this)">
+        <div style="font-size:13px;font-weight:700">普｜有限之影響</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('c','中',this)">
+        <div style="font-size:13px;font-weight:700">中｜嚴重之影響</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('c','高',this)">
+        <div style="font-size:13px;font-weight:700">高｜非常嚴重或災難性</div>
+      </button>
+    </div>
+    <div class="eval-result" id="c1res-sl1"></div>
+    <button class="btn-main btn-full" id="c1btn-sl1" style="display:none;margin-top:6px" onclick="go('c1s-sl2')">下一項：完整性 ▶</button>
+  </div>
+</div>
+
+<!-- ── SYSTEM LEVEL: 完整性 ── -->
+<div class="scr eval-screen" id="c1s-sl2">
+  <div class="eval-header"><span class="eval-badge">系統等級｜完整性</span><span class="eval-step">2 / 4</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble">如果安安電子系統資料被竄改，<br>對機關的整體影響有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:10px">💡 發生資安事件，資料遭竄改時，對機關的影響程度？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('i','普',this)">
+        <div style="font-size:13px;font-weight:700">普｜有限之影響</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('i','中',this)">
+        <div style="font-size:13px;font-weight:700">中｜嚴重之影響</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('i','高',this)">
+        <div style="font-size:13px;font-weight:700">高｜非常嚴重或災難性</div>
+      </button>
+    </div>
+    <div class="eval-result" id="c1res-sl2"></div>
+    <button class="btn-main btn-full" id="c1btn-sl2" style="display:none;margin-top:6px" onclick="go('c1s-sl3')">下一項：可用性 ▶</button>
+  </div>
+</div>
+
+<!-- ── SYSTEM LEVEL: 可用性 ── -->
+<div class="scr eval-screen" id="c1s-sl3">
+  <div class="eval-header"><span class="eval-badge">系統等級｜可用性</span><span class="eval-step">3 / 4</span></div>
+  <div class="panel" style="width:100%;max-width:360px">
+    <div class="sp-say">
+      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble">如果安安電子系統停擺，<br>對機關的整體影響有多大？</div>
+    </div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:10px">💡 發生資安事件，系統中斷時，對機關的影響程度？</div>
+    <div class="level-btns" style="flex-direction:column;gap:8px">
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('a','普',this)">
+        <div style="font-size:13px;font-weight:700">普｜有限之影響</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('a','中',this)">
+        <div style="font-size:13px;font-weight:700">中｜嚴重之影響</div>
+      </button>
+      <button class="lbtn" style="text-align:left;padding:11px 14px" onclick="pickSysLevel('a','高',this)">
+        <div style="font-size:13px;font-weight:700">高｜非常嚴重或災難性</div>
+      </button>
+    </div>
+    <div class="eval-result" id="c1res-sl3"></div>
+    <button class="btn-main btn-full" id="c1btn-sl3" style="display:none;margin-top:6px" onclick="go('c1s-e4')">下一項：法遵性 ▶</button>
   </div>
 </div>
 
 <!-- LEVEL RESULT -->
 <div class="scr sky-bg" id="c1s-elevel">
-  <div class="panel a1" style="text-align:center;max-width:340px">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:10px">四項評估完成！</div>
-    <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px" id="c1level-summary"></div>
-    <div style="font-size:28px;font-weight:900;margin:8px 0" id="c1level-result-badge"></div>
-    <div style="font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:14px" id="c1level-explain"></div>
-    <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--gd);line-height:1.8;text-align:left">
-      小麻雀說：「現在換你想想——<br><strong>你的系統，答案一樣嗎？</strong>」
+  <div class="panel a1" style="max-width:340px;overflow-y:auto;-webkit-overflow-scrolling:touch">
+    <div style="text-align:center;font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px">🔍 兩段評估結果比對</div>
+
+    <!-- 資訊資產價值 -->
+    <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:10px 12px;margin-bottom:8px">
+      <div style="font-size:10px;color:var(--muted);margin-bottom:4px">① 資訊資產價值計算</div>
+      <div style="font-size:11px;color:var(--muted)" id="c1el-asset-detail"></div>
+      <div style="font-size:20px;font-weight:900;color:var(--gold);text-align:center;margin-top:4px" id="c1el-asset-badge"></div>
     </div>
-    <div style="display:flex;gap:8px;margin-top:14px">
+
+    <!-- 系統防護等級 -->
+    <div style="background:#E8F0FF;border:1.5px solid var(--blue);border-radius:10px;padding:10px 12px;margin-bottom:10px">
+      <div style="font-size:10px;color:var(--muted);margin-bottom:4px">② 系統防護等級評估（四構面）</div>
+      <div style="font-size:11px;color:var(--muted)" id="c1el-sys-detail"></div>
+      <div style="font-size:20px;font-weight:900;color:var(--blue);text-align:center;margin-top:4px" id="c1el-sys-badge"></div>
+    </div>
+
+    <!-- 小麻雀比對提醒 -->
+    <div class="sp-say" style="margin-bottom:12px">
+      <img class="sp-tiny" id="c1el-sp-img" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble" id="c1el-sp-msg"></div>
+    </div>
+
+    <!-- 最終等級 -->
+    <div id="c1el-final-box" style="border-radius:10px;padding:10px;text-align:center;margin-bottom:14px;display:none">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--muted);margin-bottom:4px">▶ 結論｜最終系統防護等級</div>
+      <div style="font-size:24px;font-weight:900" id="c1level-result-badge"></div>
+    </div>
+
+    <div style="display:flex;gap:8px">
       <button class="btn-main" style="flex:1;padding:12px 8px;font-size:12px;background:#A09060;box-shadow:0 3px 0 #706040" onclick="resetEval()">↩ 重新評估</button>
-      <button class="btn-main" style="flex:2;padding:12px 8px;font-size:12px" onclick="go('c1s-risk1')">繼續：評估風險值 ▶</button>
+      <button class="btn-main" id="c1el-next-btn" style="flex:2;padding:12px 8px;font-size:12px;display:none" onclick="go('c1s-risk1')">繼續：評估風險值 ▶</button>
     </div>
   </div>
 </div>
@@ -686,7 +918,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
       <div class="sp-bubble">最後一題！<br>如果安安電子系統真的出問題，<br><strong>影響程度</strong>有多大？</div>
     </div>
-    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:14px">💡 受影響的範圍有多大？只有你自己，還是整個學校都會受衝擊？</div>
+    <div style="background:#FFF8E8;border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;font-size:12px;color:var(--gd);line-height:1.7;margin-bottom:14px">💡 受影響的範圍有多大？只有你自己，還是整個機關都會受衝擊？</div>
     <div class="level-btns" style="flex-direction:column;gap:8px">
       <button class="lbtn" style="text-align:left;padding:12px 14px" onclick="pickRisk('impact',1,this)">
         <div style="font-size:13px;font-weight:700">1｜影響個人業務層面</div>
@@ -779,7 +1011,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
   </div>
 
   <div class="trp-err" id="c1trp-err">⚠️ <span id="c1trp-err-msg"></span></div>
-  <div class="trp-ok" id="c1trp-ok">✅ 邏輯正確！<br><span id="c1trp-ok-msg"></span><br><br> 記得：這是你心目中的初稿，<strong>還要跟廠商討論</strong>，確認他們做不做得到，最後再寫進合約喔！</div>
+  <div class="trp-ok" id="c1trp-ok">✅ 邏輯正確！<br><span id="c1trp-ok-msg"></span><br><br> 記得：這是你心目中的初稿，<strong>還要跟廠商討論可行性</strong>，最後才寫入合約！</div>
 
   <button class="btn-main" style="margin-top:14px;width:100%;max-width:360px" onclick="checkTRP()">確認設定 ✅</button>
   <button class="btn-main" style="margin-top:8px;width:100%;max-width:360px;background:#A09060;box-shadow:0 3px 0 #706040;font-size:12px" onclick="resetTRP()">↩ 重新設定</button>
@@ -794,52 +1026,140 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;text-align:center">📋 文件準備完成</div>
     <div style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px">
       小麻雀拿出了一疊厚厚的文件：<br>
-      ・資通訊系統委外自評表<br>
-      ・資通訊委外合約書附則<br>
-      ・個人保密切結書<br><br>
+      資通訊系統委外自評表、資通訊委外合約書附則、個人保密切結書等<br>
       勇者跟村民們討論完所有文件，<br>
       現在要把文件交給廠商了⋯⋯
     </div>
-    <button class="btn-main btn-full" onclick="go('c1s-vendor2')">把文件交給廠商 📄</button>
+    <button class="btn-main btn-full" onclick="go('c1s-vendor2')">文件交付</button>
   </div>
 </div>
 
 <!-- VENDOR2: 第二次選廠商 -->
-<div class="scr" id="c1s-vendor2" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px">
-  <div style="width:100%;max-width:360px">
-    <div style="text-align:center;margin-bottom:6px">
-      <div style="font-size:14px;font-weight:700;color:var(--text)" id="v2-title">把文件交給哪個廠商？</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:3px">三個都要給喔</div>
+<div class="scr" id="c1s-vendor2" style="background:linear-gradient(180deg,#FFD580 0%,#FFB830 40%,var(--gnd) 40%,var(--gnd2) 100%);display:flex;flex-direction:column;overflow:hidden">
+  <div class="scene" id="c1v2-scene">
+    <svg class="scene-svg" viewBox="0 0 390 280" preserveAspectRatio="xMidYMid meet">
+      <rect x="0" y="0" width="390" height="165" fill="#FFD580"/>
+      <rect x="0" y="165" width="390" height="115" fill="#5DBB4A"/>
+      <rect x="0" y="165" width="390" height="4" fill="#4AA038"/>
+      <!-- 雲 -->
+      <ellipse cx="55" cy="35" rx="38" ry="15" fill="white" opacity=".8"/>
+      <ellipse cx="37" cy="29" rx="22" ry="20" fill="white" opacity=".8"/>
+      <ellipse cx="73" cy="29" rx="20" ry="18" fill="white" opacity=".8"/>
+      <ellipse cx="305" cy="28" rx="34" ry="13" fill="white" opacity=".8"/>
+      <ellipse cx="287" cy="22" rx="20" ry="17" fill="white" opacity=".8"/>
+      <!-- 招牌 -->
+      <rect x="115" y="10" width="160" height="34" rx="8" fill="#FF60AF" stroke="#FFD9EC" stroke-width="2"/>
+      <text x="195" y="32" fill="white" font-size="13" text-anchor="middle" font-family="sans-serif" font-weight="bold">🛒 安安市集</text>
+
+      <!-- Apple 攤位 -->
+      <rect x="10" y="68" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
+      <rect x="10" y="56" width="108" height="20" rx="4" fill="#FF9797" stroke="#D1E9E9" stroke-width="2"/>
+      <text x="64" y="70" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍎 Apple</text>
+      <text x="64" y="100" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">✨通通辦到好</text>
+      <text x="64" y="115" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">💻規格沒寫好</text>
+      <!-- Apple 完成 -->
+      <rect x="18" y="122" width="78" height="18" rx="9" fill="#50C040" id="v2-apple-done" style="display:none"/>
+      <text x="57" y="135" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-apple-done-txt" style="display:none">✓ 已交文件</text>
+
+      <!-- Banana 攤位 -->
+      <rect x="141" y="63" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
+      <rect x="141" y="51" width="108" height="20" rx="4" fill="#BB5E00" stroke="#D1E9E9" stroke-width="2"/>
+      <text x="195" y="65" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍌 Banana</text>
+      <text x="195" y="95" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">📄白紙黑字</text>
+      <text x="195" y="110" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">📄不多做事</text>
+      <!-- Banana 完成 -->
+      <rect x="149" y="118" width="78" height="18" rx="9" fill="#50C040" id="v2-banana-done" style="display:none"/>
+      <text x="188" y="131" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-banana-done-txt" style="display:none">✓ 已交文件</text>
+
+      <!-- Lemon 攤位 -->
+      <rect x="272" y="68" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
+      <rect x="272" y="56" width="108" height="20" rx="4" fill="#009100" stroke="#D1E9E9" stroke-width="2"/>
+      <text x="326" y="70" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍋 Lemon</text>
+      <text x="326" y="100" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">💰我少一元</text>
+      <text x="326" y="115" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">🏷️我最便宜</text>
+      <!-- Lemon 完成 -->
+      <rect x="280" y="122" width="78" height="18" rx="9" fill="#50C040" id="v2-lemon-done" style="display:none"/>
+      <text x="319" y="135" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-lemon-done-txt" style="display:none">✓ 已交文件</text>
+
+      <!-- 路徑 -->
+      <path d="M178 175 L212 175 L218 280 L172 280Z" fill="#D4B870" stroke="#C0A050" stroke-width="1.5"/>
+    </svg>
+
+    <div class="hud" style="background:linear-gradient(180deg,rgba(255,210,100,.9),transparent)">
+      <div class="hud-l"><div class="hname" style="color:#6B3A00">⚔️ 勇者・系統負責人</div><div class="hcls" style="color:#8B5020">Lv.2 ─ 安安市集</div></div>
+      <div class="hud-r"><div style="color:#6B3A00">📍 安安市集</div><div class="hquest" id="v2-title" style="color:#B85A00">把文件交給廠商</div></div>
     </div>
-    <!-- 青筋顯示區 -->
-    <div style="text-align:center;font-size:28px;min-height:40px;margin:10px 0;letter-spacing:4px" id="v2-anger"></div>
-    <!-- 廠商卡片 -->
-    <div style="display:flex;flex-direction:column;gap:10px" id="v2-cards">
-      <div class="vc" id="v2-apple" onclick="pickV2('apple')">
-        <div class="vc-icon">🍎</div>
-        <div class="vc-info">
-          <div class="vn">廠商 Apple</div>
-          <div class="vd">送送送！辦到好！我什麼都可以！</div>
-        </div>
-      </div>
-      <div class="vc" id="v2-banana" onclick="pickV2('banana')">
-        <div class="vc-icon">🍌</div>
-        <div class="vc-info">
-          <div class="vn">廠商 Banana</div>
-          <div class="vd">面有難色⋯⋯</div>
-        </div>
-      </div>
-      <div class="vc" id="v2-lemon" onclick="pickV2('lemon')">
-        <div class="vc-icon">🍋</div>
-        <div class="vc-info">
-          <div class="vn">廠商 Lemon</div>
-          <div class="vd">最便宜的我！選我！</div>
-        </div>
-      </div>
+
+    <!-- 勇者 -->
+    <div id="v2-player" style="position:absolute;left:50%;transform:translateX(-50%);bottom:28%;text-align:center;z-index:15;transition:left .7s cubic-bezier(.4,0,.2,1)">
+      <div class="player-name">你（勇者）</div>
+      <svg viewBox="0 0 36 48" width="30" height="40">
+        <ellipse cx="18" cy="47" rx="10" ry="3.5" fill="rgba(0,0,0,.15)"/>
+        <rect x="12" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+        <rect x="20" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+        <rect x="9" y="18" width="18" height="17" rx="5" fill="#5A9EE0" stroke="#3A78C0" stroke-width="1.5"/>
+        <rect x="9" y="28" width="18" height="4" rx="2" fill="#3A78C0"/>
+        <rect x="27" y="16" width="3" height="14" rx="1.5" fill="#FFD700" stroke="#C0A010" stroke-width=".8"/>
+        <rect x="24" y="20" width="9" height="2.5" rx="1.5" fill="#C0A010"/>
+        <circle cx="18" cy="13" r="10" fill="#FFDDA0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M8 11 Q9 4 18 4 Q27 4 28 11" fill="#5A3010"/>
+        <circle cx="14.5" cy="13" r="2" fill="#3A2010"/><circle cx="21.5" cy="13" r="2" fill="#3A2010"/>
+        <path d="M14 18 Q18 21 22 18" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
     </div>
-    <!-- 廠商反應 -->
-    <div id="v2-reaction" style="display:none;margin-top:12px;background:#FFE8E0;border:1.5px solid var(--red);border-radius:10px;padding:12px 14px;font-size:14px;color:var(--red);text-align:center;line-height:1.8"></div>
-    <button class="btn-main btn-full" id="v2-next" style="display:none;margin-top:12px" onclick="nextV2()">繼續 ▶</button>
+
+    <!-- Apple NPC -->
+    <div class="npc" id="v2-npc-apple" style="left:6%;bottom:28%" onclick="pickV2('apple')">
+      <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
+      <svg viewBox="0 0 32 44" width="38" height="48">
+        <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
+        <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#A03010"/>
+        <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#A03010"/>
+        <rect x="8" y="16" width="16" height="16" rx="4" fill="#E05030" stroke="#A03010" stroke-width="1.5"/>
+        <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M7 9 Q8 3 16 3 Q24 3 25 9" fill="#5A3010"/>
+        <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+        <path d="M12.5 16 Q16 19 19.5 16" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="npc-hint" id="v2-hint-apple">！</div></div>
+    </div>
+
+    <!-- Banana NPC -->
+    <div class="npc" id="v2-npc-banana" style="left:44%;bottom:39%;z-index:20" onclick="pickV2('banana')">
+      <div class="npc-inner npc-float" style="animation-delay:.5s"><div class="npc-name">廠商 Banana</div>
+      <svg viewBox="0 0 32 44" width="38" height="48">
+        <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
+        <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#806010"/>
+        <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#806010"/>
+        <rect x="8" y="16" width="16" height="16" rx="4" fill="#C0A010" stroke="#806010" stroke-width="1.5"/>
+        <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M7 9 Q8 3 16 3 Q24 3 25 9" fill="#5A3010"/>
+        <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+        <path d="M12 17 Q16 16 20 17" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="npc-hint" id="v2-hint-banana" style="color:#806010">⋯</div></div>
+    </div>
+
+    <!-- Lemon NPC -->
+    <div class="npc" id="v2-npc-lemon" style="right:6%;bottom:28%" onclick="pickV2('lemon')">
+      <div class="npc-inner npc-float" style="animation-delay:1s"><div class="npc-name">廠商 Lemon</div>
+      <svg viewBox="0 0 32 44" width="38" height="48">
+        <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
+        <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#507000"/>
+        <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#507000"/>
+        <rect x="8" y="16" width="16" height="16" rx="4" fill="#88B000" stroke="#507000" stroke-width="1.5"/>
+        <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M7 9 Q8 3 16 3 Q24 3 25 9" fill="#5A3010"/>
+        <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+        <path d="M12.5 16 Q16 19.5 19.5 16" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="npc-hint" id="v2-hint-lemon" style="color:#88B000">💰</div></div>
+    </div>
+  </div>
+
+  <div class="dlg-wrap" style="background:#FFFAED">
+    <div><div class="dlg-spk" id="v2-spk" style="color:#B85A00">旁白</div><div class="dlg-txt" id="v2-reaction">點擊廠商，把文件交給他們！三個都要喔 📋</div></div>
+    <button class="dnxt2" id="v2-next" style="display:none" onclick="nextV2()">繼續 ▶</button>
   </div>
 </div>
 
@@ -881,24 +1201,156 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <span class="exp-icon2">💪</span>
     <div class="exp-title2">再次戰勝心魔！</div>
     <div class="exp-pts2">經驗值 +10</div>
-    <div class="exp-sub2">「我是勇者！不管廠商怎麼抱怨！」<br>深呼吸，繼續前進。</div>
   </div>
-  <button class="btn-main" style="margin-top:18px;animation:fu .6s .6s both;opacity:0" onclick="go('c1s-procure')">進入採購階段 ▶</button>
+  <button class="btn-main" style="margin-top:18px;animation:fu .6s .6s both;opacity:0" onclick="go('c1s-procure');setTimeout(startProcure,100)">進入採購階段 ▶</button>
 </div>
 
 <!-- PROCURE -->
-<div class="scr sky-bg" id="c1s-procure">
-  <div class="panel a1" style="text-align:center;max-width:340px">
-    <div style="font-size:28px;margin-bottom:8px">🏪</div>
-    <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px">採購階段</div>
-    <div style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px">
-      勇者把所有文件交給萬事屋。<br>
-      萬事屋開始辦理採購程序⋯⋯<br><br>
-      評選、議價、簽約⋯⋯<br><br>
-      終於——
+<div class="scr" id="c1s-procure" style="background:linear-gradient(180deg,#FFD580 0%,#FFB830 40%,var(--gnd) 40%,var(--gnd2) 100%);display:flex;flex-direction:column;overflow:hidden">
+  <div class="scene" id="c1procure-scene">
+    <svg class="scene-svg" viewBox="0 0 390 280" preserveAspectRatio="xMidYMid meet">
+      <rect x="0" y="0" width="390" height="165" fill="#FFD580"/>
+      <rect x="0" y="165" width="390" height="115" fill="#5DBB4A"/>
+      <rect x="0" y="165" width="390" height="4" fill="#4AA038"/>
+      <!-- 雲 -->
+      <ellipse cx="60" cy="38" rx="38" ry="15" fill="white" opacity=".8"/>
+      <ellipse cx="42" cy="32" rx="22" ry="20" fill="white" opacity=".8"/>
+      <ellipse cx="78" cy="32" rx="20" ry="18" fill="white" opacity=".8"/>
+      <ellipse cx="300" cy="28" rx="34" ry="13" fill="white" opacity=".8"/>
+      <ellipse cx="282" cy="22" rx="20" ry="17" fill="white" opacity=".8"/>
+      <!-- 招牌 -->
+      <rect x="115" y="10" width="160" height="34" rx="8" fill="#E05030" stroke="#A03010" stroke-width="2"/>
+      <text x="195" y="32" fill="white" font-size="13" text-anchor="middle" font-family="sans-serif" font-weight="bold">📋 文件交付</text>
+
+      <!-- Apple 攤位 -->
+      <rect x="10" y="68" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#E05030" stroke-width="1.5"/>
+      <rect x="10" y="56" width="108" height="20" rx="4" fill="#E05030"/>
+      <text x="64" y="70" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍎 Apple</text>
+      <!-- Apple 文件堆 -->
+      <rect x="20" y="95" width="16" height="22" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+      <rect x="23" y="91" width="16" height="22" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+      <rect x="26" y="87" width="16" height="22" rx="2" fill="white" stroke="#E05030" stroke-width="1.5"/>
+      <rect x="29" y="90" width="9" height="1.5" rx="1" fill="#E05030" opacity=".5"/>
+      <rect x="29" y="94" width="9" height="1.5" rx="1" fill="#E05030" opacity=".5"/>
+      <rect x="29" y="98" width="6" height="1.5" rx="1" fill="#E05030" opacity=".5"/>
+      <text x="64" y="125" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">✨通通辦到好</text>
+      <text x="64" y="138" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">💻規格沒寫好</text>
+      <!-- Apple 完成勾 -->
+      <circle cx="98" cy="78" r="11" fill="#50C040" id="c1proc-apple-done" style="display:none"/>
+      <text x="98" y="83" font-size="13" text-anchor="middle" fill="white" font-family="sans-serif" id="c1proc-apple-check" style="display:none">✓</text>
+
+      <!-- Banana 攤位 -->
+      <rect x="141" y="63" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D4920A" stroke-width="1.5"/>
+      <rect x="141" y="51" width="108" height="20" rx="4" fill="#D4920A"/>
+      <text x="195" y="65" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍌 Banana</text>
+      <!-- Banana 文件堆 -->
+      <rect x="151" y="88" width="16" height="24" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+      <rect x="154" y="84" width="16" height="24" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+      <rect x="157" y="80" width="16" height="24" rx="2" fill="white" stroke="#D4920A" stroke-width="1.5"/>
+      <rect x="160" y="83" width="9" height="1.5" rx="1" fill="#D4920A" opacity=".5"/>
+      <rect x="160" y="87" width="9" height="1.5" rx="1" fill="#D4920A" opacity=".5"/>
+      <rect x="160" y="91" width="6" height="1.5" rx="1" fill="#D4920A" opacity=".5"/>
+      <text x="195" y="120" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">📄白紙黑字</text>
+      <text x="195" y="133" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">📄不多做事</text>
+      <!-- Banana 完成勾 -->
+      <circle cx="229" cy="73" r="11" fill="#50C040" id="c1proc-banana-done" style="display:none"/>
+      <text x="229" y="78" font-size="13" text-anchor="middle" fill="white" font-family="sans-serif" id="c1proc-banana-check" style="display:none">✓</text>
+
+      <!-- Lemon 攤位 -->
+      <rect x="272" y="68" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#8BC010" stroke-width="1.5"/>
+      <rect x="272" y="56" width="108" height="20" rx="4" fill="#8BC010"/>
+      <text x="326" y="70" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍋 Lemon</text>
+      <!-- Lemon 文件堆 -->
+      <rect x="282" y="93" width="16" height="22" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+      <rect x="285" y="89" width="16" height="22" rx="2" fill="white" stroke="#C8A850" stroke-width="1"/>
+      <rect x="288" y="85" width="16" height="22" rx="2" fill="white" stroke="#8BC010" stroke-width="1.5"/>
+      <rect x="291" y="88" width="9" height="1.5" rx="1" fill="#8BC010" opacity=".5"/>
+      <rect x="291" y="92" width="9" height="1.5" rx="1" fill="#8BC010" opacity=".5"/>
+      <text x="326" y="125" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">💰我少一元</text>
+      <text x="326" y="138" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">🏷️我最便宜</text>
+      <!-- Lemon 完成勾 -->
+      <circle cx="360" cy="78" r="11" fill="#50C040" id="c1proc-lemon-done" style="display:none"/>
+      <text x="360" y="83" font-size="13" text-anchor="middle" fill="white" font-family="sans-serif" id="c1proc-lemon-check" style="display:none">✓</text>
+
+      <!-- 路徑 -->
+      <path d="M178 175 L212 175 L218 280 L172 280Z" fill="#D4B870" stroke="#C0A050" stroke-width="1.5"/>
+    </svg>
+
+    <div class="hud" style="background:linear-gradient(180deg,rgba(255,210,100,.9),transparent)">
+      <div class="hud-l"><div class="hname" style="color:#6B3A00">⚔️ 勇者・系統負責人</div><div class="hcls" style="color:#8B5020">Lv.2 ─ 安安市集</div></div>
+      <div class="hud-r"><div style="color:#6B3A00">📍 安安市集</div><div class="hquest" id="c1proc-hquest" style="color:#B85A00">收集簽約文件</div></div>
     </div>
-    <div style="font-size:18px;font-weight:900;color:var(--gold);margin-bottom:6px">🎉 安安電子系統，到手了！</div>
-    <button class="btn-main btn-full" style="margin-top:10px" onclick="go('c1s-launch')">系統上線 🚀</button>
+
+    <!-- 勇者 -->
+    <div id="c1proc-pl" style="position:absolute;left:50%;transform:translateX(-50%);bottom:28%;text-align:center;z-index:15">
+      <div class="player-name">你（勇者）</div>
+      <svg viewBox="0 0 36 48" width="30" height="40">
+        <ellipse cx="18" cy="47" rx="10" ry="3.5" fill="rgba(0,0,0,.15)"/>
+        <rect x="12" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+        <rect x="20" y="32" width="6" height="11" rx="3" fill="#4A90D0"/>
+        <rect x="9" y="18" width="18" height="17" rx="5" fill="#5A9EE0" stroke="#3A78C0" stroke-width="1.5"/>
+        <rect x="9" y="28" width="18" height="4" rx="2" fill="#3A78C0"/>
+        <rect x="27" y="16" width="3" height="14" rx="1.5" fill="#FFD700" stroke="#C0A010" stroke-width=".8"/>
+        <rect x="24" y="20" width="9" height="2.5" rx="1.5" fill="#C0A010"/>
+        <circle cx="18" cy="13" r="10" fill="#FFDDA0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M8 11 Q9 4 18 4 Q27 4 28 11" fill="#5A3010"/>
+        <circle cx="14.5" cy="13" r="2" fill="#3A2010"/><circle cx="21.5" cy="13" r="2" fill="#3A2010"/>
+        <path d="M14 18 Q18 21 22 18" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Apple NPC -->
+    <div class="npc" id="c1proc-npc-apple" style="left:6%;bottom:28%">
+      <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
+      <svg viewBox="0 0 32 44" width="38" height="48">
+        <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
+        <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#A03010"/>
+        <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#A03010"/>
+        <rect x="8" y="16" width="16" height="16" rx="4" fill="#E05030" stroke="#A03010" stroke-width="1.5"/>
+        <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M7 9 Q8 3 16 3 Q24 3 25 9" fill="#5A3010"/>
+        <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+        <path d="M12.5 16 Q16 19 19.5 16" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="npc-hint">！</div></div>
+    </div>
+
+    <!-- Banana NPC -->
+    <div class="npc" id="c1proc-npc-banana" style="left:44%;bottom:39%;z-index:20">
+      <div class="npc-inner npc-float" style="animation-delay:.5s"><div class="npc-name">廠商 Banana</div>
+      <svg viewBox="0 0 32 44" width="38" height="48">
+        <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
+        <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#806010"/>
+        <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#806010"/>
+        <rect x="8" y="16" width="16" height="16" rx="4" fill="#C0A010" stroke="#806010" stroke-width="1.5"/>
+        <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M7 9 Q8 3 16 3 Q24 3 25 9" fill="#5A3010"/>
+        <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+        <path d="M12 17 Q16 16 20 17" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="npc-hint" style="color:#806010">⋯</div></div>
+    </div>
+
+    <!-- Lemon NPC -->
+    <div class="npc" id="c1proc-npc-lemon" style="right:6%;bottom:28%">
+      <div class="npc-inner npc-float" style="animation-delay:1s"><div class="npc-name">廠商 Lemon</div>
+      <svg viewBox="0 0 32 44" width="38" height="48">
+        <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
+        <rect x="10" y="30" width="5" height="10" rx="2.5" fill="#507000"/>
+        <rect x="18" y="30" width="5" height="10" rx="2.5" fill="#507000"/>
+        <rect x="8" y="16" width="16" height="16" rx="4" fill="#88B000" stroke="#507000" stroke-width="1.5"/>
+        <circle cx="16" cy="11" r="9" fill="#FFE0A0" stroke="#D4A870" stroke-width="1.5"/>
+        <path d="M7 9 Q8 3 16 3 Q24 3 25 9" fill="#5A3010"/>
+        <circle cx="13" cy="12" r="1.8" fill="#3A2010"/><circle cx="19" cy="12" r="1.8" fill="#3A2010"/>
+        <path d="M12.5 16 Q16 19.5 19.5 16" fill="none" stroke="#D4A870" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="npc-hint" style="color:#88B000">💰</div></div>
+    </div>
+  </div>
+
+  <div class="dlg-wrap" style="background:#FFFAED">
+    <div><div class="dlg-spk" id="c1proc-spk" style="color:#B85A00">旁白</div><div class="dlg-txt" id="c1proc-txt">勇者開始向三位廠商收取簽約所需文件⋯⋯</div></div>
+    <button class="dnxt2" id="c1proc-btn" onclick="procNext()">繼續 ▶</button>
   </div>
 </div>
 
@@ -909,14 +1361,13 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
   <div class="final-panel a1" style="position:relative;z-index:1">
     <span class="final-moon">🌙</span>
     <div class="final-msg">
-      勇者獲得了超級管理員權限。<br>
-      匯入村民資料完成。<br><br>
+      勇者獲得了管理員權限<br>
+      匯入村民資料<br><br>
       晚上 8:00，系統準時發出第一封訊息⋯⋯
     </div>
-    <div class="final-annan">📱「親愛的村民，安安！」</div>
-    <div class="final-msg" style="font-size:12px;margin-top:10px">村民的手機一一亮起。<br>村長說：「你們做得非常好」</div>
-    <div style="font-size:16px;font-weight:900;color:#FFE066;margin-top:16px;animation:bounce 1.5s ease-in-out infinite">👏 為自己鼓掌 👏</div>
-    <button class="btn-main" style="margin-top:16px;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A" onclick="go('c1s-exp100')">繼續 ▶</button>
+    <div class="final-annan">親愛的村民，安安</div>
+    <div class="final-msg" style="font-size:12px;margin-top:10px">村民的手機都出現了安安<br>村長說：你們做得非常好</div>
+    <button class="btn-main" style="margin-top:16px;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A" onclick="go('c1s-exp100')">👏 為自己鼓掌 👏</button>
   </div>
 </div>
 
@@ -926,7 +1377,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <span class="exp-icon2">🌟</span>
     <div class="exp-title2">系統成功建置！</div>
     <div class="exp-pts2">經驗值 +100 🎊</div>
-    <div class="exp-sub2">第一章完成！<br>你從一個平凡的村民，<br>變成了真正的系統負責人。</div>
+    <div class="exp-sub2">第一章完成！<br>你從一個平凡的村民，<br>變成系統負責人。</div>
   </div>
   <button class="btn-main" style="margin-top:18px;animation:fu .6s .6s both;opacity:0" onclick="go('c1s-final')">最後的話 ▶</button>
 </div>
@@ -936,7 +1387,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
   <div class="final-panel a1" style="padding:28px 22px">
     <img src="assets/sp.png" alt="小麻雀" style="width:70px;height:70px;border-radius:50%;object-fit:cover;border:3px solid rgba(255,215,0,.6);margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;animation:expPop .6s .2s both">
     <div class="final-q">
-      「現在換你想想——<br><em>你的系統，答案一樣嗎？</em>」
+      「現在想想——<br><em>我們的系統，可以怎麼做？</em>」
     </div>
     <div style="font-size:11px;color:rgba(255,248,220,.5);margin-top:16px">～ 第二章：日常維運 即將開放 ～</div>
     <button onclick="location.href='index.html#menu'" class="btn-main" style="margin-top:16px;width:100%;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A;font-size:14px">📖 前往章節選單</button>
@@ -971,16 +1422,16 @@ function $hide(id){ const e=$el(id); if(e) e.style.display='none'; }
 function $txt(id,v){ const e=$el(id); if(e) e.textContent=v; }
 
 
-const C1SCREENS=['c1s0','c1s-narr','c1s-e1','c1s-e2','c1s-e3','c1s-e4','c1s-elevel','c1s-risk1','c1s-risk2','c1s-risk-result','c1s-trp','c1s-narr2','c1s-rock2','c1s-exp2','c1s-procure','c1s-launch','c1s-exp100','c1s-final'];
+const C1SCREENS=['c1s0','c1s-narr','c1s-e1','c1s-e2','c1s-e3','c1s-asset','c1s-sl1','c1s-sl2','c1s-sl3','c1s-e4','c1s-elevel','c1s-risk1','c1s-risk2','c1s-risk-result','c1s-trp','c1s-narr2','c1s-rock2','c1s-exp2','c1s-procure','c1s-launch','c1s-exp100','c1s-final'];
 
 
 /* NARR SCRIPT */
 const NSCRIPT=[
-  {spk:'旁白',txt:'你帶著委外管理程序書，\n走進了村民大會堂。\n\n今天要召開村民大會，\n正式評估安安電子系統的需求。',npc:'none'},
-  {spk:'勇者（你）',txt:'會議名稱：安安電子系統\n功能：每天發訊息給村民說安安\n\n現在，我們要依據程序書來規劃！',npc:'pl'},
-  {spk:'村長大人',txt:'我全力支持！\n\n（坐在角落喝茶）',npc:'my'},
-  {spk:'萬事屋（單位窗口）',txt:'好！那我來記錄！\n首先要評估系統的防護等級⋯⋯',npc:'mw'},
-  {spk:'旁白',txt:'小麻雀拿出了委外自評表，\n開始協助評估系統等級。\n\n你需要依序評估四個面向⋯⋯',npc:'none',action:'eval'},
+  {spk:'旁白',txt:'勇者帶著資安小麻雀，召開會議。\n萬事屋和村長大人已就座，\n會議開始！',npc:'none'},
+  {spk:'勇者（你）',txt:'今天我們要評估安安電子系統！\n主要功能：每天發訊息給村民說安安 🔔',npc:'pl'},
+  {spk:'村長大人',txt:'我全力支持這個系統！\n⋯⋯我等等還有會，會先走⋯⋯',npc:'my'},
+  {spk:'萬事屋',txt:'我是今天的紀錄📋',npc:'mw'},
+  {spk:'資安小麻雀',txt:'那麼，我們開始評估\n先算出資訊資產價值-->評估系統防護等級',npc:'sp',action:'eval'},
 ];
 let ns=0;
 function startNarr(){
@@ -996,9 +1447,11 @@ function showNS(i){
   document.getElementById('c1dtxt2').textContent=s.txt;
   const mw=document.getElementById('c1npc-mw2');
   const my=document.getElementById('c1npc-my2');
+  const sp=document.getElementById('c1npc-sp2');
   mw.className='npc2'+(s.npc==='mw'?' lit':' dim');
   my.className='npc2'+(s.npc==='my'?' lit':' dim');
-  document.getElementById('c1hquest2').textContent=i<2?'召開村民大會':i<4?'評估需求':'評估系統等級';
+  if(sp) sp.className='npc2'+(s.npc==='sp'?' lit':' dim');
+  document.getElementById('c1hquest2').textContent=i<2?'需求評估會議':i<4?'評估需求':'評估系統等級';
   $txt('c1dnxt2',s.action?'開始評估 ▶':'繼續 ▶');
 }
 function advNarr(){
@@ -1007,43 +1460,169 @@ function advNarr(){
 }
 
 /* EVAL */
-const EVAL_DATA={
-  e1:{
-    普:{c:'chosen-p',txt:'✅ 安安系統只存姓名和 email，外洩影響相對有限，普級合理。\n\n💡 你們的系統呢？如果存了身分證、健保資料⋯⋯等級就不同了！'},
-    中:{c:'chosen-m',txt:'你選了中級。安安系統只存姓名和 email，普級已足夠，不過若你認為信譽損害嚴重，中級也可以討論。'},
-    高:{c:'chosen-h',txt:'你選了高級。安安系統資料量有限，但若你的單位對資料外洩非常敏感，高級也是一種選擇。'},
-  },
-  e2:{
-    普:{c:'chosen-p',txt:'✅ 安安系統資料錯了頂多寄錯人，不影響重要業務，普級合理。\n\n💡 財務或人事系統的資料若被竄改，等級就完全不同了！'},
-    中:{c:'chosen-m',txt:'你選了中級。若你認為大量資料錯誤需要花很多時間修正，中級也是合理的考量。'},
-    高:{c:'chosen-h',txt:'你選了高級。若系統資料對業務運作至關重要，高級也可以討論。'},
-  },
-  e3:{
-    普:{c:'chosen-p',txt:'✅ 安安系統晚一天說安安，村民頂多有點失落，普級合理。\n\n💡 簽到系統或問卷系統停擺呢？同學還在等填表喔！'},
-    中:{c:'chosen-m',txt:'你選了中級。若你認為系統停擺影響業務運作嚴重，中級也是合理的。'},
-    高:{c:'chosen-h',txt:'你選了高級。若系統 24 小時不中斷是業務必要條件，高級是正確選擇。'},
-  },
-  e4:{
-    普:{c:'chosen-p',txt:'✅ 安安系統有法規要遵守，但違規頂多行政處分，普級合理。\n\n💡 涉及學生個資或成績資料的系統，法遵等級就需要再評估！'},
-    中:{c:'chosen-m',txt:'你選了中級。若違規可能讓機關人員受懲處，中級是合理的選擇。'},
-    高:{c:'chosen-h',txt:'你選了高級。若違規可能讓人員負刑事責任，高級是必要的。'},
-  },
-};
-const chosen={e1:null,e2:null,e3:null,e4:null};
+const CIA_SCORES={c:null,i:null,a:null};
 const LVL_ORDER=['普','中','高'];
+let COMPLIANCE_LV=null;
 
-function pickLevel(eid,lv){
-  chosen[eid]=lv;
-  const data=EVAL_DATA[eid][lv];
-  // update buttons
-  document.querySelectorAll(`#c1s-${eid} .lbtn`).forEach(b=>{
-    b.className='lbtn';
-    if(b.textContent===lv)b.classList.add(data.c);
+// 分數回饋文字
+const SCORE_FEEDBACK={
+  c:{1:'✅ C=1｜一般：普通可公開資料。',2:'✅ C=2｜限閱：限內部或授權人員（如機關內或合約商）。',3:'⚠️ C=3｜敏感：僅供業務承辦人員存取（如機關內的某些承辦人）。',4:'🔴 C=4｜機密：為組織或法律規範的機密資訊！（如性平、學倫等）'},
+  i:{1:'✅ I=1｜完整性要求極低，資料錯誤影響不大。',2:'✅ I=2｜有要求，但被破壞不至傷害組織。',3:'⚠️ I=3｜被破壞會對組織造成傷害。',4:'🔴 I=4｜被破壞可能造成業務終止！'},
+  a:{1:'✅ A=1｜容許停擺 72 小時以上，影響有限。',2:'✅ A=2｜容許停擺 48–72 小時。',3:'⚠️ A=3｜容許停擺 24–48 小時。',4:'🔴 A=4｜停擺不得超過 24 小時，要求極高！'},
+};
+
+function pickScore(dim,val,btn){
+  CIA_SCORES[dim]=val;
+  const container=btn.closest('.level-btns');
+  container.querySelectorAll('.lbtn').forEach(b=>{
+    b.className='lbtn';b.style.textAlign='left';b.style.padding='11px 14px';
   });
+  btn.classList.add(val<=2?'chosen-p':val===3?'chosen-m':'chosen-h');
+  const eid={c:'e1',i:'e2',a:'e3'}[dim];
   const res=document.getElementById('c1res-'+eid);
-  if(res){res.textContent=data.txt;res.style.display='block';}
+  if(res){res.textContent=SCORE_FEEDBACK[dim][val];res.style.display='block';}
   $show('c1btn-'+eid);
 }
+
+function pickCompliance(lv,btn){
+  COMPLIANCE_LV=lv;
+  const container=btn.closest('.level-btns');
+  container.querySelectorAll('.lbtn').forEach(b=>{
+    b.className='lbtn';b.style.textAlign='left';b.style.padding='11px 14px';
+  });
+  btn.classList.add(lv==='普'?'chosen-p':lv==='中'?'chosen-m':'chosen-h');
+  const res=document.getElementById('c1res-e4');
+  const compFeedback={
+    普:'📋 法規原文｜其他資通系統設置或運作於法令有相關規範之情形。',
+    中:'📋 法規原文｜如未確實遵循資通安全相關法令，可能使資通系統受影響而導致資通安全事件，並使機關或其所屬人員受行政罰、懲戒或懲處。',
+    高:'📋 法規原文｜如未確實遵循資通安全相關法令，可能使資通系統受影響而導致資通安全事件，並使機關所屬人員負刑事責任。',
+  };
+  if(res){res.textContent=compFeedback[lv];res.style.display='block';}
+  $show('c1btn-e4');
+}
+
+function scoreToLevel(s){return s<=2?'普':s===3?'中':'高';}
+function levelToScore(lv){return lv==='普'?2:lv==='中'?3:4;}
+function levelBadge(lv){return lv==='普'?'🟢 普級':lv==='中'?'🟡 中級':'🔴 高級';}
+
+function showAssetCalc(){
+  const c=CIA_SCORES.c||1,i=CIA_SCORES.i||1,a=CIA_SCORES.a||1;
+  const maxScore=Math.max(c,i,a);
+  const assetLv=scoreToLevel(maxScore);
+
+  // 顯示三個分數與MAX
+  $txt('c1av-c',c);$txt('c1av-i',i);$txt('c1av-a',a);$txt('c1av-max',maxScore);
+
+  // 對應等級框
+  const lvBox=document.getElementById('c1av-level-box');
+  const colors={普:'background:#E8F5E8;border:1.5px solid #50C040',中:'background:#FFF3C0;border:1.5px solid #D4920A',高:'background:#FFE8E0;border:1.5px solid #E05030'};
+  lvBox.style.cssText=colors[assetLv]+';border-radius:10px;padding:10px 12px;margin-bottom:12px;text-align:center';
+  $txt('c1av-level-badge',levelBadge(assetLv));
+  const noteMap={普:'資產價值 1~2 → 對應 🟢 普級',中:'資產價值 3 → 對應 🟡 中級',高:'資產價值 4 → 對應 🔴 高級'};
+  $txt('c1av-level-note',noteMap[assetLv]);
+
+  // 小麻雀
+  const msgs={
+    普:'資訊資產價值為普級！\n下一步，評估系統防護等級。\n兩邊評估後，要對應比較！',
+    中:'資訊資產價值為中級！\n下一步，評估系統防護等級。\n兩邊評估後，要對應比較！',
+    高:'資訊資產價值為高級！\n下一步，評估系統防護等級。\n兩邊評估後，要對應比較！'
+  };
+  $txt('c1av-sp-msg',msgs[assetLv]);
+
+  // 儲存資產等級供第三段比對使用
+  window._c1AssetLv=assetLv;
+  go('c1s-asset');
+}
+
+/* ── SYSTEM LEVEL EVALUATION ── */
+const SYS_LEVEL={c:null,i:null,a:null,compliance:null};
+const SYS_FEEDBACK={
+  c:{
+    普:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成未經授權之資訊揭露，對機關之營運、資產或信譽等方面將產生有限之影響。',
+    中:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成未經授權之資訊揭露，對機關之營運、資產或信譽等方面將產生嚴重之影響。',
+    高:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成未經授權之資訊揭露，對機關之營運、資產或信譽等方面將產生非常嚴重或災難性之影響。',
+  },
+  i:{
+    普:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成資訊錯誤或遭竄改等情事，對機關之營運、資產或信譽等方面將產生有限之影響。',
+    中:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成資訊錯誤或遭竄改等情事，對機關之營運、資產或信譽等方面將產生嚴重之影響。',
+    高:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成資訊錯誤或遭竄改等情事，對機關之營運、資產或信譽等方面將產生非常嚴重或災難性之影響。',
+  },
+  a:{
+    普:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成對資訊、資通系統之存取或使用之中斷，對機關之營運、資產或信譽等方面將產生有限之影響。',
+    中:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成對資訊、資通系統之存取或使用之中斷，對機關之營運、資產或信譽等方面將產生嚴重之影響。',
+    高:'📋 法規原文｜發生資通安全事件致資通系統受影響時，可能造成對資訊、資通系統之存取或使用之中斷，對機關之營運、資產或信譽等方面將產生非常嚴重或災難性之影響。',
+  },
+};
+const SYS_DIM_ID={c:'sl1',i:'sl2',a:'sl3',compliance:'e4'};
+
+function pickSysLevel(dim,lv,btn){
+  SYS_LEVEL[dim]=lv;
+  const container=btn.closest('.level-btns');
+  container.querySelectorAll('.lbtn').forEach(b=>{
+    b.className='lbtn';b.style.textAlign='left';b.style.padding='11px 14px';
+  });
+  btn.classList.add(lv==='普'?'chosen-p':lv==='中'?'chosen-m':'chosen-h');
+  const rid='c1res-'+SYS_DIM_ID[dim];
+  const res=document.getElementById(rid);
+  if(res){res.textContent=SYS_FEEDBACK[dim][lv];res.style.display='block';}
+  $show('c1btn-'+SYS_DIM_ID[dim]);
+}
+
+function showSystemLevel(){
+  SYS_LEVEL.compliance=COMPLIANCE_LV||'普';
+  const lvOrder=['普','中','高'];
+  const allLvs=[SYS_LEVEL.c,SYS_LEVEL.i,SYS_LEVEL.a,SYS_LEVEL.compliance].map(l=>l||'普');
+  const maxIdx=Math.max(...allLvs.map(l=>lvOrder.indexOf(l)));
+  const sysLv=lvOrder[maxIdx];
+
+  const assetLv=window._c1AssetLv||scoreToLevel(Math.max(CIA_SCORES.c||1,CIA_SCORES.i||1,CIA_SCORES.a||1));
+  const consistent=(assetLv===sysLv);
+
+  const lvBadge={普:'🟢 普級',中:'🟡 中級',高:'🔴 高級'};
+  const lvColor={普:'#2A6020',中:'#8B6010',高:'#801010'};
+
+  // ① 資訊資產價值
+  const assetScore=Math.max(CIA_SCORES.c||1,CIA_SCORES.i||1,CIA_SCORES.a||1);
+  $txt('c1el-asset-detail',`C=${CIA_SCORES.c||1}　I=${CIA_SCORES.i||1}　A=${CIA_SCORES.a||1}　MAX＝${assetScore}`);
+  $txt('c1el-asset-badge',lvBadge[assetLv]);
+  document.getElementById('c1el-asset-badge').style.color=lvColor[assetLv];
+
+  // ② 系統防護等級
+  $txt('c1el-sys-detail',`機密性＝${SYS_LEVEL.c||'普'}　完整性＝${SYS_LEVEL.i||'普'}　可用性＝${SYS_LEVEL.a||'普'}　法遵性＝${SYS_LEVEL.compliance||'普'}`);
+  $txt('c1el-sys-badge',lvBadge[sysLv]);
+  document.getElementById('c1el-sys-badge').style.color=lvColor[sysLv];
+
+  const fBox=document.getElementById('c1el-final-box');
+  const spImg=document.getElementById('c1el-sp-img');
+  const spMsg=document.getElementById('c1el-sp-msg');
+  const nextBtn=document.getElementById('c1el-next-btn');
+
+  if(consistent){
+    const fColors={普:'background:#E8F5E8;border:1.5px solid #50C040',中:'background:#FFF3C0;border:1.5px solid #D4920A',高:'background:#FFE8E0;border:1.5px solid #E05030'};
+    fBox.style.cssText=fColors[assetLv]+';border-radius:10px;padding:10px;text-align:center;margin-bottom:14px';
+    fBox.style.display='block';
+    $txt('c1level-result-badge',lvBadge[assetLv]);
+    document.getElementById('c1level-result-badge').style.color=lvColor[assetLv];
+    spImg.src='assets/sp-happy.png';
+    spMsg.textContent=`評估正確！兩段結果一致`;
+    nextBtn.style.display='block';
+    window._c1FinalLv=assetLv;
+  } else {
+    fBox.style.display='none';
+    spImg.src='assets/sp-speech.png';
+    spMsg.innerHTML=`兩段評估結果<strong>不一致</strong>！<br><br>資產價值算出 ${lvBadge[assetLv]}，<br>系統等級評出 ${lvBadge[sysLv]}。<br><br>請再次檢視與調整，最後，重新評估。`;
+    nextBtn.style.display='none';
+  }
+
+  go('c1s-elevel');
+}
+
+function confirmAssetLevel(){
+  // 資產價值確認後進入系統等級評估
+  go('c1s-sl1');
+}
+
+
 
 function toggleLaw(id){
   const el=document.getElementById(id);
@@ -1051,23 +1630,7 @@ function toggleLaw(id){
   el.style.display=el.style.display==='block'?'none':'block';
 }
 
-function showLevelResult(){
-  const lvls=['e1','e2','e3','e4'].map(e=>chosen[e]||'普');
-  const maxIdx=Math.max(...lvls.map(l=>LVL_ORDER.indexOf(l)));
-  const finalLv=LVL_ORDER[maxIdx];
-  const names=['機密性','完整性','可用性','法遵性'];
-  const summary=names.slice(0,2).map((n,i)=>`${n}：${lvls[i]}`).join('　　')+'<br>'+names.slice(2).map((n,i)=>`${n}：${lvls[i+2]}`).join('　　');
-  document.getElementById('c1level-summary').innerHTML=summary;
-  const badges={普:'🟢 普級',中:'🟡 中級',高:'🔴 高級'};
-  document.getElementById('c1level-result-badge').textContent=badges[finalLv];
-  const explains={
-    普:'安安電子系統屬於普級系統。四個面向中最高為普級，代表整體資安要求相對基本。',
-    中:'安安電子系統屬於中級系統。至少一個面向達到中級，需要較嚴格的資安措施。',
-    高:'安安電子系統屬於高級系統！至少一個面向達到高級，需要最高等級的資安保護。'
-  };
-  document.getElementById('c1level-explain').textContent=explains[finalLv];
-  go('c1s-elevel');
-}
+function showLevelResult(){ showAssetCalc(); }
 
 /* ── RISK ASSESSMENT ── */
 const RISK_VALS={prob:null,impact:null};
@@ -1098,19 +1661,12 @@ function calcRisk(){
   const spMsg=document.getElementById('c1rv-sp-msg');
   const scoreEl=document.getElementById('c1rv-score');
 
-  if(score<=6){
+  if(score<=12){
     box.style.cssText='background:#E8F5E8;border:2px solid #50C040;border-radius:10px;padding:8px 14px;text-align:center';
     scoreEl.style.color='#2A6020';
     verdict.style.cssText='background:#E8F5E8;border:1.5px solid #50C040;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left;color:#2A6020';
-    verdict.textContent='✅ 低風險（風險值 ≤ 6）\n可接受風險，維持現有管控措施，定期監控即可。';
-    spMsg.textContent='風險在可接受範圍內！繼續設定時間目標，準備找廠商吧！';
-    document.querySelector('#c1s-risk-result .sp-tiny').src='assets/sp.png';
-  } else if(score<=12){
-    box.style.cssText='background:#FFF3C0;border:2px solid #D4920A;border-radius:10px;padding:8px 14px;text-align:center';
-    scoreEl.style.color='#8B6010';
-    verdict.style.cssText='background:#FFF3C0;border:1.5px solid #D4920A;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left;color:#8B4010';
-    verdict.textContent='⚠️ 中風險（風險值 7–12）\n可接受風險，但需要採取控制措施，降低風險後繼續監控。';
-    spMsg.textContent='風險還在可接受範圍，不過要注意喔！繼續設定時間目標，把控制措施寫進合約裡！';
+    verdict.textContent='✅ 可接受風險（風險值 ≤ 12）\n定期監控，維持現有管控措施即可。';
+    spMsg.textContent='風險在可接受範圍內！';
     document.querySelector('#c1s-risk-result .sp-tiny').src='assets/sp.png';
   } else {
     box.style.cssText='background:#FFE8E0;border:2px solid #E05030;border-radius:10px;padding:8px 14px;text-align:center';
@@ -1185,12 +1741,16 @@ document.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
 /* back button handled in go() */;
 
 function resetEval(){
-  ['e1','e2','e3','e4'].forEach(eid=>{
-    chosen[eid]=null;
-    document.querySelectorAll('#c1s-'+eid+' .lbtn').forEach(b=>b.className='lbtn');
-    const res=document.getElementById('c1res-'+eid);
+  CIA_SCORES.c=null;CIA_SCORES.i=null;CIA_SCORES.a=null;COMPLIANCE_LV=null;
+  SYS_LEVEL.c=null;SYS_LEVEL.i=null;SYS_LEVEL.a=null;SYS_LEVEL.compliance=null;
+  ['e1','e2','e3','e4','sl1','sl2','sl3'].forEach(id=>{
+    document.querySelectorAll('#c1s-'+id+' .lbtn').forEach(b=>{
+      b.className='lbtn';b.style.textAlign='left';b.style.padding='11px 14px';
+    });
+    const res=document.getElementById('c1res-'+id);
     if(res){res.textContent='';res.style.display='none';}
-    $hide('c1btn-'+eid);
+    const btn=document.getElementById('c1btn-'+id);
+    if(btn) btn.style.display='none';
   });
   go('c1s-e1');
 }
@@ -1206,7 +1766,7 @@ function resetTRP(){
 
 /* ── VENDOR 2 LOGIC ── */
 const V2_REACT = {
-  apple: '🍎 廠商 Apple：\n「太麻煩了吧！」\n（挖鼻屎）',
+  apple: '🍎 廠商 Apple：\n「太麻煩了吧！」',
   banana: '🍌 廠商 Banana：\n「你們怎麼要求那麼多！」',
   lemon: '🍋 廠商 Lemon：\n「蛤！！！！」',
 };
@@ -1217,48 +1777,107 @@ let v2_locked = false;
 
 function pickV2(id){
   if(v2_done.has(id) || v2_locked) return;
-
   v2_locked = true;
   v2_done.add(id);
 
-  const card = document.getElementById('v2-' + id);
-  if(card){
-    card.classList.add('used');
-    const desc = card.querySelector('.vd');
-    if(desc) desc.textContent = '（已交付文件）';
-  }
+  // 攤位顯示 ✓
+  const doneEl = document.getElementById('v2-'+id+'-done');
+  const doneTxt = document.getElementById('v2-'+id+'-done-txt');
+  if(doneEl) doneEl.style.display='block';
+  if(doneTxt) doneTxt.style.display='block';
 
-  const react = document.getElementById('v2-reaction');
-  if(react){
-    react.style.display = 'block';
-    react.textContent = V2_REACT[id] || '';
-  }
+  // NPC 變暗
+  const npc = document.getElementById('v2-npc-'+id);
+  if(npc){ npc.classList.add('dim'); npc.style.pointerEvents='none'; }
+  const hint = document.getElementById('v2-hint-'+id);
+  if(hint) hint.style.display='none';
 
-  const anger = document.getElementById('v2-anger');
-  if(anger) anger.textContent = '💢'.repeat(v2_done.size);
+  // 對話框顯示廠商反應
+  const spkEl = document.getElementById('v2-spk');
+  const reactEl = document.getElementById('v2-reaction');
+  const icons = {apple:'🍎 廠商 Apple', banana:'🍌 廠商 Banana', lemon:'🍋 廠商 Lemon'};
+  if(spkEl) spkEl.textContent = icons[id];
+  if(reactEl) reactEl.textContent = V2_REACT[id] || '';
+
+  const left = V2_ORDER.filter(x => !v2_done.has(x)).length;
+  const titleEl = document.getElementById('v2-title');
+  if(titleEl){
+    if(left === 0) titleEl.textContent = '三個都交付文件了！';
+    else if(left === 1) titleEl.textContent = '還有最後一個⋯⋯';
+    else titleEl.textContent = '再交給下一個！';
+  }
 
   const btn = document.getElementById('v2-next');
   if(btn) btn.style.display = 'block';
 
-  const title = document.getElementById('v2-title');
-  if(title){
-    const left = V2_ORDER.filter(x => !v2_done.has(x)).length;
-    if(left === 0) title.textContent = '三個都交付文件了！';
-    else if(left === 1) title.textContent = '還有最後一個⋯⋯';
-    else title.textContent = '再交給下一個！';
+  // 解鎖，讓下一個廠商可以點
+  v2_locked = false;
+}
+
+/* ── PROCURE SCENE ── */
+const PROC_SCRIPT=[
+  {spk:'旁白',txt:'勇者拿著需求文件，前往三個攤位收取簽約資料⋯⋯',vendor:null},
+  {spk:'廠商 Apple 🍎',txt:'來來來！文件都幫你備好了！\n（順便塞了一份加值服務目錄 😄）',vendor:'apple'},
+  {spk:'旁白',txt:'Apple 交出了文件。',vendor:'apple',check:true},
+  {spk:'廠商 Banana 🍌',txt:'（翻資料夾）⋯⋯\n合約上有寫的，全部都在這裡。\n合約上沒寫的，不關我的事。',vendor:'banana'},
+  {spk:'旁白',txt:'Banana 交出了文件。',vendor:'banana',check:true},
+  {spk:'廠商 Lemon 🍋',txt:'我最快！我最便宜！\n文件？都在這裡啦！快簽快簽！',vendor:'lemon'},
+  {spk:'旁白',txt:'Lemon 交出了文件。',vendor:'lemon',check:true},
+  {spk:'旁白',txt:'三份文件全部到齊！\n勇者把文件交給萬事屋，\n議比價、簽約⋯⋯',vendor:null},
+];
+let procStep=0;
+
+function startProcure(){
+  procStep=0;
+  // reset checks
+  ['apple','banana','lemon'].forEach(v=>{
+    const d=document.getElementById('c1proc-'+v+'-done');
+    const c=document.getElementById('c1proc-'+v+'-check');
+    if(d) d.style.display='none';
+    if(c) c.style.display='none';
+  });
+  showProcStep(0);
+}
+
+function showProcStep(i){
+  const s=PROC_SCRIPT[i];
+  document.getElementById('c1proc-spk').textContent=s.spk;
+  document.getElementById('c1proc-txt').textContent=s.txt;
+  if(s.check && s.vendor){
+    const d=document.getElementById('c1proc-'+s.vendor+'-done');
+    const c=document.getElementById('c1proc-'+s.vendor+'-check');
+    if(d) d.style.display='block';
+    if(c) c.style.display='block';
+  }
+  const btn=document.getElementById('c1proc-btn');
+  if(i>=PROC_SCRIPT.length-1){
+    btn.textContent='進行採購 ▶';
+    btn.onclick=()=>go('c1s-launch');
+  } else {
+    btn.textContent='繼續 ▶';
+    btn.onclick=procNext;
   }
 }
 
-function nextV2(){
-  const react = document.getElementById('v2-reaction');
-  if(react) react.style.display = 'none';
+function procNext(){
+  procStep++;
+  if(procStep<PROC_SCRIPT.length) showProcStep(procStep);
+}
 
+function nextV2(){
   const btn = document.getElementById('v2-next');
   if(btn) btn.style.display = 'none';
 
   const left = V2_ORDER.filter(x => !v2_done.has(x));
 
   if(left.length > 0){
+    // 更新對話框提示下一步
+    const spkEl = document.getElementById('v2-spk');
+    const reactEl = document.getElementById('v2-reaction');
+    if(spkEl) spkEl.textContent = '旁白';
+    if(reactEl) reactEl.textContent = left.length === 1
+      ? '還有最後一位廠商，點擊他交付文件！'
+      : '繼續點擊其他廠商，把文件交給他們！';
     v2_locked = false;
     return;
   }
@@ -1275,12 +1894,22 @@ function initPhoneCanvas(){
   canvas.height = canvas.offsetHeight || 600;
   const W = canvas.width, H = canvas.height;
 
-  const phones = Array.from({length:28}, (_,i) => ({
-    x: (Math.random() * .9 + .05) * W,
-    y: (Math.random() * .9 + .05) * H,
-    r: Math.random() * 7 + 5,
+  const edgePositions = [
+    // 上方角落
+    {x:.05, y:.06}, {x:.92, y:.04}, {x:.18, y:.03}, {x:.75, y:.02}, {x:.50, y:.05},
+    // 左右邊緣
+    {x:.02, y:.25}, {x:.97, y:.22}, {x:.03, y:.45}, {x:.96, y:.48},
+    // 下方（對話框附近）
+    {x:.08, y:.68}, {x:.25, y:.72}, {x:.50, y:.70}, {x:.72, y:.73}, {x:.92, y:.69},
+    {x:.15, y:.82}, {x:.40, y:.85}, {x:.62, y:.83}, {x:.85, y:.80},
+    {x:.05, y:.92}, {x:.90, y:.93},
+  ];
+  const phones = edgePositions.map((pos, i) => ({
+    x: pos.x * W,
+    y: pos.y * H,
+    r: Math.random() * 5 + 4,
     alpha: 0,
-    delay: i * 120 + Math.random() * 200,
+    delay: i * 150 + Math.random() * 200,
     born: false,
     pulse: 0,
     speed: Math.random() * .02 + .01,
