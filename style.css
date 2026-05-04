@@ -23,12 +23,23 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{width:100%;height:100%;overflow:hidden;background:var(--sky);}
-body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',sans-serif;color:var(--text);}
+html,body{width:100%;height:100%;overflow:hidden;background:#888;}
+body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',sans-serif;color:var(--text);display:flex;justify-content:center;align-items:stretch;}
+
+/* ── 遊戲容器：手機全螢幕，電腦置中 430px ── */
+#game-root{
+  position:relative;
+  width:100%;
+  max-width:430px;
+  height:100%;
+  overflow:hidden;
+  background:var(--sky);
+  flex-shrink:0;
+}
 
 /* ── 畫面系統 ── */
 .scr{
-  position:fixed;inset:0;
+  position:absolute;inset:0;
   opacity:0;pointer-events:none;
   transition:opacity .4s;
   z-index:1;overflow-y:auto;
