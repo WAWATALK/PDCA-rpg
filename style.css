@@ -23,23 +23,12 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{width:100%;height:100%;overflow:hidden;background:#888;}
-body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',sans-serif;color:var(--text);display:flex;justify-content:center;align-items:stretch;}
-
-/* ── 遊戲容器：手機全螢幕，電腦置中 430px ── */
-#game-root{
-  position:relative;
-  width:100%;
-  max-width:430px;
-  height:100%;
-  overflow:hidden;
-  background:var(--sky);
-  flex-shrink:0;
-}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--sky);}
+body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',sans-serif;color:var(--text);}
 
 /* ── 畫面系統 ── */
 .scr{
-  position:absolute;inset:0;
+  position:fixed;inset:0;
   opacity:0;pointer-events:none;
   transition:opacity .4s;
   z-index:1;overflow-y:auto;
@@ -97,7 +86,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',s
 .dlg-wrap{
   background:var(--white);
   border-top:3px solid var(--border);
-  padding:14px 16px 16px;
+  padding:14px 22px 16px;
   flex-shrink:0;min-height:130px;
   display:flex;flex-direction:column;
   justify-content:space-between;
@@ -113,6 +102,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',s
   font-size:15px;color:var(--text);
   line-height:1.9;flex:1;
   min-height:48px;
+  white-space:pre-line;
 }
 .dlg-btn{
   margin-top:10px;width:100%;padding:11px;
@@ -127,7 +117,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',s
 .dlg-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--gold-dim);}
 
 /* ── 場景 ── */
-.scene{position:relative;flex:1;overflow:hidden;min-height:220px;}
+.scene{position:relative;flex:1;overflow:hidden;min-height:160px;}
 .scene-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
 
 /* ── HUD ── */
@@ -235,5 +225,5 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC','rounded mplus 1c',s
   padding-bottom:env(safe-area-inset-bottom);
 }
 .dlg-wrap{
-  padding-bottom:calc(16px + env(safe-area-inset-bottom));
+  padding-bottom:calc(18px + env(safe-area-inset-bottom));
 }

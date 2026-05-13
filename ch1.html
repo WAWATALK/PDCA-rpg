@@ -371,8 +371,8 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 #c1s-trp{background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:16px 16px 24px;overflow-y:auto;}
 .trp-title{font-size:15px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;}
 .trp-sub{font-size:11px;color:var(--muted);text-align:center;margin-bottom:16px;}
-.trp-card{width:100%;max-width:360px;background:var(--white);border:2px solid var(--border);border-radius:14px;padding:10px 12px;margin-bottom:8px;}
-.trp-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.trp-card{width:100%;max-width:360px;background:var(--white);border:2px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;}
+.trp-label{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
 .trp-def{font-size:11px;color:var(--muted);margin-bottom:7px;line-height:1.5;}
 .trp-opts{display:flex;gap:6px;flex-wrap:wrap;}
 .topt{
@@ -438,7 +438,6 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 <title>轉職成為資訊人-第一章：系統購置</title>
 </head>
 <body>
-<div id="game-root">
 <!-- clouds (shared) -->
 <div class="cloud c1"></div>
 <div class="cloud c2"></div>
@@ -942,41 +941,43 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 <div class="scr sky-bg" id="c1s-risk-result">
   <div class="panel a1" style="text-align:center;max-width:340px">
     <div style="font-size:12px;color:var(--muted);margin-bottom:10px">風險值計算結果</div>
-    <!-- 算式一整排 -->
-    <div style="display:flex;align-items:center;justify-content:center;gap:5px;margin-bottom:14px;flex-wrap:nowrap">
-      <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:7px 8px;text-align:center;min-width:58px">
+    <!-- 算式 -->
+    <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px;flex-wrap:wrap">
+      <div style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:10px;padding:8px 12px;text-align:center">
         <div style="font-size:9px;color:var(--muted)">資產價值</div>
-        <div style="font-size:20px;font-weight:900;color:var(--gold)" id="c1rv-asset">—</div>
+        <div style="font-size:22px;font-weight:900;color:var(--gold)" id="c1rv-asset">—</div>
       </div>
-      <div style="font-size:14px;color:var(--muted)">×</div>
-      <div style="background:#E8F0FF;border:1.5px solid var(--blue);border-radius:10px;padding:7px 8px;text-align:center;min-width:58px">
+      <div style="font-size:18px;color:var(--muted)">×</div>
+      <div style="background:#E8F0FF;border:1.5px solid var(--blue);border-radius:10px;padding:8px 12px;text-align:center">
         <div style="font-size:9px;color:var(--muted)">可能性</div>
-        <div style="font-size:20px;font-weight:900;color:var(--blue)" id="c1rv-prob">—</div>
+        <div style="font-size:22px;font-weight:900;color:var(--blue)" id="c1rv-prob">—</div>
       </div>
-      <div style="font-size:14px;color:var(--muted)">×</div>
-      <div style="background:#FFE8F0;border:1.5px solid #C04080;border-radius:10px;padding:7px 8px;text-align:center;min-width:58px">
+      <div style="font-size:18px;color:var(--muted)">×</div>
+      <div style="background:#FFE8F0;border:1.5px solid #C04080;border-radius:10px;padding:8px 12px;text-align:center">
         <div style="font-size:9px;color:var(--muted)">影響程度</div>
-        <div style="font-size:20px;font-weight:900;color:#C04080" id="c1rv-impact">—</div>
+        <div style="font-size:22px;font-weight:900;color:#C04080" id="c1rv-impact">—</div>
       </div>
-      <div style="font-size:14px;color:var(--muted)">=</div>
-      <div style="border-radius:10px;padding:7px 8px;text-align:center;min-width:58px" id="c1rv-result-box">
+      <div style="font-size:18px;color:var(--muted)">=</div>
+      <div style="border-radius:10px;padding:8px 14px;text-align:center" id="c1rv-result-box">
         <div style="font-size:9px;color:var(--muted)">風險值</div>
-        <div style="font-size:24px;font-weight:900" id="c1rv-score">—</div>
+        <div style="font-size:28px;font-weight:900" id="c1rv-score">—</div>
       </div>
     </div>
-    <!-- 判斷 + 小麻雀合併 -->
-    <div class="sp-say" id="c1rv-sp-row" style="margin-bottom:12px">
-      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀" id="c1rv-sp-img2">
-      <div id="c1rv-verdict" style="background:#FFF3C0;border:1.5px solid var(--gold);border-radius:0 12px 12px 12px;padding:10px 12px;font-size:12px;color:var(--gd);line-height:1.8;flex:1;text-align:left"></div>
+    <!-- 判斷說明 -->
+    <div id="c1rv-verdict" style="border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left"></div>
+    <!-- 小麻雀說 -->
+    <div class="sp-say" id="c1rv-sp-row">
+      <img class="sp-tiny" src="assets/sp.png" alt="小麻雀">
+      <div class="sp-bubble" id="c1rv-sp-msg"></div>
     </div>
-    <button class="btn-main btn-full" id="c1rv-next" onclick="go('c1s-trp')">繼續：設定時間目標 ▶</button>
+    <button class="btn-main btn-full" style="margin-top:14px" id="c1rv-next" onclick="go('c1s-trp')">繼續：設定時間目標 ▶</button>
   </div>
 </div>
 
 
 <div class="scr" id="c1s-trp" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:12px 16px 32px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-  <div style="font-size:15px;font-weight:700;color:var(--text);text-align:center;margin:4px 0 2px;position:relative;z-index:1">⏱️ 設定時間目標</div>
-  <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px;position:relative;z-index:1">如果安安電子系統出問題，你們能接受多久？</div>
+  <div style="font-size:18px;font-weight:700;color:var(--text);text-align:center;margin:8px 0 4px;position:relative;z-index:1">⏱️ 設定時間目標</div>
+  <div style="font-size:13px;color:var(--muted);text-align:center;margin-bottom:14px;position:relative;z-index:1">如果安安電子系統出問題，你們能接受多久？</div>
 
   <div class="trp-card">
     <div class="trp-label">MTPD｜最大可容忍中斷時間</div>
@@ -1051,34 +1052,34 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
       <text x="195" y="32" fill="white" font-size="13" text-anchor="middle" font-family="sans-serif" font-weight="bold">🛒 安安市集</text>
 
       <!-- Apple 攤位 -->
-      <rect x="10" y="83" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
-      <rect x="10" y="71" width="108" height="20" rx="4" fill="#FF9797" stroke="#D1E9E9" stroke-width="2"/>
-      <text x="64" y="85" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍎 Apple</text>
-      <text x="64" y="130" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">✨通通辦到好</text>
+      <rect x="10" y="68" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
+      <rect x="10" y="56" width="108" height="20" rx="4" fill="#FF9797" stroke="#D1E9E9" stroke-width="2"/>
+      <text x="64" y="70" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍎 Apple</text>
+      <text x="64" y="100" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">✨通通辦到好</text>
       <text x="64" y="115" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">💻規格沒寫好</text>
       <!-- Apple 完成 -->
-      <rect x="18" y="137" width="78" height="18" rx="9" fill="#50C040" id="v2-apple-done" style="display:none"/>
-      <text x="57" y="150" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-apple-done-txt" style="display:none">✓ 已交文件</text>
+      <rect x="18" y="122" width="78" height="18" rx="9" fill="#50C040" id="v2-apple-done" style="display:none"/>
+      <text x="57" y="135" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-apple-done-txt" style="display:none">✓ 已交文件</text>
 
       <!-- Banana 攤位 -->
-      <rect x="141" y="78" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
-      <rect x="141" y="66" width="108" height="20" rx="4" fill="#BB5E00" stroke="#D1E9E9" stroke-width="2"/>
-      <text x="195" y="80" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍌 Banana</text>
-      <text x="195" y="125" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">📄白紙黑字</text>
+      <rect x="141" y="63" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
+      <rect x="141" y="51" width="108" height="20" rx="4" fill="#BB5E00" stroke="#D1E9E9" stroke-width="2"/>
+      <text x="195" y="65" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍌 Banana</text>
+      <text x="195" y="95" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">📄白紙黑字</text>
       <text x="195" y="110" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">📄不多做事</text>
       <!-- Banana 完成 -->
-      <rect x="149" y="133" width="78" height="18" rx="9" fill="#50C040" id="v2-banana-done" style="display:none"/>
-      <text x="188" y="146" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-banana-done-txt" style="display:none">✓ 已交文件</text>
+      <rect x="149" y="118" width="78" height="18" rx="9" fill="#50C040" id="v2-banana-done" style="display:none"/>
+      <text x="188" y="131" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-banana-done-txt" style="display:none">✓ 已交文件</text>
 
       <!-- Lemon 攤位 -->
-      <rect x="272" y="83" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
-      <rect x="272" y="71" width="108" height="20" rx="4" fill="#009100" stroke="#D1E9E9" stroke-width="2"/>
-      <text x="326" y="85" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍋 Lemon</text>
-      <text x="326" y="130" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">💰我少一元</text>
+      <rect x="272" y="68" width="108" height="80" rx="5" fill="#FFF8E8" stroke="#D1E9E9" stroke-width="1.5"/>
+      <rect x="272" y="56" width="108" height="20" rx="4" fill="#009100" stroke="#D1E9E9" stroke-width="2"/>
+      <text x="326" y="70" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif" font-weight="bold">🍋 Lemon</text>
+      <text x="326" y="100" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">💰我少一元</text>
       <text x="326" y="115" font-size="9" fill="#8B6010" text-anchor="middle" font-family="sans-serif">🏷️我最便宜</text>
       <!-- Lemon 完成 -->
-      <rect x="280" y="137" width="78" height="18" rx="9" fill="#50C040" id="v2-lemon-done" style="display:none"/>
-      <text x="319" y="150" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-lemon-done-txt" style="display:none">✓ 已交文件</text>
+      <rect x="280" y="122" width="78" height="18" rx="9" fill="#50C040" id="v2-lemon-done" style="display:none"/>
+      <text x="319" y="135" font-size="9" fill="white" text-anchor="middle" font-family="sans-serif" font-weight="bold" id="v2-lemon-done-txt" style="display:none">✓ 已交文件</text>
 
       <!-- 路徑 -->
       <path d="M178 175 L212 175 L218 280 L172 280Z" fill="#D4B870" stroke="#C0A050" stroke-width="1.5"/>
@@ -1090,7 +1091,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- 勇者 -->
-    <div id="v2-player" style="position:absolute;left:50%;transform:translateX(-50%);bottom:38%;text-align:center;z-index:15;transition:left .7s cubic-bezier(.4,0,.2,1)">
+    <div id="v2-player" style="position:absolute;left:50%;transform:translateX(-50%);bottom:28%;text-align:center;z-index:15;transition:left .7s cubic-bezier(.4,0,.2,1)">
       <div class="player-name">你（勇者）</div>
       <svg viewBox="0 0 36 48" width="30" height="40">
         <ellipse cx="18" cy="47" rx="10" ry="3.5" fill="rgba(0,0,0,.15)"/>
@@ -1108,7 +1109,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Apple NPC -->
-    <div class="npc" id="v2-npc-apple" style="left:6%;bottom:38%" onclick="pickV2('apple')">
+    <div class="npc" id="v2-npc-apple" style="left:6%;bottom:20%" onclick="pickV2('apple')">
       <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1124,7 +1125,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Banana NPC -->
-    <div class="npc" id="v2-npc-banana" style="left:44%;bottom:50%;z-index:20" onclick="pickV2('banana')">
+    <div class="npc" id="v2-npc-banana" style="left:44%;bottom:29%;z-index:20" onclick="pickV2('banana')">
       <div class="npc-inner npc-float" style="animation-delay:.5s"><div class="npc-name">廠商 Banana</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1140,7 +1141,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Lemon NPC -->
-    <div class="npc" id="v2-npc-lemon" style="right:6%;bottom:38%" onclick="pickV2('lemon')">
+    <div class="npc" id="v2-npc-lemon" style="right:6%;bottom:20%" onclick="pickV2('lemon')">
       <div class="npc-inner npc-float" style="animation-delay:1s"><div class="npc-name">廠商 Lemon</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1156,9 +1157,9 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
   </div>
 
-  <div class="dlg-wrap" style="background:#FFFAED;padding:14px 20px 16px">
+  <div class="dlg-wrap" style="background:#FFFAED;padding:14px 22px 16px">
     <div><div class="dlg-spk" id="v2-spk" style="color:#B85A00">旁白</div><div class="dlg-txt" id="v2-reaction">點擊廠商，把文件交給他們！三個都要喔 📋</div></div>
-    <button class="dnxt2" id="v2-next" style="display:none" onclick="nextV2()">繼續 ▶</button>
+    <button class="dnxt2" id="v2-next" style="display:none;background:#D4920A;box-shadow:0 3px 0 #8B6010" onclick="nextV2()">繼續 ▶</button>
   </div>
 </div>
 
@@ -1205,7 +1206,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 </div>
 
 <!-- PROCURE -->
-<div class="scr" id="c1s-procure" style="background:linear-gradient(180deg,#FFD580 0%,#FFB830 40%,var(--gnd) 40%,var(--gnd2) 100%);display:flex;flex-direction:column">
+<div class="scr" id="c1s-procure" style="background:linear-gradient(180deg,#FFD580 0%,#FFB830 40%,var(--gnd) 40%,var(--gnd2) 100%);display:flex;flex-direction:column;overflow:hidden">
   <div class="scene" id="c1procure-scene">
     <svg class="scene-svg" viewBox="0 0 390 280" preserveAspectRatio="xMidYMid meet">
       <rect x="0" y="0" width="390" height="165" fill="#FFD580"/>
@@ -1299,7 +1300,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Apple NPC -->
-    <div class="npc" id="c1proc-npc-apple" style="left:6%;bottom:28%">
+    <div class="npc" id="c1proc-npc-apple" style="left:6%;bottom:20%">
       <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1315,7 +1316,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Banana NPC -->
-    <div class="npc" id="c1proc-npc-banana" style="left:44%;bottom:39%;z-index:20">
+    <div class="npc" id="c1proc-npc-banana" style="left:44%;bottom:29%;z-index:20">
       <div class="npc-inner npc-float" style="animation-delay:.5s"><div class="npc-name">廠商 Banana</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1331,7 +1332,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Lemon NPC -->
-    <div class="npc" id="c1proc-npc-lemon" style="right:6%;bottom:28%">
+    <div class="npc" id="c1proc-npc-lemon" style="right:6%;bottom:20%">
       <div class="npc-inner npc-float" style="animation-delay:1s"><div class="npc-name">廠商 Lemon</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1347,9 +1348,9 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
   </div>
 
-  <div class="dlg-wrap" style="background:#FFFAED">
+  <div class="dlg-wrap" style="background:#FFFAED;padding:14px 22px 16px">
     <div><div class="dlg-spk" id="c1proc-spk" style="color:#B85A00">旁白</div><div class="dlg-txt" id="c1proc-txt">勇者開始向三位廠商收取簽約所需文件⋯⋯</div></div>
-    <button class="dnxt2" id="c1proc-btn" onclick="procNext()">繼續 ▶</button>
+    <button class="dlg-btn" id="c1proc-btn" style="background:#D4920A;box-shadow:0 3px 0 #8B6010" onclick="procNext()">繼續 ▶</button>
   </div>
 </div>
 
@@ -1390,6 +1391,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
     <div style="font-size:11px;color:rgba(255,248,220,.5);margin-top:16px">～ 第二章：日常維運 即將開放 ～</div>
     <button onclick="location.href='index.html#menu'" class="btn-main" style="margin-top:16px;width:100%;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A;font-size:14px">📖 前往章節選單</button>
+    <div style="font-size:11px;color:rgba(255,248,220,.4);margin-top:16px">© 2025 資安小麻雀｜wawatalk</div>
   </div>
 </div>
 
@@ -1657,21 +1659,23 @@ function calcRisk(){
 
   const box=document.getElementById('c1rv-result-box');
   const verdict=document.getElementById('c1rv-verdict');
+  const spMsg=document.getElementById('c1rv-sp-msg');
   const scoreEl=document.getElementById('c1rv-score');
-  const spImg=document.getElementById('c1rv-sp-img2');
 
   if(score<=12){
     box.style.cssText='background:#E8F5E8;border:2px solid #50C040;border-radius:10px;padding:8px 14px;text-align:center';
     scoreEl.style.color='#2A6020';
-    verdict.style.cssText='background:#E8F5E8;border:1.5px solid #50C040;border-radius:0 12px 12px 12px;padding:10px 12px;font-size:12px;line-height:1.8;flex:1;text-align:left;color:#2A6020';
+    verdict.style.cssText='background:#E8F5E8;border:1.5px solid #50C040;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left;color:#2A6020';
     verdict.textContent='✅ 可接受風險（風險值 ≤ 12）\n定期監控，維持現有管控措施即可。';
-    if(spImg) spImg.src='assets/sp.png';
+    spMsg.textContent='風險在可接受範圍內！';
+    document.querySelector('#c1s-risk-result .sp-tiny').src='assets/sp.png';
   } else {
     box.style.cssText='background:#FFE8E0;border:2px solid #E05030;border-radius:10px;padding:8px 14px;text-align:center';
     scoreEl.style.color='#E05030';
-    verdict.style.cssText='background:#FFE8E0;border:1.5px solid #E05030;border-radius:0 12px 12px 12px;padding:10px 12px;font-size:12px;line-height:1.8;flex:1;text-align:left;color:#801010';
-    verdict.innerHTML='🚨 <strong>不可接受風險（風險值 ≥ 13）</strong><br>風險超標！請立即聯繫圖資處協助處理。';
-    if(spImg) spImg.src='assets/sp-speech.png';
+    verdict.style.cssText='background:#FFE8E0;border:1.5px solid #E05030;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.8;margin-bottom:14px;text-align:left;color:#801010';
+    verdict.innerHTML='🚨 <strong>不可接受風險（風險值 ≥ 13）</strong><br>風險超標！必須立即採取行動降低風險，<br>並聯繫圖資處協助處理。';
+    spMsg.innerHTML='風險值超過 12，這是<strong>不可接受風險</strong>！<br>在繼續委外流程之前，請先<strong>聯繫圖資處</strong>，一起討論如何降低風險喔！';
+    document.querySelector('#c1s-risk-result .sp-tiny').src='assets/sp-speech.png';
   }
   go('c1s-risk-result');
 }
@@ -1763,9 +1767,9 @@ function resetTRP(){
 
 /* ── VENDOR 2 LOGIC ── */
 const V2_REACT = {
-  apple: '太麻煩了吧！\n（挖鼻屎）',
-  banana: '你們怎麼要求那麼多！\n（翻白眼）',
-  lemon: '蛤！！！！\n（抖腳）',
+  apple: '🍎 廠商 Apple：\n「太麻煩了吧！」',
+  banana: '🍌 廠商 Banana：\n「你們怎麼要求那麼多！」',
+  lemon: '🍋 廠商 Lemon：\n「蛤！！！！」',
 };
 
 const V2_ORDER = ['apple','banana','lemon'];
@@ -1806,75 +1810,32 @@ function pickV2(id){
 
   const btn = document.getElementById('v2-next');
   if(btn) btn.style.display = 'block';
-
-  // 解鎖，讓下一個廠商可以點
-  v2_locked = false;
 }
 
 /* ── PROCURE SCENE ── */
-const PROC_SCRIPT=[
-  {spk:'旁白',txt:'勇者拿著需求文件，前往三個攤位收取簽約資料⋯⋯',vendor:null},
-  {spk:'廠商 Apple 🍎',txt:'來來來！文件都幫你備好了！\n（順便塞了一份加值服務目錄 😄）',vendor:'apple'},
-  {spk:'旁白',txt:'Apple 交出了文件。',vendor:'apple',check:true},
-  {spk:'廠商 Banana 🍌',txt:'（翻資料夾）⋯⋯\n合約上有寫的，全部都在這裡。\n合約上沒寫的，不關我的事。',vendor:'banana'},
-  {spk:'旁白',txt:'Banana 交出了文件。',vendor:'banana',check:true},
-  {spk:'廠商 Lemon 🍋',txt:'我最快！我最便宜！\n文件？都在這裡啦！快簽快簽！',vendor:'lemon'},
-  {spk:'旁白',txt:'Lemon 交出了文件。',vendor:'lemon',check:true},
-  {spk:'旁白',txt:'三份文件全部到齊！\n勇者把文件交給萬事屋，\n議比價、簽約⋯⋯',vendor:null},
-];
-let procStep=0;
-
 function startProcure(){
-  procStep=0;
-  // reset checks
   ['apple','banana','lemon'].forEach(v=>{
     const d=document.getElementById('c1proc-'+v+'-done');
     const c=document.getElementById('c1proc-'+v+'-check');
-    if(d) d.style.display='none';
-    if(c) c.style.display='none';
-  });
-  showProcStep(0);
-}
-
-function showProcStep(i){
-  const s=PROC_SCRIPT[i];
-  document.getElementById('c1proc-spk').textContent=s.spk;
-  document.getElementById('c1proc-txt').textContent=s.txt;
-  if(s.check && s.vendor){
-    const d=document.getElementById('c1proc-'+s.vendor+'-done');
-    const c=document.getElementById('c1proc-'+s.vendor+'-check');
     if(d) d.style.display='block';
     if(c) c.style.display='block';
-  }
+  });
+  document.getElementById('c1proc-spk').textContent='旁白';
+  document.getElementById('c1proc-txt').textContent='三份文件全部到齊！\n勇者把文件交給萬事屋，議比價、簽約⋯⋯\n\n🎉 採購成功！';
   const btn=document.getElementById('c1proc-btn');
-  if(i>=PROC_SCRIPT.length-1){
-    btn.textContent='進行採購 ▶';
-    btn.onclick=()=>go('c1s-launch');
-  } else {
-    btn.textContent='繼續 ▶';
-    btn.onclick=procNext;
-  }
-}
-
-function procNext(){
-  procStep++;
-  if(procStep<PROC_SCRIPT.length) showProcStep(procStep);
+  if(btn){ btn.textContent='系統上線 ▶'; btn.onclick=()=>go('c1s-launch'); }
 }
 
 function nextV2(){
+  const react = document.getElementById('v2-reaction');
+  if(react) react.style.display = 'none';
+
   const btn = document.getElementById('v2-next');
   if(btn) btn.style.display = 'none';
 
   const left = V2_ORDER.filter(x => !v2_done.has(x));
 
   if(left.length > 0){
-    // 更新對話框提示下一步
-    const spkEl = document.getElementById('v2-spk');
-    const reactEl = document.getElementById('v2-reaction');
-    if(spkEl) spkEl.textContent = '旁白';
-    if(reactEl) reactEl.textContent = left.length === 1
-      ? '還有最後一位廠商，點擊他交付文件！'
-      : '繼續點擊其他廠商，把文件交給他們！';
     v2_locked = false;
     return;
   }
@@ -1892,14 +1853,9 @@ function initPhoneCanvas(){
   const W = canvas.width, H = canvas.height;
 
   const edgePositions = [
-    // 上方角落
-    {x:.05, y:.06}, {x:.92, y:.04}, {x:.18, y:.03}, {x:.75, y:.02}, {x:.50, y:.05},
-    // 左右邊緣
-    {x:.02, y:.25}, {x:.97, y:.22}, {x:.03, y:.45}, {x:.96, y:.48},
-    // 下方（對話框附近）
-    {x:.08, y:.68}, {x:.25, y:.72}, {x:.50, y:.70}, {x:.72, y:.73}, {x:.92, y:.69},
-    {x:.15, y:.82}, {x:.40, y:.85}, {x:.62, y:.83}, {x:.85, y:.80},
-    {x:.05, y:.92}, {x:.90, y:.93},
+    {x:.05, y:.08}, {x:.92, y:.05}, {x:.03, y:.30}, {x:.95, y:.25},
+    {x:.06, y:.68}, {x:.93, y:.72}, {x:.04, y:.88}, {x:.90, y:.90},
+    {x:.20, y:.03}, {x:.75, y:.96}, {x:.12, y:.95}, {x:.85, y:.04},
   ];
   const phones = edgePositions.map((pos, i) => ({
     x: pos.x * W,
@@ -1959,6 +1915,5 @@ go = function(id){
 };
 
 </script>
-</div>
 </body>
 </html>
