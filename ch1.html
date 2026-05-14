@@ -371,8 +371,8 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 #c1s-trp{background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:16px 16px 24px;overflow-y:auto;}
 .trp-title{font-size:15px;font-weight:700;color:var(--text);text-align:center;margin-bottom:4px;}
 .trp-sub{font-size:11px;color:var(--muted);text-align:center;margin-bottom:16px;}
-.trp-card{width:100%;max-width:360px;background:var(--white);border:2px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px;}
-.trp-label{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.trp-card{width:100%;max-width:360px;background:var(--white);border:2px solid var(--border);border-radius:14px;padding:10px 12px;margin-bottom:8px;}
+.trp-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;}
 .trp-def{font-size:11px;color:var(--muted);margin-bottom:7px;line-height:1.5;}
 .trp-opts{display:flex;gap:6px;flex-wrap:wrap;}
 .topt{
@@ -976,8 +976,8 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
 
 
 <div class="scr" id="c1s-trp" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:12px 16px 32px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-  <div style="font-size:18px;font-weight:700;color:var(--text);text-align:center;margin:8px 0 4px;position:relative;z-index:1">⏱️ 設定時間目標</div>
-  <div style="font-size:13px;color:var(--muted);text-align:center;margin-bottom:14px;position:relative;z-index:1">如果安安電子系統出問題，你們能接受多久？</div>
+  <div style="font-size:15px;font-weight:700;color:var(--text);text-align:center;margin:4px 0 2px;position:relative;z-index:1">⏱️ 設定時間目標</div>
+  <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:10px;position:relative;z-index:1">如果安安電子系統出問題，你們能接受多久？</div>
 
   <div class="trp-card">
     <div class="trp-label">MTPD｜最大可容忍中斷時間</div>
@@ -1013,22 +1013,27 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
   <div class="trp-err" id="c1trp-err">⚠️ <span id="c1trp-err-msg"></span></div>
   <div class="trp-ok" id="c1trp-ok">✅ 邏輯正確！<br><span id="c1trp-ok-msg"></span><br><br> 記得：這是你心目中的初稿，<strong>還要跟廠商討論可行性</strong>，最後才寫入合約！</div>
 
-  <button class="btn-main" style="margin-top:14px;width:100%;max-width:360px" onclick="checkTRP()">確認設定 ✅</button>
-  <button class="btn-main" style="margin-top:8px;width:100%;max-width:360px;background:#A09060;box-shadow:0 3px 0 #706040;font-size:12px" onclick="resetTRP()">↩ 重新設定</button>
-    <div id="c1trp-continue" style="display:none;text-align:right;margin-top:10px">
-      <button class="btn-main" style="padding:11px 24px;background:#50A050;box-shadow:0 4px 0 #308030;font-size:13px" onclick="go('c1s-narr2')">我看完了，繼續 ▶</button>
-    </div>
+  <button class="btn-main" style="margin-top:14px;width:100%;max-width:360px;background:#A09060;box-shadow:0 3px 0 #706040;font-size:12px" onclick="resetTRP()">↩ 重新設定</button>
+  <button class="btn-main" style="margin-top:8px;width:100%;max-width:360px" onclick="confirmAndContinueTRP()">確認並繼續 ▶</button>
+  <div id="c1trp-continue" style="display:none"></div>
 </div>
 
 <!-- NARR2: 文件準備完成 -->
 <div class="scr" id="c1s-narr2" style="background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 16px">
   <div class="panel a1" style="max-width:340px">
     <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:10px;text-align:center">📋 文件準備完成</div>
-    <div style="font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:14px">
-      小麻雀拿出了一疊厚厚的文件：<br>
-      資通訊系統委外自評表、資通訊委外合約書附則、個人保密切結書等<br>
-      勇者跟村民們討論完所有文件，<br>
-      現在要把文件交給廠商了⋯⋯
+    <div class="sp-say" style="margin-bottom:12px;align-items:flex-start">
+      <img src="assets/sp-note.png" style="width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);flex-shrink:0;object-fit:cover">
+      <div class="sp-bubble" style="text-align:left;font-size:12px;line-height:1.9">
+        小麻雀拿出了一疊厚厚的文件 😅<br>
+        <br>
+        －資通訊系統委外自評表<br>
+        －資通訊委外合約書附則<br>
+        －個人保密切結書⋯⋯等<br>
+        <br>
+        勇者跟村民們討論文件內容後，<br>
+        現在要把文件交給廠商了⋯⋯
+      </div>
     </div>
     <button class="btn-main btn-full" onclick="go('c1s-vendor2')">文件交付</button>
   </div>
@@ -1109,7 +1114,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Apple NPC -->
-    <div class="npc" id="v2-npc-apple" style="left:6%;bottom:20%" onclick="pickV2('apple')">
+    <div class="npc" id="v2-npc-apple" style="left:6%;bottom:28%" onclick="pickV2('apple')">
       <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1125,7 +1130,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Banana NPC -->
-    <div class="npc" id="v2-npc-banana" style="left:44%;bottom:29%;z-index:20" onclick="pickV2('banana')">
+    <div class="npc" id="v2-npc-banana" style="left:44%;bottom:39%;z-index:20" onclick="pickV2('banana')">
       <div class="npc-inner npc-float" style="animation-delay:.5s"><div class="npc-name">廠商 Banana</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1141,7 +1146,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Lemon NPC -->
-    <div class="npc" id="v2-npc-lemon" style="right:6%;bottom:20%" onclick="pickV2('lemon')">
+    <div class="npc" id="v2-npc-lemon" style="right:6%;bottom:28%" onclick="pickV2('lemon')">
       <div class="npc-inner npc-float" style="animation-delay:1s"><div class="npc-name">廠商 Lemon</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1157,7 +1162,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
   </div>
 
-  <div class="dlg-wrap" style="background:#FFFAED;padding:14px 22px 16px">
+  <div class="dlg-wrap" style="background:#FFFAED">
     <div><div class="dlg-spk" id="v2-spk" style="color:#B85A00">旁白</div><div class="dlg-txt" id="v2-reaction">點擊廠商，把文件交給他們！三個都要喔 📋</div></div>
     <button class="dnxt2" id="v2-next" style="display:none;background:#D4920A;box-shadow:0 3px 0 #8B6010" onclick="nextV2()">繼續 ▶</button>
   </div>
@@ -1300,7 +1305,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Apple NPC -->
-    <div class="npc" id="c1proc-npc-apple" style="left:6%;bottom:20%">
+    <div class="npc" id="c1proc-npc-apple" style="left:6%;bottom:28%">
       <div class="npc-inner npc-float"><div class="npc-name">廠商 Apple</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1316,7 +1321,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Banana NPC -->
-    <div class="npc" id="c1proc-npc-banana" style="left:44%;bottom:29%;z-index:20">
+    <div class="npc" id="c1proc-npc-banana" style="left:44%;bottom:39%;z-index:20">
       <div class="npc-inner npc-float" style="animation-delay:.5s"><div class="npc-name">廠商 Banana</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1332,7 +1337,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
 
     <!-- Lemon NPC -->
-    <div class="npc" id="c1proc-npc-lemon" style="right:6%;bottom:20%">
+    <div class="npc" id="c1proc-npc-lemon" style="right:6%;bottom:28%">
       <div class="npc-inner npc-float" style="animation-delay:1s"><div class="npc-name">廠商 Lemon</div>
       <svg viewBox="0 0 32 44" width="38" height="48">
         <ellipse cx="16" cy="43" rx="8" ry="2.5" fill="rgba(0,0,0,.12)"/>
@@ -1348,7 +1353,7 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     </div>
   </div>
 
-  <div class="dlg-wrap" style="background:#FFFAED;padding:14px 22px 16px">
+  <div class="dlg-wrap" style="background:#FFFAED">
     <div><div class="dlg-spk" id="c1proc-spk" style="color:#B85A00">旁白</div><div class="dlg-txt" id="c1proc-txt">勇者開始向三位廠商收取簽約所需文件⋯⋯</div></div>
     <button class="dlg-btn" id="c1proc-btn" style="background:#D4920A;box-shadow:0 3px 0 #8B6010" onclick="procNext()">繼續 ▶</button>
   </div>
@@ -1389,9 +1394,8 @@ body{font-family:'Hiragino Maru Gothic ProN','Noto Sans TC',sans-serif;color:var
     <div class="final-q">
       「現在想想——<br><em>我們的系統，可以怎麼做？</em>」
     </div>
-    <div style="font-size:11px;color:rgba(255,248,220,.5);margin-top:16px">～ 第二章：日常維運 即將開放 ～</div>
+    
     <button onclick="location.href='index.html#menu'" class="btn-main" style="margin-top:16px;width:100%;background:#FFD700;box-shadow:0 4px 0 #C0A010;color:#3A2E1A;font-size:14px">📖 前往章節選單</button>
-    <div style="font-size:11px;color:rgba(255,248,220,.4);margin-top:16px">© 2025 資安小麻雀｜wawatalk</div>
   </div>
 </div>
 
@@ -1756,6 +1760,13 @@ function resetEval(){
   go('c1s-e1');
 }
 
+function confirmAndContinueTRP(){
+  checkTRP();
+  // 如果通過驗證就直接跳頁
+  const ok=document.getElementById('c1trp-ok');
+  if(ok && ok.style.display!=='none') go('c1s-narr2');
+}
+
 function resetTRP(){
   TRP_VALS.mtpd=null;TRP_VALS.rto=null;TRP_VALS.rpo=null;
   document.querySelectorAll('.topt').forEach(b=>b.classList.remove('sel'));
@@ -1813,17 +1824,53 @@ function pickV2(id){
 }
 
 /* ── PROCURE SCENE ── */
+const PROC_SCRIPT=[
+  {spk:'旁白',txt:'勇者拿著需求文件，前往三個攤位收取簽約資料⋯⋯',vendor:null},
+  {spk:'廠商 Apple 🍎',txt:'來來來！文件都幫你備好了！\n（順便塞了一份加值服務目錄 😄）',vendor:'apple'},
+  {spk:'旁白',txt:'Apple 交出了文件。',vendor:'apple',check:true},
+  {spk:'廠商 Banana 🍌',txt:'（翻資料夾）⋯⋯\n合約上有寫的，全部都在這裡。\n合約上沒寫的，不關我的事。',vendor:'banana'},
+  {spk:'旁白',txt:'Banana 交出了文件。',vendor:'banana',check:true},
+  {spk:'廠商 Lemon 🍋',txt:'我最快！我最便宜！\n文件？都在這裡啦！快簽快簽！',vendor:'lemon'},
+  {spk:'旁白',txt:'Lemon 交出了文件。',vendor:'lemon',check:true},
+  {spk:'旁白',txt:'三份文件全部到齊！\n勇者把文件交給萬事屋，\n議比價、簽約⋯⋯',vendor:null},
+];
+let procStep=0;
+
 function startProcure(){
+  procStep=0;
+  // reset checks
   ['apple','banana','lemon'].forEach(v=>{
     const d=document.getElementById('c1proc-'+v+'-done');
     const c=document.getElementById('c1proc-'+v+'-check');
+    if(d) d.style.display='none';
+    if(c) c.style.display='none';
+  });
+  showProcStep(0);
+}
+
+function showProcStep(i){
+  const s=PROC_SCRIPT[i];
+  document.getElementById('c1proc-spk').textContent=s.spk;
+  document.getElementById('c1proc-txt').textContent=s.txt;
+  if(s.check && s.vendor){
+    const d=document.getElementById('c1proc-'+s.vendor+'-done');
+    const c=document.getElementById('c1proc-'+s.vendor+'-check');
     if(d) d.style.display='block';
     if(c) c.style.display='block';
-  });
-  document.getElementById('c1proc-spk').textContent='旁白';
-  document.getElementById('c1proc-txt').textContent='三份文件全部到齊！\n勇者把文件交給萬事屋，議比價、簽約⋯⋯\n\n🎉 採購成功！';
+  }
   const btn=document.getElementById('c1proc-btn');
-  if(btn){ btn.textContent='系統上線 ▶'; btn.onclick=()=>go('c1s-launch'); }
+  if(i>=PROC_SCRIPT.length-1){
+    btn.textContent='進行採購 ▶';
+    btn.onclick=()=>go('c1s-launch');
+  } else {
+    btn.textContent='繼續 ▶';
+    btn.onclick=procNext;
+  }
+}
+
+function procNext(){
+  procStep++;
+  if(procStep<PROC_SCRIPT.length) showProcStep(procStep);
 }
 
 function nextV2(){
